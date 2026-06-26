@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="随机生成美国格式地址，适合测试表单、产品原型和数据演示使用。"
+    >
+    <title>美国地址生成器</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="美国地址生成器首页">
+        <span class="brand__mark" aria-hidden="true">US</span>
+        <span>美国地址生成器</span>
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#generator">生成器</a>
+        <a href="#faq">说明</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="pageTitle">
+        <div class="hero__content">
+          <p class="eyebrow">Random U.S. Address Generator</p>
+          <h1 id="pageTitle">随机生成美国地址</h1>
+          <p class="hero__text">
+            快速获取符合美国常见格式的街道、城市、州和 ZIP Code。适合表单测试、软件演示和内容占位。
+          </p>
+        </div>
+      </section>
+
+      <section class="ad ad--top" aria-label="广告位">
+        <span>广告位</span>
+        <strong>728 x 90</strong>
+      </section>
+
+      <section id="generator" class="layout" aria-label="地址生成器">
+        <section class="generator-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Generator</p>
+              <h2>生成设置</h2>
+            </div>
+            <button class="ghost-button" id="clearBtn" type="button">清空</button>
+          </div>
+
+          <div class="controls">
+            <label>
+              <span>州</span>
+              <select id="stateSelect">
+                <option value="all">全美国随机</option>
+              </select>
+            </label>
+
+            <label>
+              <span>数量</span>
+              <input id="countInput" type="number" min="1" max="20" value="5">
+            </label>
+
+            <label class="checkbox-row">
+              <input id="includeName" type="checkbox" checked>
+              <span>包含收件人姓名</span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="primary-button" id="generateBtn" type="button">生成地址</button>
+            <button class="secondary-button" id="copyBtn" type="button">复制全部</button>
+            <button class="secondary-button" id="downloadBtn" type="button">导出 CSV</button>
+          </div>
+
+          <p class="helper-text">
+            生成结果使用真实城市、州缩写和 ZIP Code 范围组合，但不保证是可投递地址。
+          </p>
+        </section>
+
+        <aside class="ad ad--side" aria-label="广告位">
+          <span>广告位</span>
+          <strong>300 x 250</strong>
+        </aside>
+
+        <section class="results-panel" aria-live="polite" aria-label="生成结果">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2>地址列表</h2>
+            </div>
+            <span class="result-count" id="resultCount">0 条</span>
+          </div>
+          <div id="addressList" class="address-list"></div>
+        </section>
+      </section>
+
+      <section id="faq" class="info-section">
+        <div>
+          <h2>使用说明</h2>
+          <p>
+            这些地址适合做测试数据、页面样例和表单演示。请不要把生成结果用于身份冒用、误导性注册或任何违法用途。
+          </p>
+        </div>
+        <div>
+          <h2>广告预留</h2>
+          <p>
+            页面已预留顶部横幅和侧边矩形广告位。后续接入 Google AdSense 时，可把占位区域替换为广告代码。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 美国地址生成器</span>
+      <span>仅供测试和演示使用</span>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
