@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="了解美国 ZIP Code 的格式、用途、常见校验方式，以及使用随机地址测试表单时需要注意的边界。">
+    <link rel="canonical" href="https://global-address.com/us-zip-code-guide.html">
+    <title>美国 ZIP Code 是什么 - 美国地址生成器</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="美国地址生成器首页">
+        <span class="brand__mark" aria-hidden="true">US</span>
+        <span>美国地址生成器</span>
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="./index.html#generator">生成器</a>
+        <a href="./guides.html">知识中心</a>
+        <a href="./us-address-format.html">地址格式</a>
+        <a href="./contact.html">联系</a>
+      </nav>
+    </header>
+
+    <main class="content-page">
+      <article class="content-card">
+        <p class="eyebrow">ZIP Code</p>
+        <h1>美国 ZIP Code 是什么</h1>
+        <p>
+          ZIP Code 是美国地址中常见的邮政编码字段。大多数网页表单会要求填写 5 位 ZIP Code，也有一些物流、账单或企业系统支持 ZIP+4 格式。
+        </p>
+
+        <h2>常见格式</h2>
+        <ul>
+          <li>5 位格式：例如 10001、90015、60601。</li>
+          <li>ZIP+4 格式：例如 10001-1234，后 4 位通常用于更细的投递区域。</li>
+          <li>表单测试时，很多系统只校验数字长度，不会验证真实投递能力。</li>
+        </ul>
+
+        <h2>为什么测试时要关注 ZIP Code</h2>
+        <p>
+          ZIP Code 经常和州、城市联动。如果测试数据中的城市、州和 ZIP Code 明显不匹配，某些表单会提示错误。做产品原型时可以使用随机组合，做支付或物流流程测试时应使用平台提供的测试地址。
+        </p>
+
+        <h2>使用建议</h2>
+        <p class="notice">
+          本站生成的 ZIP Code 适合界面展示、字段校验和测试数据占位，不适合判断真实配送范围、税费、风控或身份验证结果。
+        </p>
+
+        <p><a href="./guides.html">返回地址知识中心</a></p>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 美国地址生成器</span>
+      <span>
+        <a href="./privacy.html">隐私政策</a>
+        <a href="./terms.html">使用条款</a>
+        <a href="./contact.html">联系</a>
+      </span>
+    </footer>
+  </body>
+</html>

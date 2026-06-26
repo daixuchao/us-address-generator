@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="解释 Billing Address 和 Shipping Address 的区别，帮助理解电商、支付和物流表单中的地址字段。">
+    <link rel="canonical" href="https://global-address.com/billing-vs-shipping-address.html">
+    <title>Billing Address 和 Shipping Address 区别 - 美国地址生成器</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="美国地址生成器首页">
+        <span class="brand__mark" aria-hidden="true">US</span>
+        <span>美国地址生成器</span>
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="./index.html#generator">生成器</a>
+        <a href="./guides.html">知识中心</a>
+        <a href="./us-address-format.html">地址格式</a>
+        <a href="./contact.html">联系</a>
+      </nav>
+    </header>
+
+    <main class="content-page">
+      <article class="content-card">
+        <p class="eyebrow">Address Fields</p>
+        <h1>Billing Address 和 Shipping Address 区别</h1>
+        <p>
+          Billing Address 是账单地址，通常和付款、发票、风控或持卡人信息有关。Shipping Address 是收货地址，通常用于配送、物流和收件信息。
+        </p>
+
+        <h2>Billing Address</h2>
+        <p>
+          账单地址经常出现在支付表单中。它可能用于核对银行卡账单信息、计算税费、生成发票或完成风险检查。测试支付流程时，应优先使用支付平台提供的测试地址和测试卡号。
+        </p>
+
+        <h2>Shipping Address</h2>
+        <p>
+          收货地址更关注配送范围、收件人、街道、城市、州和 ZIP Code。电商后台、物流系统和订单页面通常会把 Shipping Address 展示给运营或仓储人员。
+        </p>
+
+        <h2>可以相同，也可以不同</h2>
+        <p>
+          很多表单会提供 Same as shipping address 或 Same as billing address 选项。测试时建议分别覆盖“相同地址”和“不同地址”两类场景，避免只验证一种路径。
+        </p>
+
+        <p class="notice">
+          本站生成的随机地址适合测试页面字段和布局，不应用于真实支付、真实物流或身份验证。
+        </p>
+        <p><a href="./guides.html">返回地址知识中心</a></p>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 美国地址生成器</span>
+      <span>
+        <a href="./privacy.html">隐私政策</a>
+        <a href="./terms.html">使用条款</a>
+        <a href="./contact.html">联系</a>
+      </span>
+    </footer>
+  </body>
+</html>

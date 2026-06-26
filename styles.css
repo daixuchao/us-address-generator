@@ -380,6 +380,10 @@ button {
   margin: 28px auto 48px;
 }
 
+.content-page--wide {
+  width: min(1040px, calc(100% - 40px));
+}
+
 .content-card {
   padding: 28px;
   border: 1px solid var(--line);
@@ -412,6 +416,76 @@ button {
   color: var(--primary);
 }
 
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.guide-link {
+  display: grid;
+  gap: 8px;
+  min-height: 142px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.guide-link:hover {
+  border-color: rgba(23, 105, 170, 0.5);
+}
+
+.guide-link strong {
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.guide-link span {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th,
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface-soft);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+td {
+  color: var(--muted);
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
 .notice {
   padding: 14px 16px;
   border: 1px solid var(--line);
@@ -427,7 +501,8 @@ button {
 
   .controls,
   .address-list,
-  .info-section {
+  .info-section,
+  .guide-grid {
     grid-template-columns: 1fr;
   }
 }
