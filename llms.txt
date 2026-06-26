@@ -1,0 +1,18 @@
+# 美国地址生成器
+
+> 一个用于生成美国格式测试地址的静态网页工具。
+
+站点地址：https://global-address.com/
+
+主要页面：
+
+- 首页和工具：https://global-address.com/
+- 美国地址格式说明：https://global-address.com/us-address-format.html
+- 关于：https://global-address.com/about.html
+- 隐私政策：https://global-address.com/privacy.html
+- 使用条款：https://global-address.com/terms.html
+- 联系：https://global-address.com/contact.html
+
+使用边界：
+
+生成结果用于表单测试、产品原型、演示和页面占位。生成地址不保证真实或可投递，不应用于身份冒用、误导性注册、真实物流收件或违法用途。
