@@ -650,6 +650,11 @@ function initStateSelect() {
     option.textContent = `${state.name} (${state.abbr})`;
     els.stateSelect.append(option);
   });
+
+  const defaultState = document.body.dataset.defaultState;
+  if (states.some((state) => state.abbr === defaultState)) {
+    els.stateSelect.value = defaultState;
+  }
 }
 
 els.generateBtn.addEventListener("click", generateBatch);
