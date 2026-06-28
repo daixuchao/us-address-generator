@@ -177,6 +177,10 @@ h2 {
   align-items: end;
 }
 
+.controls--jp {
+  grid-template-columns: minmax(220px, 1.2fr) minmax(100px, 0.45fr) minmax(150px, 0.65fr) minmax(190px, 0.8fr);
+}
+
 label {
   display: grid;
   gap: 7px;
