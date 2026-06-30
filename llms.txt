@@ -1,12 +1,13 @@
-# 美国地址生成器
+# 多国地址随机生成器
 
-> 一个用于生成美国格式测试地址的静态网页工具。
+> 一个用于生成多国格式测试地址的静态网页工具。
 
 站点地址：https://global-address.com/
 
 主要页面：
 
 - 首页和工具：https://global-address.com/
+- 美国地址生成器：https://global-address.com/us-address-generator.html
 - 地址知识中心：https://global-address.com/guides.html
 - California Address Generator：https://global-address.com/california-address-generator.html
 - New York Address Generator：https://global-address.com/new-york-address-generator.html
