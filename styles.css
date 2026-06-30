@@ -132,14 +132,31 @@ h2 {
 }
 
 .hero--hub {
-  padding-bottom: 18px;
+  padding-top: 72px;
+  padding-bottom: 44px;
+}
+
+.hero--hub .hero__content {
+  max-width: 720px;
+}
+
+.hero--hub h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  font-size: clamp(2.9rem, 5.2vw, 4.35rem);
+  line-height: 1.08;
+}
+
+.hero--hub .hero__text {
+  max-width: 680px;
+  font-size: 1.12rem;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 22px;
+  gap: 12px;
+  margin-top: 28px;
 }
 
 .primary-link,
@@ -147,9 +164,9 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
+  min-height: 46px;
   border-radius: 8px;
-  padding: 0 16px;
+  padding: 0 18px;
   font-weight: 800;
   text-decoration: none;
 }
@@ -171,7 +188,8 @@ h2 {
 
 .country-section {
   width: min(1120px, calc(100% - 40px));
-  margin: 18px auto 0;
+  margin: 8px auto 0;
+  padding: 28px 0 12px;
 }
 
 .section-head {
@@ -179,7 +197,7 @@ h2 {
   align-items: end;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 .section-head p {
@@ -192,24 +210,25 @@ h2 {
 .country-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 18px;
 }
 
 .country-card {
   display: grid;
-  gap: 10px;
-  min-height: 210px;
+  gap: 12px;
+  min-height: 230px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
   color: var(--text);
-  padding: 18px;
+  padding: 22px;
   text-decoration: none;
   box-shadow: var(--shadow);
 }
 
 .country-card:hover {
   border-color: rgba(23, 105, 170, 0.35);
+  transform: translateY(-2px);
 }
 
 .country-card--featured {
@@ -229,7 +248,8 @@ h2 {
 }
 
 .country-card strong {
-  font-size: 1.12rem;
+  font-size: 1.18rem;
+  line-height: 1.35;
 }
 
 .country-card span:not(.country-card__code) {
