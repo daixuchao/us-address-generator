@@ -11,6 +11,7 @@
 - California Address Generator：https://global-address.com/california-address-generator.html
 - New York Address Generator：https://global-address.com/new-york-address-generator.html
 - 日本地址生成器：https://global-address.com/japan-address-generator.html
+- 英国地址生成器：https://global-address.com/uk-address-generator.html
 - 美国地址格式说明：https://global-address.com/us-address-format.html
 - 美国 ZIP Code 说明：https://global-address.com/us-zip-code-guide.html
 - 美国州缩写完整表：https://global-address.com/us-state-abbreviations.html
