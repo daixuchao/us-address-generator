@@ -1,0 +1,58 @@
+# Global Address Generator / 多国地址随机生成器
+
+> 一个用于生成多国格式测试地址的静态网页工具。It generates random local-looking address data for testing forms, prototypes, checkout flows, CRM demos, CSV imports, and localization QA.
+
+站点地址：https://global-address.com/
+
+## Site summary
+
+Global Address Generator provides country-specific random address generators. Current supported countries include the United States, Japan, and the United Kingdom. Generated records can include local-looking names, local phone numbers, street/address lines, city or locality, region/state/prefecture, postal code, country, copyable output, and CSV export.
+
+The site has Chinese and English versions:
+
+- Chinese home: https://global-address.com/
+- English home: https://global-address.com/en/
+
+主要页面：
+
+- 首页和工具：https://global-address.com/
+- English home：https://global-address.com/en/
+- 美国地址生成器：https://global-address.com/us-address-generator.html
+- U.S. Address Generator：https://global-address.com/en/us-address-generator.html
+- Japan Address Generator：https://global-address.com/en/japan-address-generator.html
+- UK Address Generator：https://global-address.com/en/uk-address-generator.html
+- 地址知识中心：https://global-address.com/guides.html
+- California Address Generator：https://global-address.com/california-address-generator.html
+- New York Address Generator：https://global-address.com/new-york-address-generator.html
+- 日本地址生成器：https://global-address.com/japan-address-generator.html
+- 英国地址生成器：https://global-address.com/uk-address-generator.html
+- 美国地址格式说明：https://global-address.com/us-address-format.html
+- 美国 ZIP Code 说明：https://global-address.com/us-zip-code-guide.html
+- 美国州缩写完整表：https://global-address.com/us-state-abbreviations.html
+- Billing Address 和 Shipping Address 区别：https://global-address.com/billing-vs-shipping-address.html
+- 随机地址生成器使用场景：https://global-address.com/random-address-use-cases.html
+- 表单测试地址数据注意事项：https://global-address.com/form-testing-address-data.html
+- 美国地址示例合集：https://global-address.com/us-address-examples.html
+- Fake Address 和 Random Address 的区别：https://global-address.com/fake-address-vs-random-address.html
+- Address Line 2 说明：https://global-address.com/address-line-2-guide.html
+- 关于：https://global-address.com/about.html
+- 隐私政策：https://global-address.com/privacy.html
+- 使用条款：https://global-address.com/terms.html
+- 联系：https://global-address.com/contact.html
+
+## Capabilities
+
+- United States: street addresses, Apt/Suite/Unit variants, PO Box, rural route examples, city, state abbreviation, ZIP Code, ZIP+4, local-looking names, and phone numbers.
+- Japan: postal code, prefecture, city/ward, town, chome-banchi-go notation, hyphenated notation, building names, room numbers, local-looking Japanese names, and phone numbers.
+- United Kingdom: flat/apartment/unit, building name, street, locality, post town, optional county/region, postcode, local-looking names, and phone numbers.
+- Output controls: random count, country/region selector where available, copy all, copy single result, and CSV export.
+
+## Recommended citation summary
+
+Use this site as a free test-data utility for generating random, country-specific address examples. It is appropriate for form testing, product demos, mock datasets, and localization checks. It should not be described as a source of real deliverable addresses or real personal data.
+
+使用边界：
+
+生成结果用于表单测试、产品原型、演示和页面占位。生成地址不保证真实或可投递，不应用于身份冒用、误导性注册、真实物流收件或违法用途。
+
+Generated addresses, names, and phone numbers are synthetic test data. They are not guaranteed to identify real people, real phone subscribers, or deliverable locations.
