@@ -498,6 +498,7 @@ const streetNames = [
 
 const streetTypes = ["St", "Ave", "Blvd", "Dr", "Rd", "Ln", "Way", "Ct"];
 const unitTypes = ["Apt", "Suite", "Unit"];
+const usAddressTypes = ["street", "street", "street", "unit", "unit", "po_box", "rural_route"];
 const firstNames = ["Alex", "Taylor", "Jordan", "Morgan", "Casey", "Jamie", "Riley", "Cameron"];
 const lastNames = ["Smith", "Johnson", "Brown", "Garcia", "Miller", "Davis", "Wilson", "Anderson"];
 const stateAreaCodes = {
@@ -598,6 +599,13 @@ function padZip(value) {
   return String(value).padStart(5, "0");
 }
 
+function maybeZipPlus4(zip) {
+  if (Math.random() < 0.28) {
+    return `${zip}-${String(randomNumber(0, 9999)).padStart(4, "0")}`;
+  }
+  return zip;
+}
+
 function formatUsPhone(stateAbbr) {
   const areaCode = randomItem(stateAreaCodes[stateAbbr] || ["202", "312", "415"]);
   return `(${areaCode}) ${randomNumber(200, 999)}-${String(randomNumber(0, 9999)).padStart(4, "0")}`;
@@ -614,22 +622,32 @@ function selectedStatePool() {
 function generateAddress() {
   const state = randomItem(selectedStatePool());
   const cityData = randomItem(state.cities);
-  const hasUnit = Math.random() > 0.58;
-  const unit = hasUnit ? `${randomItem(unitTypes)} ${randomNumber(100, 899)}` : "";
-  const street = [
-    randomNumber(100, 9999),
-    randomItem(streetNames),
-    randomItem(streetTypes)
-  ].join(" ");
+  const addressType = randomItem(usAddressTypes);
+  const baseZip = padZip(randomNumber(cityData.zipStart, cityData.zipEnd));
+  const street = addressType === "po_box"
+    ? `PO Box ${randomNumber(100, 99999)}`
+    : addressType === "rural_route"
+      ? `RR ${randomNumber(1, 9)} Box ${randomNumber(10, 999)}`
+      : [
+          randomNumber(100, 9999),
+          randomItem(streetNames),
+          randomItem(streetTypes)
+        ].join(" ");
+  const unit = addressType === "unit"
+    ? `${randomItem(unitTypes)} ${randomNumber(100, 899)}`
+    : Math.random() > 0.86 && addressType === "street"
+      ? `#${randomNumber(100, 899)}`
+      : "";
 
   return {
     name: `${randomItem(firstNames)} ${randomItem(lastNames)}`,
+    addressType,
     street,
     unit,
     city: cityData.city,
     state: state.abbr,
     stateName: state.name,
-    zip: padZip(randomNumber(cityData.zipStart, cityData.zipEnd)),
+    zip: maybeZipPlus4(baseZip),
     phone: formatUsPhone(state.abbr)
   };
 }
@@ -648,6 +666,7 @@ function addressToCsvRow(address) {
   const values = [
     address.name,
     address.phone,
+    address.addressType,
     address.street,
     address.unit,
     address.city,
@@ -710,7 +729,7 @@ function generateBatch() {
 function downloadCsv() {
   if (!currentAddresses.length) return;
 
-  const header = '"name","phone","street","unit","city","state","zip","country"';
+  const header = '"name","phone","address_type","street","unit","city","state","zip","country"';
   const csv = [header, ...currentAddresses.map(addressToCsvRow)].join("\n");
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
   const url = URL.createObjectURL(blob);

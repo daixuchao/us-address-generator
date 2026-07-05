@@ -170,6 +170,7 @@ const buildingNames = [
 
 const familyNames = ["佐藤", "鈴木", "高橋", "田中", "伊藤", "渡辺", "山本", "中村"];
 const givenNames = ["太郎", "花子", "健", "美咲", "翔太", "結衣", "直樹", "葵"];
+const japanAddressStyles = ["hyphen", "chome_banchi_go", "building_inline", "floor_room"];
 const prefecturePhoneCodes = {
   "東京都": ["03", "042"],
   "大阪府": ["06", "072"],
@@ -240,6 +241,59 @@ function formatJapanPhone(prefectureName) {
   return `${areaCode}-${randomNumber(200, 999)}-${String(randomNumber(0, 9999)).padStart(4, "0")}`;
 }
 
+function buildJapanAddressLines(prefecture, area) {
+  const style = randomItem(japanAddressStyles);
+  const chome = randomNumber(1, 5);
+  const block = randomNumber(1, 28);
+  const go = randomNumber(1, 30);
+  const building = randomItem(buildingNames);
+  const room = randomNumber(101, 1208);
+  const floor = Math.floor(room / 100);
+  const base = `${prefecture.name}${area.city}${area.town}`;
+
+  if (style === "chome_banchi_go") {
+    return {
+      addressStyle: style,
+      block: `${chome}丁目${block}番${go}号`,
+      streetLine: `${base}${chome}丁目${block}番${go}号`,
+      building,
+      room,
+      buildingLine: `${building}${room}号室`
+    };
+  }
+
+  if (style === "building_inline") {
+    return {
+      addressStyle: style,
+      block: `${chome}-${block}-${go}`,
+      streetLine: `${base}${chome}-${block}-${go} ${building}${room}号室`,
+      building,
+      room,
+      buildingLine: ""
+    };
+  }
+
+  if (style === "floor_room") {
+    return {
+      addressStyle: style,
+      block: `${chome}-${block}-${go}`,
+      streetLine: `${base}${chome}-${block}-${go}`,
+      building,
+      room,
+      buildingLine: `${building} ${floor}階 ${room}号室`
+    };
+  }
+
+  return {
+    addressStyle: style,
+    block: `${chome}-${block}-${go}`,
+    streetLine: `${base}${chome}-${block}-${go}`,
+    building,
+    room,
+    buildingLine: `${building} ${room}号室`
+  };
+}
+
 function selectedPrefecturePool() {
   if (els.prefectureSelect.value === "all") {
     return prefectures;
@@ -251,10 +305,7 @@ function selectedPrefecturePool() {
 function generateAddress() {
   const prefecture = randomItem(selectedPrefecturePool());
   const area = randomItem(prefecture.areas);
-  const chome = randomNumber(1, 5);
-  const block = randomNumber(1, 28);
-  const building = randomItem(buildingNames);
-  const room = randomNumber(101, 1208);
+  const addressParts = buildJapanAddressLines(prefecture, area);
 
   return {
     name: `${randomItem(familyNames)} ${randomItem(givenNames)}`,
@@ -264,24 +315,24 @@ function generateAddress() {
     prefectureRomanized: prefecture.romanized,
     city: area.city,
     town: area.town,
-    block: `${chome}-${block}-${randomNumber(1, 30)}`,
-    building,
-    room,
+    block: addressParts.block,
+    building: addressParts.building,
+    room: addressParts.room,
+    addressStyle: addressParts.addressStyle,
+    streetLine: addressParts.streetLine,
+    buildingLine: addressParts.buildingLine,
     country: "Japan"
   };
 }
 
 function addressToText(address, includeName = els.includeName.checked, format = els.formatSelect.value) {
-  const streetLine = `${address.prefecture}${address.city}${address.town}${address.block}`;
-  const buildingLine = `${address.building} ${address.room}号室`;
-
   if (format === "multiline") {
     const lines = [];
     if (includeName) lines.push(address.name);
     lines.push(address.phone);
     lines.push(`〒${address.postalCode}`);
-    lines.push(streetLine);
-    lines.push(buildingLine);
+    lines.push(address.streetLine);
+    if (address.buildingLine) lines.push(address.buildingLine);
     lines.push(address.country);
     return lines.join("\n");
   }
@@ -289,7 +340,7 @@ function addressToText(address, includeName = els.includeName.checked, format = 
   const lines = [];
   if (includeName) lines.push(address.name);
   lines.push(address.phone);
-  lines.push(`〒${address.postalCode} ${streetLine} ${buildingLine}`);
+  lines.push(`〒${address.postalCode} ${address.streetLine}${address.buildingLine ? ` ${address.buildingLine}` : ""}`);
   lines.push(address.country);
   return lines.join("\n");
 }
@@ -298,6 +349,7 @@ function addressToCsvRow(address) {
   const values = [
     address.name,
     address.phone,
+    address.addressStyle,
     address.postalCode,
     address.prefecture,
     address.city,
@@ -305,6 +357,8 @@ function addressToCsvRow(address) {
     address.block,
     address.building,
     address.room,
+    address.streetLine,
+    address.buildingLine,
     address.country
   ];
 
@@ -362,7 +416,7 @@ function generateBatch() {
 function downloadCsv() {
   if (!currentAddresses.length) return;
 
-  const header = '"name","phone","postal_code","prefecture","city","town","block","building","room","country"';
+  const header = '"name","phone","address_style","postal_code","prefecture","city","town","block","building","room","street_line","building_line","country"';
   const csv = [header, ...currentAddresses.map(addressToCsvRow)].join("\n");
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
   const url = URL.createObjectURL(blob);

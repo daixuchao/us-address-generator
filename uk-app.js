@@ -68,6 +68,8 @@ const streetNames = [
 
 const streetTypes = ["Street", "Road", "Avenue", "Lane", "Close", "Way", "Square", "Place"];
 const buildingNames = ["Oak House", "The Old Mill", "Victoria Court", "Kingfisher House", "Station Chambers"];
+const flatTypes = ["Flat", "Apartment", "Unit", "Studio"];
+const ukAddressStyles = ["standard", "flat", "building", "flat_building", "number_suffix"];
 const firstNames = ["Oliver", "Amelia", "George", "Isla", "Harry", "Ava", "Noah", "Freya"];
 const lastNames = ["Smith", "Jones", "Taylor", "Brown", "Williams", "Wilson", "Evans", "Thomas"];
 const areaPhoneCodes = {
@@ -142,6 +144,28 @@ function formatUkPhone(areaName) {
   return `${areaCode} ${randomNumber(200, 999)} ${String(randomNumber(0, 9999)).padStart(4, "0")}`;
 }
 
+function buildUkPremise() {
+  const style = randomItem(ukAddressStyles);
+  const streetNumber = style === "number_suffix"
+    ? `${randomNumber(1, 188)}${randomItem(["A", "B", "C"])}`
+    : String(randomNumber(1, 188));
+  const street = `${streetNumber} ${randomItem(streetNames)} ${randomItem(streetTypes)}`;
+  const flat = style === "flat" || style === "flat_building"
+    ? `${randomItem(flatTypes)} ${randomNumber(1, 42)}`
+    : "";
+  const building = style === "building" || style === "flat_building"
+    ? randomItem(buildingNames)
+    : "";
+
+  return {
+    addressStyle: style,
+    flat,
+    building,
+    street,
+    includeRegion: Math.random() > 0.42
+  };
+}
+
 function selectedAreaPool() {
   if (els.areaSelect.value === "all") {
     return areas;
@@ -152,19 +176,19 @@ function selectedAreaPool() {
 
 function generateAddress() {
   const area = randomItem(selectedAreaPool());
-  const hasFlat = Math.random() > 0.55;
-  const hasBuilding = Math.random() > 0.62;
-  const street = `${randomNumber(1, 188)} ${randomItem(streetNames)} ${randomItem(streetTypes)}`;
+  const premise = buildUkPremise();
 
   return {
     name: `${randomItem(firstNames)} ${randomItem(lastNames)}`,
     phone: formatUkPhone(area.name),
-    flat: hasFlat ? `Flat ${randomNumber(1, 42)}` : "",
-    building: hasBuilding ? randomItem(buildingNames) : "",
-    street,
+    addressStyle: premise.addressStyle,
+    flat: premise.flat,
+    building: premise.building,
+    street: premise.street,
     locality: randomItem(area.localities),
     city: area.name,
     region: area.region,
+    includeRegion: premise.includeRegion,
     postcode: formatPostcode(randomItem(area.postcodeAreas)),
     country: "United Kingdom"
   };
@@ -178,7 +202,8 @@ function addressLines(address, includeName = els.includeName.checked) {
   if (address.building) lines.push(address.building);
   lines.push(address.street);
   lines.push(address.locality);
-  lines.push(address.city);
+  lines.push(address.city.toUpperCase());
+  if (address.includeRegion) lines.push(address.region);
   lines.push(address.postcode);
   lines.push(address.country);
   return lines;
@@ -196,12 +221,14 @@ function addressToCsvRow(address) {
   const values = [
     address.name,
     address.phone,
+    address.addressStyle,
     address.flat,
     address.building,
     address.street,
     address.locality,
     address.city,
     address.region,
+    address.includeRegion ? "yes" : "no",
     address.postcode,
     address.country
   ];
@@ -260,7 +287,7 @@ function generateBatch() {
 function downloadCsv() {
   if (!currentAddresses.length) return;
 
-  const header = '"name","phone","flat","building","street","locality","city","region","postcode","country"';
+  const header = '"name","phone","address_style","flat","building","street","locality","city","region","region_in_output","postcode","country"';
   const csv = [header, ...currentAddresses.map(addressToCsvRow)].join("\n");
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
   const url = URL.createObjectURL(blob);
