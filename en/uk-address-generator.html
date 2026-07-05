@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Generate random UK addresses with local names, phone numbers, flat or building details, streets, cities, regions, and postcodes."
+    >
+    <link rel="canonical" href="https://global-address.com/en/uk-address-generator.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://global-address.com/uk-address-generator.html">
+    <link rel="alternate" hreflang="en" href="https://global-address.com/en/uk-address-generator.html">
+    <link rel="alternate" hreflang="x-default" href="https://global-address.com/en/uk-address-generator.html">
+    <meta property="og:title" content="UK Address Generator - Global Address Generator">
+    <meta property="og:description" content="Generate random UK test addresses with local names and phone numbers.">
+    <meta property="og:url" content="https://global-address.com/en/uk-address-generator.html">
+    <meta property="og:type" content="website">
+    <title>UK Address Generator - Global Address Generator</title>
+    <link rel="stylesheet" href="../styles.css?v=20260705-i18n">
+  </head>
+  <body data-locale="en">
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="Global Address Generator home">
+        <span class="brand__mark" aria-hidden="true">UK</span>
+        <span>UK Address Generator</span>
+      </a>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="#generator">Generator</a>
+        <a href="./us-address-generator.html">United States</a>
+        <a href="./japan-address-generator.html">Japan</a>
+        <a href="../uk-address-generator.html" lang="zh-CN">中文</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="pageTitle">
+        <div class="hero__content">
+          <p class="eyebrow">UK Address Generator</p>
+          <h1 id="pageTitle">Generate Random UK Addresses</h1>
+          <p class="hero__text">
+            Create UK-style test data with a local name, phone number, street address, locality, city, region, postcode, and country field.
+          </p>
+        </div>
+      </section>
+
+      <section id="generator" class="layout" aria-label="UK address generator">
+        <section class="generator-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Generator</p>
+              <h2>Settings</h2>
+            </div>
+            <button class="ghost-button" id="clearBtn" type="button">Clear</button>
+          </div>
+
+          <div class="controls controls--jp">
+            <label>
+              <span>City / Area</span>
+              <select id="areaSelect">
+                <option value="all">Random across the UK</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Quantity</span>
+              <input id="countInput" type="number" min="1" max="20" value="5">
+            </label>
+
+            <label>
+              <span>Format</span>
+              <select id="formatSelect">
+                <option value="uk">UK format</option>
+                <option value="multiline">Multiline format</option>
+              </select>
+            </label>
+
+            <label class="checkbox-row">
+              <input id="includeName" type="checkbox" checked>
+              <span>Include local name</span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="primary-button" id="generateBtn" type="button">Generate addresses</button>
+            <button class="secondary-button" id="copyBtn" type="button">Copy all</button>
+            <button class="secondary-button" id="downloadBtn" type="button">Export CSV</button>
+          </div>
+
+          <p class="helper-text">
+            Results include UK local names, phone numbers, common address fields, and postcode patterns. They are test data and are not guaranteed to be deliverable.
+          </p>
+        </section>
+
+        <section class="results-panel" aria-live="polite" aria-label="Generated results">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2>Address List</h2>
+            </div>
+            <span class="result-count" id="resultCount">0 items</span>
+          </div>
+          <div id="addressList" class="address-list"></div>
+        </section>
+      </section>
+
+      <section id="faq" class="info-section">
+        <div>
+          <h2>Included Fields</h2>
+          <p>
+            UK examples may include recipient name, phone number, flat, building, street, locality, city, region, postcode, and country.
+          </p>
+        </div>
+        <div>
+          <h2>Use Cases</h2>
+          <p>
+            Use these samples for ecommerce checkout flows, international address forms, CRM demo records, logistics fields, and CSV exports.
+          </p>
+        </div>
+        <div>
+          <h2>Test Data Only</h2>
+          <p>
+            Generated results are for testing and demos. Do not use them for real delivery, impersonation, or misleading registrations.
+          </p>
+          <a class="text-link" href="./index.html#countries">View all countries</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Global Address Generator</span>
+      <span>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="../contact.html">Contact</a>
+      </span>
+    </footer>
+
+    <script src="../uk-app.js?v=20260705-i18n"></script>
+  </body>
+</html>

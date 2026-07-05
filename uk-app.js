@@ -84,6 +84,25 @@ const areaPhoneCodes = {
 };
 
 let currentAddresses = [];
+const locale = document.body.dataset.locale === "en" ? "en" : "zh";
+const labels = {
+  zh: {
+    empty: "点击“生成地址”开始。",
+    address: "地址",
+    copied: "已复制",
+    copy: "复制",
+    copyAll: "复制全部",
+    countUnit: "条"
+  },
+  en: {
+    empty: "Click “Generate addresses” to start.",
+    address: "Address",
+    copied: "Copied",
+    copy: "Copy",
+    copyAll: "Copy all",
+    countUnit: "items"
+  }
+}[locale];
 
 const els = {
   areaSelect: document.querySelector("#areaSelect"),
@@ -208,18 +227,18 @@ async function copyText(text) {
 }
 
 function renderAddresses() {
-  els.resultCount.textContent = `${currentAddresses.length} 条`;
+  els.resultCount.textContent = `${currentAddresses.length} ${labels.countUnit}`;
 
   if (!currentAddresses.length) {
-    els.addressList.innerHTML = '<div class="empty-state">点击“生成地址”开始。</div>';
+    els.addressList.innerHTML = `<div class="empty-state">${labels.empty}</div>`;
     return;
   }
 
   els.addressList.innerHTML = currentAddresses.map((address, index) => `
     <article class="address-card">
       <div class="address-card__top">
-        <strong>地址 ${index + 1}</strong>
-        <button class="mini-button" type="button" data-copy-index="${index}">复制</button>
+        <strong>${labels.address} ${index + 1}</strong>
+        <button class="mini-button" type="button" data-copy-index="${index}">${labels.copy}</button>
       </div>
       <address class="address-lines">${addressToText(address).replaceAll("\n", "<br>")}</address>
       <div class="meta">
@@ -268,9 +287,9 @@ els.generateBtn.addEventListener("click", generateBatch);
 els.copyBtn.addEventListener("click", async () => {
   if (!currentAddresses.length) return;
   await copyText(currentAddresses.map((address) => addressToText(address)).join("\n\n"));
-  els.copyBtn.textContent = "已复制";
+  els.copyBtn.textContent = labels.copied;
   setTimeout(() => {
-    els.copyBtn.textContent = "复制全部";
+    els.copyBtn.textContent = labels.copyAll;
   }, 1200);
 });
 
@@ -288,9 +307,9 @@ els.addressList.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-copy-index]");
   if (!button) return;
   await copyText(addressToText(currentAddresses[Number(button.dataset.copyIndex)]));
-  button.textContent = "已复制";
+  button.textContent = labels.copied;
   setTimeout(() => {
-    button.textContent = "复制";
+    button.textContent = labels.copy;
   }, 1200);
 });
 
