@@ -98,6 +98,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-address.com/en/us-address-format-guide</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://global-address.com/en/zip-code-vs-zip-plus-4</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://global-address.com/en/japan-address-format-explained</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://global-address.com/en/uk-postcode-format-guide</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://global-address.com/en/test-address-data-for-qa-teams</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://global-address.com/us-zip-code-guide</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>

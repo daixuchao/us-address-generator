@@ -21,6 +21,11 @@ The site has Chinese and English versions:
 - U.S. Address Generator：https://global-address.com/en/us-address-generator
 - Japan Address Generator：https://global-address.com/en/japan-address-generator
 - UK Address Generator：https://global-address.com/en/uk-address-generator
+- U.S. Address Format Guide：https://global-address.com/en/us-address-format-guide
+- ZIP Code vs ZIP+4：https://global-address.com/en/zip-code-vs-zip-plus-4
+- Japan Address Format Explained：https://global-address.com/en/japan-address-format-explained
+- UK Postcode Format Guide：https://global-address.com/en/uk-postcode-format-guide
+- Test Address Data for QA Teams：https://global-address.com/en/test-address-data-for-qa-teams
 - 地址知识中心：https://global-address.com/guides
 - California Address Generator：https://global-address.com/california-address-generator
 - New York Address Generator：https://global-address.com/new-york-address-generator
