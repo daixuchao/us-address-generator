@@ -26,6 +26,11 @@ The site has Chinese and English versions:
 - Japan Address Format Explained：https://global-address.com/en/japan-address-format-explained
 - UK Postcode Format Guide：https://global-address.com/en/uk-postcode-format-guide
 - Test Address Data for QA Teams：https://global-address.com/en/test-address-data-for-qa-teams
+- Address Format Guides：https://global-address.com/en/guides
+- About Global Address Generator：https://global-address.com/en/about
+- Privacy Policy：https://global-address.com/en/privacy
+- Terms of Use：https://global-address.com/en/terms
+- Contact：https://global-address.com/en/contact
 - 地址知识中心：https://global-address.com/guides
 - California Address Generator：https://global-address.com/california-address-generator
 - New York Address Generator：https://global-address.com/new-york-address-generator

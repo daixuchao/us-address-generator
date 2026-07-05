@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Generate random U.S. addresses with local names, phone numbers, street addresses, cities, states, and ZIP Codes for form testing and demo data."
+    >
+    <link rel="canonical" href="https://global-address.com/en/us-address-generator">
+    <link rel="alternate" hreflang="zh-CN" href="https://global-address.com/us-address-generator">
+    <link rel="alternate" hreflang="en" href="https://global-address.com/en/us-address-generator">
+    <link rel="alternate" hreflang="x-default" href="https://global-address.com/en/us-address-generator">
+    <meta property="og:title" content="U.S. Address Generator - Global Address Generator">
+    <meta property="og:description" content="Generate random U.S. test addresses with local names and phone numbers.">
+    <meta property="og:url" content="https://global-address.com/en/us-address-generator">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index,follow">
+    <meta property="og:site_name" content="Global Address Generator">
+    <meta name="twitter:card" content="summary">
+    <title>U.S. Address Generator - Global Address Generator</title>
+    <link rel="stylesheet" href="../styles.css?v=20260705-format">
+      <script type="application/ld+json" data-generated="seo">
+[
+      {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                  {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://global-address.com/en/"
+                  },
+                  {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Generate Random U.S. Addresses",
+                        "item": "https://global-address.com/en/us-address-generator"
+                  }
+            ]
+      },
+      {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "U.S. Address Generator - Global Address Generator",
+            "url": "https://global-address.com/en/us-address-generator",
+            "inLanguage": "English",
+            "description": "Generate random U.S. addresses with local names, phone numbers, street addresses, cities, states, and ZIP Codes for form testing and demo data.",
+            "isPartOf": {
+                  "@type": "WebSite",
+                  "name": "Global Address Generator",
+                  "url": "https://global-address.com/"
+            },
+            "headline": "Generate Random U.S. Addresses"
+      },
+      {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Generate Random U.S. Addresses",
+            "url": "https://global-address.com/en/us-address-generator",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "inLanguage": "English",
+            "description": "Generate random U.S. addresses with local names, phone numbers, street addresses, cities, states, and ZIP Codes for form testing and demo data.",
+            "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+            },
+            "featureList": [
+                  "Random address generation",
+                  "Local names and phone numbers",
+                  "Copyable output",
+                  "CSV export",
+                  "Country-specific address formats"
+            ]
+      },
+      {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                  {
+                        "@type": "Question",
+                        "name": "What is this generator for?",
+                        "acceptedAnswer": {
+                              "@type": "Answer",
+                              "text": "It creates random test address data for forms, prototypes, demos, CSV samples, and localization testing."
+                        }
+                  },
+                  {
+                        "@type": "Question",
+                        "name": "Are the generated addresses real?",
+                        "acceptedAnswer": {
+                              "@type": "Answer",
+                              "text": "No. The generated results are test data and are not guaranteed to be real or deliverable."
+                        }
+                  },
+                  {
+                        "@type": "Question",
+                        "name": "Can I export the generated data?",
+                        "acceptedAnswer": {
+                              "@type": "Answer",
+                              "text": "Yes. The generator supports copying results and exporting CSV files."
+                        }
+                  }
+            ]
+      }
+]
+    </script>
+  </head>
+  <body data-locale="en">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Global Address Generator home">
+        <span class="brand__mark" aria-hidden="true">US</span>
+        <span>U.S. Address Generator</span>
+      </a>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="#generator">Generator</a>
+        <a href="./#countries">All countries</a>
+        <a href="./japan-address-generator">Japan</a>
+        <a href="./uk-address-generator">United Kingdom</a>
+        <a href="../us-address-generator" lang="zh-CN">中文</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="pageTitle">
+        <div class="hero__content">
+          <p class="eyebrow">Random U.S. Address Generator</p>
+          <h1 id="pageTitle">Generate Random U.S. Addresses</h1>
+          <p class="hero__text">
+            Create U.S.-style test data with a local name, phone number, street, city, state, and ZIP Code.
+          </p>
+        </div>
+      </section>
+
+      <section id="generator" class="layout" aria-label="U.S. address generator">
+        <section class="generator-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Generator</p>
+              <h2>Settings</h2>
+            </div>
+            <button class="ghost-button" id="clearBtn" type="button">Clear</button>
+          </div>
+
+          <div class="controls">
+            <label>
+              <span>State</span>
+              <select id="stateSelect">
+                <option value="all">Random across the U.S.</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Quantity</span>
+              <input id="countInput" type="number" min="1" max="20" value="5">
+            </label>
+
+            <label class="checkbox-row">
+              <input id="includeName" type="checkbox" checked>
+              <span>Include local name</span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="primary-button" id="generateBtn" type="button">Generate addresses</button>
+            <button class="secondary-button" id="copyBtn" type="button">Copy all</button>
+            <button class="secondary-button" id="downloadBtn" type="button">Export CSV</button>
+          </div>
+
+          <p class="helper-text">
+            Results include local-looking names, phone numbers, street addresses, unit lines, PO Boxes, rural routes, state abbreviations, and ZIP/ZIP+4 variants. They are not guaranteed to be deliverable addresses.
+          </p>
+        </section>
+
+        <section class="results-panel" aria-live="polite" aria-label="Generated results">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2>Address List</h2>
+            </div>
+            <span class="result-count" id="resultCount">0 items</span>
+          </div>
+          <div id="addressList" class="address-list"></div>
+        </section>
+      </section>
+
+      <section id="faq" class="info-section">
+        <div>
+          <h2>Use Cases</h2>
+          <p>
+            Use the generated data for form QA, product prototypes, demo datasets, CSV imports, and localization testing.
+          </p>
+        </div>
+        <div>
+          <h2>Data Boundaries</h2>
+          <p>
+            Generated addresses are test data. Do not use them for real shipping, identity impersonation, or misleading account creation.
+          </p>
+        </div>
+        <div>
+          <h2>Other Countries</h2>
+          <p>
+            You can also generate Japanese and UK address samples from the country hub.
+          </p>
+          <a class="text-link" href="./#countries">View all countries</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Global Address Generator</span>
+      <span>
+        <a href="./privacy">Privacy</a>
+        <a href="./terms">Terms</a>
+        <a href="./contact">Contact</a>
+      </span>
+    </footer>
+
+    <script src="../app.js?v=20260705-format"></script>
+  </body>
+</html>
