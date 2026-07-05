@@ -26,6 +26,12 @@ The site has Chinese and English versions:
 - Japan Address Format Explained：https://global-address.com/en/japan-address-format-explained
 - UK Postcode Format Guide：https://global-address.com/en/uk-postcode-format-guide
 - Test Address Data for QA Teams：https://global-address.com/en/test-address-data-for-qa-teams
+- Address Line 2 Meaning and Examples：https://global-address.com/en/address-line-2-meaning-and-examples
+- Billing Address vs Shipping Address：https://global-address.com/en/billing-address-vs-shipping-address
+- Fake Address vs Random Address：https://global-address.com/en/fake-address-vs-random-address
+- Random Address Generator Use Cases：https://global-address.com/en/random-address-generator-use-cases
+- International Address Form Design：https://global-address.com/en/international-address-form-design
+- PO Box Address Examples：https://global-address.com/en/po-box-address-examples
 - Address Format Guides：https://global-address.com/en/guides
 - About Global Address Generator：https://global-address.com/en/about
 - Privacy Policy：https://global-address.com/en/privacy
