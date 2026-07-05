@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://global-address.com/sitemap.xml
-Host: https://global-address.com
-
-# AI and answer-engine context
-Allow: /llms.txt
