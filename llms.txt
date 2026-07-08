@@ -6,7 +6,7 @@
 
 ## Site summary
 
-Global Address Generator provides country-specific random address generators. Current supported countries include the United States, Japan, the United Kingdom, and South Korea. Generated records can include local-looking names, local phone numbers, street/address lines, city or locality, region/state/prefecture, postal code, country, copyable output, and CSV export.
+Global Address Generator provides country-specific random address generators. Current supported countries include the United States, Japan, the United Kingdom, South Korea, and major European Union countries. Generated records can include local-looking names, local phone numbers, street/address lines, city or locality, region/state/prefecture, postal code, country, copyable output, and CSV export.
 
 The site has Chinese and English versions:
 
@@ -22,6 +22,7 @@ The site has Chinese and English versions:
 - Japan Address Generator：https://global-address.com/en/japan-address-generator
 - UK Address Generator：https://global-address.com/en/uk-address-generator
 - Korea Address Generator：https://global-address.com/en/korea-address-generator
+- EU Address Generator：https://global-address.com/en/eu-address-generator
 - U.S. Address Format Guide：https://global-address.com/en/us-address-format-guide
 - ZIP Code vs ZIP+4：https://global-address.com/en/zip-code-vs-zip-plus-4
 - Japan Address Format Explained：https://global-address.com/en/japan-address-format-explained
@@ -47,6 +48,7 @@ The site has Chinese and English versions:
 - 日本地址生成器：https://global-address.com/japan-address-generator
 - 英国地址生成器：https://global-address.com/uk-address-generator
 - 韩国地址生成器：https://global-address.com/korea-address-generator
+- 欧盟国家地址生成器：https://global-address.com/eu-address-generator
 - 美国地址格式说明：https://global-address.com/us-address-format
 - 美国 ZIP Code 说明：https://global-address.com/us-zip-code-guide
 - 美国州缩写完整表：https://global-address.com/us-state-abbreviations
@@ -67,6 +69,7 @@ The site has Chinese and English versions:
 - Japan: postal code, prefecture, city/ward, town, chome-banchi-go notation, hyphenated notation, building names, room numbers, local-looking Japanese names, and phone numbers.
 - United Kingdom: flat/apartment/unit, building name, street, locality, post town, optional county/region, postcode, local-looking names, and phone numbers.
 - South Korea: five-digit postal codes, special city/province, city or district, road-name address, building number, building name, room number, local-looking Korean names, and phone numbers.
+- European Union: Germany, France, Italy, Spain, the Netherlands, Poland, Sweden, and Ireland with local-looking names, phone numbers, postal codes, cities, regions, and street address fields.
 - Output controls: random count, country/region selector where available, copy all, copy single result, and CSV export.
 
 ## Recommended citation summary

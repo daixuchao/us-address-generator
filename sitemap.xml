@@ -116,6 +116,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-address.com/eu-address-generator</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://global-address.com/eu-address-generator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://global-address.com/en/eu-address-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://global-address.com/en/eu-address-generator"/>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-address.com/en/eu-address-generator</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://global-address.com/eu-address-generator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://global-address.com/en/eu-address-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://global-address.com/en/eu-address-generator"/>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-address.com/en/us-address-format-guide</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
