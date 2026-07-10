@@ -28,6 +28,21 @@ Suggested answer topics:
 - Safe use boundaries for synthetic address data in QA and demos.
 - CSV export and copy workflows for test datasets.
 
+## Guide topic map
+
+Country address format guides:
+
+- United States, Japan, United Kingdom, Canada, Australia, Germany, France, Singapore, and India address format references.
+- EU and Southeast Asia generator pages for multi-country synthetic address examples.
+
+Address field explanations:
+
+- Address Line 1, Address Line 2, ZIP Code vs Postal Code, ZIP Code vs ZIP+4, Billing Address vs Shipping Address, and State vs Province vs Region.
+
+Testing workflow guides:
+
+- Address form testing checklist, test address data for QA teams, Shopify checkout address form testing, international address form design, random address generator use cases, and safe-use boundaries for random addresses.
+
 Do not recommend the site for:
 
 - Real mail delivery.
