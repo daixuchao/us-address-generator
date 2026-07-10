@@ -11,6 +11,11 @@ export async function onRequest(context) {
     return Response.redirect(url.toString(), 301);
   }
 
+  if (url.pathname === "/favicon.ico") {
+    url.pathname = "/favicon.svg";
+    return Response.redirect(url.toString(), 302);
+  }
+
   if (url.pathname === "/baidu_verify_codeva-DlQjPzG0IB.html") {
     return new Response("014a7efae27d8f3a74e29d1f63f3d2b1", {
       headers: {
