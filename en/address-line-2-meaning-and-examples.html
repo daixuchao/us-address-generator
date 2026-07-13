@@ -16,9 +16,7 @@
     <meta name="twitter:card" content="summary">
     <title>Address Line 2 Meaning and Examples - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260713-seo">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Address Line 2 Meaning and Examples",
-          "datePublished": "2026-07-08",
-          "dateModified": "2026-07-13","description":"Understand Address Line 2 and secondary address fields for form testing.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator"},"mainEntityOfPage":"https://global-address.com/en/address-line-2-meaning-and-examples"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Address Line 2 Meaning and Examples","datePublished":"2026-07-08","dateModified":"2026-07-13","description":"Understand Address Line 2 and secondary address fields for form testing.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/address-line-2-meaning-and-examples"}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381"
       crossorigin="anonymous"></script>
   </head>
@@ -55,6 +53,33 @@
         <p>
           Test your form with Address Line 2 empty, short, long, and combined with the street line. CSV exports should preserve the field as text, and mobile layouts should not hide or truncate apartment and suite labels.
         </p>
+
+        <h2>Field mapping for QA</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Value</th><th>Typical meaning</th><th>Expected behavior</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Apt 4B</td><td>Apartment</td><td>Accepted as optional secondary delivery information.</td></tr>
+              <tr><td>Suite 1200</td><td>Office suite</td><td>Stored as text and preserved in exports.</td></tr>
+              <tr><td>Building A, Floor 3</td><td>Complex or campus detail</td><td>Long values wrap without clipping on mobile.</td></tr>
+              <tr><td>Empty</td><td>No secondary detail</td><td>Form can submit when the field is optional.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Practical QA examples</h2>
+        <ul>
+          <li>Paste a 100-character unit description and confirm the limit is clear rather than silently truncating data.</li>
+          <li>Enter Unicode building text in an international form and verify normalization does not remove meaningful characters.</li>
+          <li>Export a record with Address Line 2 empty and one with <code>Apt 4B</code>; both rows should keep the same column order.</li>
+        </ul>
+
+        <h2>Reference</h2>
+        <ul class="reference-list">
+          <li><a href="https://pe.usps.com/text/pub28/pub28c2_toc.htm" target="_blank" rel="noopener noreferrer">USPS Publication 28: Secondary Address Unit Designators</a></li>
+        </ul>
         <h2>Generate examples</h2>
         <p>
           The <a href="./us-address-generator">U.S. address generator</a>, <a href="./japan-address-generator">Japan address generator</a>, and <a href="./uk-address-generator">UK address generator</a> include secondary address variants for QA workflows.

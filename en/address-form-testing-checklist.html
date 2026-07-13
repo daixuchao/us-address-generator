@@ -16,9 +16,7 @@
     <meta name="twitter:card" content="summary">
     <title>Address Form Testing Checklist - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260713-seo">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Address Form Testing Checklist",
-          "datePublished": "2026-07-09",
-          "dateModified": "2026-07-13","description":"Checklist for testing address forms with sample data.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator"},"mainEntityOfPage":"https://global-address.com/en/address-form-testing-checklist"}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Address Form Testing Checklist","datePublished":"2026-07-09","dateModified":"2026-07-13","description":"Checklist for testing address forms with sample data.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/address-form-testing-checklist"}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -45,6 +43,28 @@
         </ul>
         <h2>Safety checks</h2>
         <p>Use synthetic sample data in test environments. Do not mix random addresses with real customer identities, real deliveries, or compliance checks.</p>
+
+        <h2>Test case matrix</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Scenario</th><th>Sample input</th><th>Expected result</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Minimal U.S. address</td><td>Street, city, state, 5-digit ZIP</td><td>Submits and stores each field separately.</td></tr>
+              <tr><td>Secondary line</td><td>Apt 4B or Suite 1200</td><td>Address Line 2 remains optional and visible.</td></tr>
+              <tr><td>Leading zero</td><td>02108</td><td>Value remains text after save, import, and export.</td></tr>
+              <tr><td>International format</td><td>UK postcode or Japanese postal code</td><td>Country-specific rules replace U.S.-only validation.</td></tr>
+              <tr><td>Long content</td><td>Long recipient and street names</td><td>Mobile layout wraps without overlap or data loss.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>References</h2>
+        <ul class="reference-list">
+          <li><a href="https://pe.usps.com/text/pub28/" target="_blank" rel="noopener noreferrer">USPS Publication 28: Postal Addressing Standards</a></li>
+          <li><a href="https://global-address.com/en/test-address-data-for-qa-teams" rel="noopener">Test Address Data for QA Teams</a></li>
+        </ul>
       </article>
     </main>
     <footer class="site-footer"><span>© 2026 Global Address Generator</span><span><a href="./about">About</a><a href="./privacy">Privacy</a><a href="./terms">Terms</a><a href="./contact">Contact</a></span></footer>

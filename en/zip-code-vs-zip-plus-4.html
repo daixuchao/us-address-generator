@@ -68,12 +68,33 @@
           ZIP+4 adds a hyphen and four extra digits after the standard ZIP Code, such as 10001-1234. The extra digits represent a more specific delivery segment. For product testing, ZIP+4 is useful because it catches forms that reject hyphens, trim values incorrectly, or store postal codes as numbers.
         </p>
 
+        <h2>Format comparison for QA</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Format</th><th>Example</th><th>Test purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Five-digit ZIP Code</td><td>02108</td><td>Checks fixed-length text handling and leading zeros.</td></tr>
+              <tr><td>ZIP+4</td><td>02108-1234</td><td>Checks hyphen validation and maximum length.</td></tr>
+              <tr><td>Blank value</td><td>Empty</td><td>Checks whether the field is optional for the selected country.</td></tr>
+              <tr><td>Wrong-country value</td><td>SW1A 1AA</td><td>Checks that country changes update the validation rule.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2>Testing recommendations</h2>
         <ul>
           <li>Test both 5-digit and ZIP+4 formats if your product handles billing or shipping addresses.</li>
           <li>Store ZIP Codes as text, not numbers, because leading zeros can appear in some states.</li>
           <li>Do not assume ZIP Code alone proves an address is real or deliverable.</li>
           <li>Include ZIP+4 values in CSV import tests to confirm the hyphen is preserved.</li>
+        </ul>
+
+        <h2>References</h2>
+        <ul class="reference-list">
+          <li><a href="https://faq.usps.com/articles/Knowledge/ZIP-Code-The-Basics" target="_blank" rel="noopener noreferrer">USPS: ZIP Code - The Basics</a></li>
+          <li><a href="https://pe.usps.com/text/pub28/" target="_blank" rel="noopener noreferrer">USPS Publication 28: Postal Addressing Standards</a></li>
         </ul>
 
         <h2>Generate ZIP Code samples</h2>

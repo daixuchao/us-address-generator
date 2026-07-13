@@ -104,10 +104,40 @@
           <li><strong>ZIP Code:</strong> usually five digits, with optional ZIP+4 for more detailed routing.</li>
         </ul>
 
+        <h2>Field mapping for QA</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>UI field</th><th>Example value</th><th>What to verify</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Address Line 1</td><td>1250 Main St</td><td>House number and street name stay together.</td></tr>
+              <tr><td>Address Line 2</td><td>Apt 302</td><td>Optional unit data is preserved when empty or populated.</td></tr>
+              <tr><td>City</td><td>Los Angeles</td><td>Long city names wrap without changing the value.</td></tr>
+              <tr><td>State</td><td>CA</td><td>The two-letter abbreviation is stored as text.</td></tr>
+              <tr><td>ZIP Code</td><td>90015-1234</td><td>Leading zeros and the ZIP+4 hyphen are preserved.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2>Common variants to test</h2>
         <p>
           Form QA should include more than one address shape. Useful variants include no unit, Apt or Suite, PO Box, rural route, long street names, short city names, and ZIP+4 values. These variations help reveal layout, validation, import, and export problems.
         </p>
+
+        <h2>Practical QA examples</h2>
+        <ul>
+          <li><strong>Empty secondary line:</strong> submit a residential address without Address Line 2 and confirm it remains optional.</li>
+          <li><strong>Unit value:</strong> enter <code>Suite 420</code> and verify that the label and value survive checkout, storage, and CSV export.</li>
+          <li><strong>Leading zero:</strong> use a ZIP Code such as <code>02108</code> and confirm it is not converted to a number.</li>
+          <li><strong>ZIP+4:</strong> use <code>90015-1234</code> and verify the hyphen is accepted or the validation message explains the supported format.</li>
+        </ul>
+
+        <h2>References</h2>
+        <ul class="reference-list">
+          <li><a href="https://pe.usps.com/text/pub28/" target="_blank" rel="noopener noreferrer">USPS Publication 28: Postal Addressing Standards</a></li>
+          <li><a href="https://pe.usps.com/businessmail101?ViewName=DeliveryAddress" target="_blank" rel="noopener noreferrer">USPS Delivery Address Guidelines</a></li>
+        </ul>
 
         <h2>Generate examples</h2>
         <p>
