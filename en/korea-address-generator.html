@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Generate random South Korean addresses with local names, phone numbers, postal codes, cities, districts, road-name addresses, buildings, and room numbers."
+    >
+    <link rel="canonical" href="https://global-address.com/en/korea-address-generator">
+    <link rel="alternate" hreflang="zh-CN" href="https://global-address.com/korea-address-generator">
+    <link rel="alternate" hreflang="en" href="https://global-address.com/en/korea-address-generator">
+    <link rel="alternate" hreflang="x-default" href="https://global-address.com/en/korea-address-generator">
+    <meta property="og:title" content="Korea Address Generator - Global Address Generator">
+    <meta property="og:description" content="Generate random South Korean test addresses with local names and phone numbers.">
+    <meta property="og:url" content="https://global-address.com/en/korea-address-generator">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index,follow">
+    <meta property="og:site_name" content="Global Address Generator">
+    <meta name="twitter:card" content="summary">
+    <title>Korea Address Generator - Global Address Generator</title>
+    <link rel="stylesheet" href="../styles.css?v=20260708-korea">
+    <script type="application/ld+json" data-generated="seo">
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://global-address.com/en/"},
+            {"@type": "ListItem", "position": 2, "name": "Korea Address Generator", "item": "https://global-address.com/en/korea-address-generator"}
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Korea Address Generator - Global Address Generator",
+          "url": "https://global-address.com/en/korea-address-generator",
+          "inLanguage": "English",
+          "description": "Generate random South Korean addresses with local names, phone numbers, postal codes, cities, districts, road-name addresses, buildings, and room numbers.",
+          "isPartOf": {"@type": "WebSite", "name": "Global Address Generator", "url": "https://global-address.com/"},
+          "headline": "Generate Random Korean Addresses"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Korea Address Generator",
+          "url": "https://global-address.com/en/korea-address-generator",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Any",
+          "inLanguage": "English",
+          "description": "Generate random South Korean addresses with local names, phone numbers, postal codes, cities, districts, road-name addresses, buildings, and room numbers.",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+          "featureList": ["Random address generation", "Korean names and phone numbers", "Copyable output", "CSV export", "Road-name address examples"]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the Korea address generator for?",
+              "acceptedAnswer": {"@type": "Answer", "text": "It creates synthetic South Korean address data for checkout testing, international forms, CRM fields, logistics screens, and CSV import workflows."}
+            },
+            {
+              "@type": "Question",
+              "name": "Are generated Korean addresses real?",
+              "acceptedAnswer": {"@type": "Answer", "text": "No. Generated results are synthetic test data and are not guaranteed to be real, current, or deliverable."}
+            }
+          ]
+        }
+      ]
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381"
+      crossorigin="anonymous"></script>
+  </head>
+  <body data-locale="en">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Global Address Generator home">
+        <span class="brand__mark" aria-hidden="true">KR</span>
+        <span>Korea Address Generator</span>
+      </a>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="#generator">Generator</a>
+        <a href="./us-address-generator">United States</a>
+        <a href="./japan-address-generator">Japan</a>
+        <a href="./uk-address-generator">United Kingdom</a>
+        <a href="../korea-address-generator" lang="zh-CN">中文</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="pageTitle">
+        <div class="hero__content">
+          <p class="eyebrow">Korea Address Generator</p>
+          <h1 id="pageTitle">Generate Random Korean Addresses</h1>
+          <p class="hero__text">
+            Create South Korea-style test data with a local name, phone number, five-digit postal code, city, district, road-name address, building, and room number.
+          </p>
+        </div>
+      </section>
+
+      <section id="generator" class="layout" aria-label="Korea address generator">
+        <section class="generator-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Generator</p>
+              <h2>Settings</h2>
+            </div>
+            <button class="ghost-button" id="clearBtn" type="button">Clear</button>
+          </div>
+
+          <div class="controls controls--jp">
+            <label>
+              <span>Region</span>
+              <select id="regionSelect">
+                <option value="all">Random across South Korea</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Quantity</span>
+              <input id="countInput" type="number" min="1" max="20" value="5">
+            </label>
+
+            <label>
+              <span>Format</span>
+              <select id="formatSelect">
+                <option value="korean">Korean format</option>
+                <option value="multiline">Multiline format</option>
+              </select>
+            </label>
+
+            <label class="checkbox-row">
+              <input id="includeName" type="checkbox" checked>
+              <span>Include local name</span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="primary-button" id="generateBtn" type="button">Generate addresses</button>
+            <button class="secondary-button" id="copyBtn" type="button">Copy all</button>
+            <button class="secondary-button" id="downloadBtn" type="button">Export CSV</button>
+          </div>
+
+          <p class="helper-text">
+            Results include Korean local names, area-code phone numbers, five-digit postal codes, road-name addresses, building names, room numbers, and common address layouts. They are test data and are not guaranteed to be deliverable.
+          </p>
+        </section>
+
+        <section class="results-panel" aria-live="polite" aria-label="Generated results">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2>Address List</h2>
+            </div>
+            <span class="result-count" id="resultCount">0 items</span>
+          </div>
+          <div id="addressList" class="address-list"></div>
+        </section>
+      </section>
+
+      <section id="faq" class="info-section">
+        <div>
+          <h2>Included Fields</h2>
+          <p>
+            Korean examples may include postal code, special city or province, city or district, road name, building number, building name, room number, local name, and phone number.
+          </p>
+        </div>
+        <div>
+          <h2>Use Cases</h2>
+          <p>
+            Use these samples for checkout testing, CRM fields, international forms, logistics screens, and CSV import workflows.
+          </p>
+        </div>
+        <div>
+          <h2>Test Data Only</h2>
+          <p>
+            Generated results are for testing and demos. Do not use them for real shipping, impersonation, or misleading registrations.
+          </p>
+          <a class="text-link" href="./#countries">View all countries</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Global Address Generator</span>
+      <span>
+        <a href="./about">About</a>
+        <a href="./faq">FAQ</a>
+        <a href="./privacy">Privacy</a>
+        <a href="./terms">Terms</a>
+        <a href="./contact">Contact</a>
+      </span>
+    </footer>
+
+    <script src="../korea-app.js?v=20260708-korea"></script>
+  </body>
+</html>
