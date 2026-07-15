@@ -11,14 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/canada-address-format-guide">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-13">
+    <meta property="article:modified_time" content="2026-07-15">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Canada Address Format Guide - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260713-seo">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Canada Address Format Guide",
-          "datePublished": "2026-07-09",
-          "dateModified": "2026-07-13","description":"Canada address format guide for form testing and address-field QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator"},"mainEntityOfPage":"https://global-address.com/en/canada-address-format-guide"}</script>
+    <link rel="stylesheet" href="../styles.css?v=20260715-guides">
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Canada Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-15","description":"Canada address format guide for form testing and address-field QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/canada-address-format-guide"}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -27,20 +25,41 @@
       <article class="content-card">
         <p class="eyebrow">Country format</p>
         <h1>Canada Address Format Guide</h1>
-        <p class="article-meta">Updated July 13, 2026</p>
-        <p>Canadian addresses look similar to U.S. addresses, but the province and postal code rules are different. Test forms should not assume every North American address uses a U.S. state and ZIP Code.</p>
-        <h2>Common layout</h2>
-        <p class="notice">Alex Martin<br>240 Queen St W, Unit 1204<br>Toronto ON M5V 1Z7<br>Canada</p>
-        <h2>Fields to support</h2>
+        <p class="article-meta">Updated July 15, 2026</p>
+        <p>Canadian addresses resemble U.S. addresses at a glance, but they use province or territory abbreviations and an alphanumeric postal code. Forms should preserve the space in the postal code and should not apply five-digit U.S. ZIP Code validation.</p>
+        <h2>Standard Canadian address layout</h2>
+        <p class="notice">Alex Martin<br>1204-240 Queen St W<br>TORONTO ON&nbsp;&nbsp;M5V 1Z7<br>CANADA</p>
+        <p>Canada Post places the addressee first, additional delivery information when required, the civic address, and then municipality, province or territory, and postal code. The postal code is uppercase and separated into two groups of three characters.</p>
+        <h2>Field mapping</h2>
+        <div class="table-wrap"><table><thead><tr><th>Form field</th><th>Canadian value</th><th>QA consideration</th></tr></thead><tbody>
+          <tr><td>Address Line 1</td><td>1204-240 Queen St W</td><td>Support unit and civic numbers without rejecting the hyphen.</td></tr>
+          <tr><td>City / municipality</td><td>Toronto</td><td>Allow long names and French characters.</td></tr>
+          <tr><td>Province / territory</td><td>ON</td><td>Use Canadian abbreviations, not U.S. state codes.</td></tr>
+          <tr><td>Postal code</td><td>M5V 1Z7</td><td>Accept letters, digits, uppercase conversion, and one space.</td></tr>
+          <tr><td>Country</td><td>Canada</td><td>Add the full country name for international output.</td></tr>
+        </tbody></table></div>
+        <h2>Additional Canadian examples</h2>
+        <p class="notice">Priya Singh<br>88 Rue Saint-Paul O<br>MONTRÉAL QC&nbsp;&nbsp;H2Y 1Z3<br>CANADA</p>
+        <p class="notice">Jordan Lee<br>PO BOX 420 STN MAIN<br>VANCOUVER BC&nbsp;&nbsp;V6B 3A7<br>CANADA</p>
+        <h2>Form testing checklist</h2>
         <ul>
-          <li><strong>Recipient:</strong> person or company name.</li>
-          <li><strong>Street line:</strong> civic number, street name, and optional unit.</li>
-          <li><strong>Municipality:</strong> city or town name.</li>
-          <li><strong>Province:</strong> two-letter code such as ON, QC, BC, AB, or NS.</li>
-          <li><strong>Postal code:</strong> alternating letters and numbers, usually written as A1A 1A1.</li>
+          <li>Accept the A1A 1A1 pattern without replacing the space with a hyphen.</li>
+          <li>Test unit-before-civic-number formats and optional delivery-information lines.</li>
+          <li>Allow English and French street names, accents, apostrophes, and directions.</li>
+          <li>Keep validation country-aware when users switch between Canada and the United States.</li>
+          <li>Verify uppercase display, CSV export, mobile wrapping, and copy behavior.</li>
         </ul>
-        <h2>QA notes</h2>
-        <p>Include postal codes with spaces, province abbreviations, long municipality names, bilingual street names, and unit fields. Do not validate Canadian records with U.S.-only ZIP Code rules.</p>
+        <h2>Official reference</h2>
+        <ul class="reference-list"><li><a href="https://www.canadapost-postescanada.ca/cpc/en/support/articles/abcs-of-mailing/addressing.page" rel="noopener noreferrer">Canada Post: Addressing mail correctly</a></li></ul>
+        <section class="related-guides" aria-labelledby="relatedGuides">
+          <h2 id="relatedGuides">Related guides</h2>
+          <ul>
+            <li><a href="./zip-code-vs-postal-code">ZIP Code vs Postal Code</a></li>
+            <li><a href="./state-vs-province-vs-region">State vs Province vs Region</a></li>
+            <li><a href="./international-address-form-design">International Address Form Design</a></li>
+            <li><a href="./address-form-testing-checklist">Address Form Testing Checklist</a></li>
+          </ul>
+        </section>
       </article>
     </main>
     <footer class="site-footer"><span>© 2026 Global Address Generator</span><span><a href="./about">About</a><a href="./privacy">Privacy</a><a href="./terms">Terms</a><a href="./contact">Contact</a></span></footer>
