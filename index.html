@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Production revision: 2026-07-13 -->
+<!-- Production revision: 2026-07-17 -->
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
@@ -20,7 +20,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>多国地址生成器 - 地址随机生成工具 | Global Address Generator</title>
-    <link rel="stylesheet" href="./styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -273,6 +273,34 @@
           <a class="text-link" href="./japan-address-format">日本地址格式怎么写</a>
           <a class="text-link" href="./guides">查看全部指南</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="workflowTitle">
+        <h2 id="workflowTitle">如何使用生成结果测试地址表单</h2>
+        <div class="reference-grid">
+          <div>
+            <h3>先按国家选择字段</h3>
+            <p>不要用同一套字段强行覆盖所有国家。美国通常需要州缩写与 ZIP Code，日本要处理都道府县和丁目番地，英国则要保留 Post Town 与 Postcode。进入国家页面后，可复制单条结果或导出多条 CSV。</p>
+          </div>
+          <div>
+            <h3>同时测试正常值与边界值</h3>
+            <p>建议检查长街道名、带公寓或楼层的第二地址行、本地文字、前导零邮编、空地区字段及不同电话写法。生成数据提供格式样例，最终校验规则仍应以当地邮政机构和业务要求为准。</p>
+          </div>
+        </div>
+        <h3>推荐的 QA 流程</h3>
+        <ol>
+          <li>选择目标国家，确认页面列出的字段顺序和邮编写法。</li>
+          <li>生成 10 至 50 条样例，测试输入、保存、编辑、搜索、导入和导出。</li>
+          <li>检查换行、字符长度、移动端布局，以及前导零是否被错误删除。</li>
+          <li>将失败案例记录为固定回归数据，不要把随机结果当作真实可投递地址。</li>
+        </ol>
+      </section>
+
+      <section class="reference-section" aria-labelledby="qualityTitle">
+        <h2 id="qualityTitle">数据如何生成与维护</h2>
+        <p>本站在浏览器中组合经过整理的城市、行政区、街道类型、邮编样式、本地姓名和电话格式，不收集或查询个人地址。各国家页面分别维护字段顺序和格式规则，并通过知识中心说明容易混淆的字段。内容更新时会检查页面链接、结构化数据、移动端显示和 CSV 输出。</p>
+        <p>生成结果是合成测试数据，可能偶然与现实信息相似，但不代表真实个人或可收件地点。需要正式寄递时，请使用收件人提供的地址并参考当地邮政机构要求。</p>
+        <a class="text-link" href="./about">了解本站与维护方法</a>
       </section>
     </main>
 

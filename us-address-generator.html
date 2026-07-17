@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>美国地址生成器 - 随机美国地址 | Global Address Generator</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -236,6 +236,13 @@
             <a href="./new-york-address-generator">New York Address Generator</a>
           </div>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="usFieldsTitle">
+        <h2 id="usFieldsTitle">美国地址字段对照与测试重点</h2>
+        <div class="table-wrap"><table><thead><tr><th>字段</th><th>常见写法</th><th>QA 检查</th></tr></thead><tbody><tr><td>Address Line 1</td><td>门牌号 + 街道名 + 街道类型</td><td>不要把门牌号解析成数字，可能包含连字符</td></tr><tr><td>Address Line 2</td><td>Apt、Suite、Unit</td><td>应允许为空，并保留编号中的字母</td></tr><tr><td>City / State</td><td>城市 + 两位州缩写</td><td>州值应作为文本保存</td></tr><tr><td>ZIP Code</td><td>5 位；部分业务接受 ZIP+4</td><td>保留前导零，ZIP+4 应带连字符</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>格式样例</h3><address class="example-address">Jordan Lee<br>455 Market Street, Apt 8B<br>Philadelphia, PA 19106<br>United States</address><p>姓名和电话可作为独立字段测试，不应参与判断地址是否可投递。</p></div><div><h3>建议覆盖的失败案例</h3><ul><li>把 New York 等城市名错误拆分。</li><li>CSV 将 02108 转成 2108。</li><li>仅允许 ZIP+4，拒绝合法的 5 位输入。</li><li>第二地址行为空时产生多余逗号。</li></ul></div></div>
+        <p class="source-list">参考：<a href="https://pe.usps.com/text/pub28/" rel="noopener noreferrer">USPS Publication 28</a>。本站样例用于界面和数据流程测试，不提供 USPS 地址验证。</p>
       </section>
     </main>
 

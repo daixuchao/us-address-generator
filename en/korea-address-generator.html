@@ -19,7 +19,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Korea Address Generator - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
     <script type="application/ld+json" data-generated="seo">
       [
         {
@@ -180,6 +180,13 @@
           </p>
           <a class="text-link" href="./#countries">View all countries</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="krFieldsTitle">
+        <h2 id="krFieldsTitle">Korean road-name fields and QA checks</h2>
+        <div class="table-wrap"><table><thead><tr><th>Field</th><th>Example</th><th>What to test</th></tr></thead><tbody><tr><td>Postal code</td><td>04524</td><td>Store five characters and preserve zero</td></tr><tr><td>City / province</td><td>서울특별시</td><td>Support Hangul without requiring romanization</td></tr><tr><td>District</td><td>중구</td><td>Keep separate from the road-name line</td></tr><tr><td>Road / building</td><td>세종대로 110</td><td>Store building identifiers as text</td></tr><tr><td>Detail</td><td>테스트빌딩 5층</td><td>Allow blank values without replacing the road</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>Domestic example</h3><address class="example-address">04524<br>서울특별시 중구 세종대로 110<br>테스트빌딩 5층<br>김민준</address><p>Korea uses road-name and land-lot systems. This tool focuses on road-name samples; the two systems do not map character for character.</p></div><div><h3>QA scenarios</h3><ul><li>Spreadsheet import removes the postal-code zero.</li><li>Unicode normalization changes Hangul search matching.</li><li>A building number is parsed as arithmetic.</li><li>International output omits the country line.</li></ul></div></div>
+        <p>References: <a href="https://www.epost.go.kr/main/eng/Enpost_Introduction1.html" rel="noopener noreferrer">Korea Post</a> and the <a href="https://www.upu.int/UPU/media/upu/PostalEntitiesFiles/addressingUnit/korEn.pdf" rel="noopener noreferrer">UPU Korea addressing sheet</a>.</p>
       </section>
     </main>
 

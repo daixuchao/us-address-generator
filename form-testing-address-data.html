@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>表单测试地址数据注意事项 - 美国地址生成器</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -91,6 +91,14 @@
         <p>
           在移动端，地址字段通常较长，输入框、错误提示和按钮需要保持可读。测试时应同时检查桌面和手机宽度。
         </p>
+
+        <h2>一套可执行的测试矩阵</h2>
+        <div class="table-wrap"><table><thead><tr><th>类别</th><th>输入</th><th>预期结果</th></tr></thead><tbody><tr><td>正常值</td><td>完整姓名、街道、城市、地区、邮编</td><td>保存后字段和值不变</td></tr><tr><td>可选字段</td><td>Address Line 2 为空</td><td>允许提交且展示无空行</td></tr><tr><td>本地文字</td><td>日文、韩文、泰文地址</td><td>输入、搜索、导出均不乱码</td></tr><tr><td>前导零</td><td>02108 或 04524</td><td>页面、API、CSV 均保留零</td></tr><tr><td>长内容</td><td>接近最大长度的地址行</td><td>明确提示或正常换行，不截断数据</td></tr><tr><td>国家切换</td><td>美国切换到日本</td><td>标签和规则更新，旧州字段被清理</td></tr></tbody></table></div>
+
+        <h2>不要只测试前端提交</h2>
+        <ol><li>创建地址后重新打开编辑页，确认字段没有被合并或重新排序。</li><li>通过列表搜索姓名、城市和邮编，检查 Unicode 与大小写行为。</li><li>导出 CSV，再导入测试环境，逐列比较原始值。</li><li>检查错误日志是否记录字段名称，但不泄露不必要的个人信息。</li><li>把发现的问题固定为回归用例，随机生成仅用于扩大探索范围。</li></ol>
+
+        <p class="notice">随机地址适合验证字段与界面，不适合测试真实投递、税费、支付风控或身份验证结果。这些流程应使用服务商官方沙盒数据。</p>
 
         <p><a href="./guides">返回地址知识中心</a></p>
       </article>

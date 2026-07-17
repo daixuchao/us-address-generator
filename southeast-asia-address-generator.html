@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>东南亚地址生成器 - Global Address Generator</title>
-    <link rel="stylesheet" href="./styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
     <script type="application/ld+json" data-generated="seo">
       [
         {
@@ -169,6 +169,14 @@
           <p>生成结果是合成测试数据，请不要用于真实物流、身份冒用、误导性注册或违法用途。</p>
           <a class="text-link" href="./#countries">查看全部国家</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="seaRulesTitle">
+        <h2 id="seaRulesTitle">东南亚地址的国家差异</h2>
+        <p>本站覆盖新加坡、马来西亚、泰国、越南、印度尼西亚和菲律宾。它们在文字、行政区层级和邮编长度上不统一，不能使用一个“东南亚邮编规则”完成校验。</p>
+        <div class="table-wrap"><table><thead><tr><th>国家</th><th>主要测试点</th></tr></thead><tbody><tr><td>新加坡</td><td>6 位邮编及 Block、Unit</td></tr><tr><td>马来西亚</td><td>5 位邮编和州字段</td></tr><tr><td>泰国</td><td>5 位邮编、泰文与英文转写</td></tr><tr><td>越南</td><td>行政区层级和带声调字符</td></tr><tr><td>印度尼西亚</td><td>省、市/县、区等多层级</td></tr><tr><td>菲律宾</td><td>Barangay、省与 4 位邮编</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>本地化 QA</h3><ul><li>测试泰文、越南语变音符号和长地名。</li><li>不向随机电话发送真实短信。</li><li>切换国家后清除不适用字段。</li></ul></div><div><h3>数据交换 QA</h3><ul><li>CSV 使用 UTF-8 并保留前导零。</li><li>Unit、Block 不强制转成整数。</li><li>允许符合当地结构的换行。</li></ul></div></div>
+        <p>国际寄递格式可参考 <a href="https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions" rel="noopener noreferrer">UPU 各国地址资料</a>。</p>
       </section>
     </main>
 

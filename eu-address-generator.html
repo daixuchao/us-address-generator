@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>欧盟国家地址生成器 - Global Address Generator</title>
-    <link rel="stylesheet" href="./styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
     <script type="application/ld+json" data-generated="seo">
       [
         {
@@ -168,6 +168,14 @@
           <p>生成结果是合成测试数据，请不要用于真实物流、身份冒用、误导性注册或违法用途。</p>
           <a class="text-link" href="./#countries">查看全部国家</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="euRulesTitle">
+        <h2 id="euRulesTitle">欧盟地址不是一种统一格式</h2>
+        <p>欧盟没有一套可替代成员国规则的通用地址格式。本站覆盖德国、法国、意大利、西班牙、荷兰、波兰、瑞典和爱尔兰，并按国家改变街道顺序、行政区和邮编样式。测试系统必须把国家作为验证条件。</p>
+        <div class="table-wrap"><table><thead><tr><th>国家</th><th>邮编样式</th><th>典型差异</th></tr></thead><tbody><tr><td>德国</td><td>5 位</td><td>邮编在城市前；门牌号常在街道名后</td></tr><tr><td>法国</td><td>5 位</td><td>邮编在城市前；城市常大写</td></tr><tr><td>荷兰</td><td>4 位数字 + 2 字母</td><td>中间有空格，如 1012 AB</td></tr><tr><td>爱尔兰</td><td>Eircode</td><td>字母数字组合，不能套用纯数字规则</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>表单检查</h3><ul><li>先选国家，再加载邮编规则。</li><li>保留变音符号和本地街道词。</li><li>不要把省/州设为所有国家必填。</li></ul></div><div><h3>数据交换检查</h3><ul><li>邮编字段使用字符串类型。</li><li>明确记录 country 与 countryCode。</li><li>检查 UTF-8 CSV 导入导出。</li></ul></div></div>
+        <p>国家格式可通过 <a href="https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions" rel="noopener noreferrer">UPU Addressing Solutions</a> 核对。</p>
       </section>
     </main>
 

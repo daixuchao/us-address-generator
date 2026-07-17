@@ -19,7 +19,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Global Address Generator - Random Addresses by Country</title>
-    <link rel="stylesheet" href="../styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -197,6 +197,34 @@
             <a class="secondary-link" href="#countries">View all countries</a>
           </div>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="workflowTitle">
+        <h2 id="workflowTitle">A practical address-form testing workflow</h2>
+        <div class="reference-grid">
+          <div>
+            <h3>Model fields by country</h3>
+            <p>A single global form rarely fits every address. U.S. flows usually require state and ZIP Code, Japanese forms need prefecture and block-level fields, while UK forms must preserve post town and postcode. Open a country generator to copy one record or export a larger CSV set.</p>
+          </div>
+          <div>
+            <h3>Test boundaries, not only happy paths</h3>
+            <p>Include long street lines, apartment or building details, local scripts, leading-zero postal codes, optional regions, and locally formatted phone numbers. The samples help exercise interfaces; production validation should still follow postal-authority and business requirements.</p>
+          </div>
+        </div>
+        <h3>Recommended QA sequence</h3>
+        <ol>
+          <li>Choose a country and review its field order and postal-code pattern.</li>
+          <li>Generate 10 to 50 records and test create, edit, search, import, and export flows.</li>
+          <li>Check wrapping, maximum lengths, mobile layout, Unicode handling, and preserved leading zeros.</li>
+          <li>Save failures as deterministic regression fixtures instead of treating random samples as deliverable addresses.</li>
+        </ol>
+      </section>
+
+      <section class="reference-section" aria-labelledby="qualityTitle">
+        <h2 id="qualityTitle">How the data and guides are maintained</h2>
+        <p>The site combines curated city, administrative-area, street-type, postal-pattern, local-name, and phone-format data in the browser. It does not retrieve personal address records. Each country generator maintains its own field order and format logic, while the knowledge center documents ambiguous fields and QA risks.</p>
+        <p>Generated records are synthetic and may coincidentally resemble real information. They do not establish a real person, phone subscriber, or deliverable location. For mail delivery, use the recipient's confirmed address and the applicable postal authority's guidance.</p>
+        <a class="text-link" href="./about">Read our methodology and editorial scope</a>
       </section>
 
       <section id="countries" class="country-section" aria-labelledby="countryTitle">

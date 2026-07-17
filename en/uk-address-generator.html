@@ -19,7 +19,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>UK Address Generator - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -217,6 +217,13 @@
           </p>
           <a class="text-link" href="./#countries">View all countries</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="ukFieldsTitle">
+        <h2 id="ukFieldsTitle">UK fields and postcode QA</h2>
+        <div class="table-wrap"><table><thead><tr><th>Field</th><th>Typical value</th><th>What to test</th></tr></thead><tbody><tr><td>Premise</td><td>Number, building name, or flat</td><td>Do not assume the first value is numeric</td></tr><tr><td>Street / locality</td><td>Street plus optional locality</td><td>A blank locality must not damage line order</td></tr><tr><td>Post town</td><td>Often displayed in capitals</td><td>Do not require county as a substitute</td></tr><tr><td>Postcode</td><td>For example, SW1A 1AA</td><td>Normalize case and preserve one central space</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>Example layout</h3><address class="example-address">Alex Morgan<br>Flat 4<br>18 King Street<br>LONDON<br>SW1A 1AA<br>UNITED KINGDOM</address></div><div><h3>Boundary cases</h3><ul><li>A named building has no street number.</li><li>Postcodes use different valid lengths.</li><li>Input arrives in lowercase with extra spaces.</li><li>An optional county is incorrectly required.</li></ul></div></div>
+        <p class="source-list">Reference: <a href="https://www.royalmail.com/sending/uk/how-to-address-uk-mail" rel="noopener noreferrer">Royal Mail addressing guidance</a>.</p>
       </section>
     </main>
 

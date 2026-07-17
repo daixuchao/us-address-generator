@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>EU Address Generator - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
     <script type="application/ld+json" data-generated="seo">
       [
         {
@@ -168,6 +168,14 @@
           <p>Generated records are synthetic examples. Do not use them for real delivery, identity claims, misleading registrations, or unlawful activity.</p>
           <a class="text-link" href="./#countries">View all countries</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="euRulesTitle">
+        <h2 id="euRulesTitle">There is no single EU address format</h2>
+        <p>The European Union does not replace national postal rules with one EU-wide layout. This tool covers Germany, France, Italy, Spain, the Netherlands, Poland, Sweden, and Ireland, changing street order, administrative fields, and postal patterns by country. Validation must use country as an input.</p>
+        <div class="table-wrap"><table><thead><tr><th>Country</th><th>Postal pattern</th><th>Typical difference</th></tr></thead><tbody><tr><td>Germany</td><td>Five digits</td><td>Code precedes city; number often follows street</td></tr><tr><td>France</td><td>Five digits</td><td>Code precedes city; city is often uppercase</td></tr><tr><td>Netherlands</td><td>Four digits + two letters</td><td>Contains a space, as in 1012 AB</td></tr><tr><td>Ireland</td><td>Eircode</td><td>Alphanumeric, not compatible with numeric-only rules</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>Form checks</h3><ul><li>Select country before postal validation.</li><li>Preserve accents and local street terms.</li><li>Do not require a state everywhere.</li></ul></div><div><h3>Data exchange checks</h3><ul><li>Serialize postal codes as strings.</li><li>Keep country and countryCode explicit.</li><li>Test UTF-8 CSV import and export.</li></ul></div></div>
+        <p>Use <a href="https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions" rel="noopener noreferrer">UPU Addressing Solutions</a> for country-specific references.</p>
       </section>
     </main>
 

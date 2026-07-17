@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Southeast Asia Address Generator - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
     <script type="application/ld+json" data-generated="seo">
       [
         {
@@ -169,6 +169,14 @@
           <p>Generated records are synthetic examples. Do not use them for real delivery, identity claims, misleading registrations, or unlawful activity.</p>
           <a class="text-link" href="./#countries">View all countries</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="seaRulesTitle">
+        <h2 id="seaRulesTitle">Country differences across Southeast Asia</h2>
+        <p>The tool covers Singapore, Malaysia, Thailand, Vietnam, Indonesia, and the Philippines. Their scripts, administrative levels, and postal-code lengths differ, so one regional postal rule is not a reliable validator.</p>
+        <div class="table-wrap"><table><thead><tr><th>Country</th><th>Main test focus</th></tr></thead><tbody><tr><td>Singapore</td><td>Six-digit code plus block and unit</td></tr><tr><td>Malaysia</td><td>Five-digit code and state field</td></tr><tr><td>Thailand</td><td>Five digits, Thai script, romanization</td></tr><tr><td>Vietnam</td><td>Administrative hierarchy and diacritics</td></tr><tr><td>Indonesia</td><td>Province, city/regency, district levels</td></tr><tr><td>Philippines</td><td>Barangay, province, four-digit code</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>Localization QA</h3><ul><li>Exercise Thai, Vietnamese diacritics, and long names.</li><li>Never message generated phone values.</li><li>Clear irrelevant fields when country changes.</li></ul></div><div><h3>Data exchange QA</h3><ul><li>Use UTF-8 CSV and preserve zeros.</li><li>Do not coerce unit or block to integers.</li><li>Allow locally appropriate line wrapping.</li></ul></div></div>
+        <p>Consult the <a href="https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions" rel="noopener noreferrer">UPU country addressing resources</a> for mailing layouts.</p>
       </section>
     </main>
 

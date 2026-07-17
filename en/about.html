@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>About - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
     <script type="application/ld+json" data-generated="seo">
       [
         {
@@ -57,7 +57,7 @@
         <h1>About Global Address Generator</h1>
         <p>
           Global Address Generator is a free browser-based tool for creating country-specific address examples for testing, prototyping, demos, and localization QA.
-          It currently supports the United States, Japan, and the United Kingdom.
+          It currently supports the United States, Japan, the United Kingdom, South Korea, major European Union countries, and major Southeast Asian countries.
         </p>
 
         <h2>Who it is for</h2>
@@ -77,6 +77,22 @@
         <p>
           The guide pages are written to explain address-field behavior, testing boundaries, and common formatting patterns for product and QA workflows.
           When new countries or address variants are added to the generators, related guides and sitemap entries are updated so users can find the current pages from the site navigation.
+        </p>
+
+        <h2>How generation works</h2>
+        <p>
+          Generation runs locally in the browser. Each tool combines curated city, administrative-area, street-type, postal-pattern, local-name, and phone-format datasets. The site does not query resident databases or provide verified personal records. A random combination can coincidentally resemble real information, so every result must be treated as synthetic test data.
+        </p>
+
+        <h2>Our review method</h2>
+        <ul>
+          <li>Maintain field order and postal patterns separately for each supported country or region.</li>
+          <li>Test generated results, copy actions, CSV columns, internal links, structured data, and mobile layouts after material changes.</li>
+          <li>Distinguish a correctly shaped value from a business-valid or deliverable address.</li>
+          <li>Use public postal-authority documentation for format guidance and explain uncertainty where national practices vary.</li>
+        </ul>
+        <p>
+          Core references include USPS, Japan Post, Royal Mail, the Universal Postal Union, and national postal operators. These organizations do not endorse this site, and generated records are not postal-authority validated.
         </p>
 
         <h2>More site information</h2>

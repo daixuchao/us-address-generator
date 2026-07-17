@@ -19,7 +19,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>U.S. Address Generator - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -210,6 +210,13 @@
           </p>
           <a class="text-link" href="./#countries">View all countries</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="usFieldsTitle">
+        <h2 id="usFieldsTitle">U.S. field map and QA checks</h2>
+        <div class="table-wrap"><table><thead><tr><th>Field</th><th>Typical value</th><th>What to test</th></tr></thead><tbody><tr><td>Address Line 1</td><td>House number, street name, suffix</td><td>Store as text; numbers can contain hyphens</td></tr><tr><td>Address Line 2</td><td>Apt, Suite, or Unit</td><td>Allow blank values and alphanumeric unit identifiers</td></tr><tr><td>City / State</td><td>City plus two-letter abbreviation</td><td>Do not infer state solely from free text</td></tr><tr><td>ZIP Code</td><td>Five digits; some flows accept ZIP+4</td><td>Preserve leading zeros and the ZIP+4 hyphen</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>Example layout</h3><address class="example-address">Jordan Lee<br>455 Market Street, Apt 8B<br>Philadelphia, PA 19106<br>United States</address><p>Name and phone are separate test fields and do not prove that an address is deliverable.</p></div><div><h3>Useful negative cases</h3><ul><li>A CSV import removes the leading zero from 02108.</li><li>The validator requires ZIP+4 and rejects five digits.</li><li>An empty second line leaves an extra comma.</li><li>A city containing spaces is split into multiple fields.</li></ul></div></div>
+        <p class="source-list">Reference: <a href="https://pe.usps.com/text/pub28/" rel="noopener noreferrer">USPS Publication 28</a>. This generator does not perform USPS address validation.</p>
       </section>
     </main>
 

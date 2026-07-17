@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>韩国地址生成器 - Global Address Generator</title>
-    <link rel="stylesheet" href="./styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
     <script type="application/ld+json" data-generated="seo">
       [
         {
@@ -177,6 +177,13 @@
           </p>
           <a class="text-link" href="./#countries">查看全部国家</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="krFieldsTitle">
+        <h2 id="krFieldsTitle">韩国道路名地址字段与测试重点</h2>
+        <div class="table-wrap"><table><thead><tr><th>字段</th><th>样例</th><th>QA 检查</th></tr></thead><tbody><tr><td>邮政编码</td><td>04524</td><td>按文本保存 5 位，保留前导零</td></tr><tr><td>市/道</td><td>서울특별시</td><td>支持韩文，不依赖英文转写</td></tr><tr><td>市区郡</td><td>중구</td><td>与道路名保持独立字段</td></tr><tr><td>道路名与建筑号</td><td>세종대로 110</td><td>建筑号可能包含连字符</td></tr><tr><td>详细地址</td><td>테스트빌딩 5층</td><td>可选，不能覆盖主道路行</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>本地格式样例</h3><address class="example-address">04524<br>서울특별시 중구 세종대로 110<br>테스트빌딩 5층<br>김민준</address><p>韩国同时存在道路名地址和地番地址。本站主要生成道路名格式，不应假设两种系统能逐字对应。</p></div><div><h3>QA 场景</h3><ul><li>邮编被表格软件删除首位 0。</li><li>韩文正规化后搜索结果不同。</li><li>道路建筑号被误解析为数值范围。</li><li>国际格式遗漏国家行。</li></ul></div></div>
+        <p>参考：<a href="https://www.epost.go.kr/main/eng/Enpost_Introduction1.html" rel="noopener noreferrer">Korea Post</a> 与 <a href="https://www.upu.int/UPU/media/upu/PostalEntitiesFiles/addressingUnit/korEn.pdf" rel="noopener noreferrer">UPU 韩国地址说明</a>。</p>
       </section>
     </main>
 

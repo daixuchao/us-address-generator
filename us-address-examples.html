@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>美国地址示例合集 - 美国地址生成器</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -108,6 +108,13 @@
         <p>
           测试表单时，建议同时覆盖没有第二地址行、有 Apt、有 Suite 和 PO Box 的情况。
         </p>
+
+        <h2>如何把示例变成回归测试</h2>
+        <div class="table-wrap"><table><thead><tr><th>样例</th><th>预期行为</th><th>常见错误</th></tr></thead><tbody><tr><td>住宅地址</td><td>Address Line 2 可为空</td><td>空值提交后出现多余逗号</td></tr><tr><td>公寓地址</td><td>Apt 14B 完整保存</td><td>只保留数字 14</td></tr><tr><td>办公室地址</td><td>Suite 作为独立补充字段</td><td>CSV 导出时拆成错误列</td></tr><tr><td>PO Box</td><td>按地址行文本处理</td><td>强制要求普通街道门牌号</td></tr></tbody></table></div>
+        <p>这些示例用于检查字段结构，不应作为真实配送成功的断言。需要测试税费、支付或承运商服务范围时，应使用对应服务商提供的沙盒地址与测试账号。</p>
+
+        <h2>无障碍与移动端检查</h2>
+        <ul><li>错误信息应说明具体字段，而不是只改变输入框颜色。</li><li>自动填充后仍要保留可见标签，不能只依赖 placeholder。</li><li>长地址在 320 像素宽度下应换行，不得覆盖复制或提交按钮。</li></ul>
         <p><a href="./guides">返回地址知识中心</a></p>
       </article>
     </main>

@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>日本地址随机生成器 - Global Address Generator</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -222,6 +222,13 @@
           </p>
           <a class="text-link" href="./#countries">查看全部国家地址生成器</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="jpFieldsTitle">
+        <h2 id="jpFieldsTitle">日本地址字段顺序与 QA 检查</h2>
+        <div class="table-wrap"><table><thead><tr><th>层级</th><th>示例</th><th>测试重点</th></tr></thead><tbody><tr><td>邮便番号</td><td>100-0005</td><td>保留前导零；可分别测试带或不带连字符</td></tr><tr><td>都道府县</td><td>東京都</td><td>不要与市区町村合并后丢失层级</td></tr><tr><td>市区町村</td><td>千代田区</td><td>支持汉字、假名和 Unicode 搜索</td></tr><tr><td>町域及番地</td><td>丸の内1丁目2-3</td><td>番地不是小数或算术表达式</td></tr><tr><td>建物・部屋</td><td>テストビル405号室</td><td>允许为空，并支持全角字符</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>日文顺序样例</h3><address class="example-address">〒100-0005<br>東京都千代田区丸の内1丁目2-3<br>テストビル405号室<br>山田 花子 様</address></div><div><h3>国际表单注意事项</h3><p>海外网站可能把日本地址转换为从小到大的罗马字顺序。测试时应把“本地显示格式”和“国际寄件格式”作为两个场景，避免只靠空格拆分汉字地址。</p><ul><li>测试姓名中间无空格的情况。</li><li>检查邮编前导零和日文字符编码。</li><li>确认建物名不会覆盖街道行。</li></ul></div></div>
+        <p class="source-list">参考：<a href="https://www.post.japanpost.jp/int/use/writing/normal_en.html" rel="noopener noreferrer">Japan Post 地址书写说明</a>。</p>
       </section>
     </main>
 

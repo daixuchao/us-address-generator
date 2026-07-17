@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>关于我们 - 美国地址生成器</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -69,9 +69,9 @@
     <main class="content-page">
       <article class="content-card">
         <p class="eyebrow">About</p>
-        <h1>关于美国地址生成器</h1>
+        <h1>关于 Global Address Generator</h1>
         <p>
-          美国地址生成器是一个面向开发者、产品经理、设计师和内容创作者的测试数据工具。它可以快速生成常见美国地址格式，用于表单测试、产品原型、演示文档和页面占位。
+          Global Address Generator 是一个面向开发者、测试工程师、产品经理和设计师的多国地址测试数据工具。当前生成器覆盖美国、日本、英国、韩国、欧盟主要国家和东南亚主要国家，并为不同国家保留各自的行政区、邮编、地址行、姓名和电话写法。
         </p>
 
         <h2>这个工具适合做什么</h2>
@@ -80,6 +80,22 @@
           <li>为产品原型或演示页面准备结构化样例数据。</li>
           <li>检查 CSV 导出、复制粘贴和多地址展示流程。</li>
         </ul>
+
+        <h2>数据如何生成</h2>
+        <p>生成逻辑在用户浏览器中运行，从本站维护的城市、行政区、街道类型、邮编样式、本地姓名和电话格式数据中随机组合结果。本站不连接居民数据库，也不出售或提供真实个人资料。随机组合可能偶然与现实地址相似，因此结果只能作为测试样例。</p>
+
+        <h2>内容与格式如何维护</h2>
+        <p>每个国家生成器单独维护字段顺序、邮编规则和常见地址变体。新增或调整格式时，我们会检查生成结果、复制功能、CSV 列、内部链接、移动端排版和结构化数据。知识中心用于解释 Address Line 2、州与省、账单地址与配送地址等容易误用的字段。</p>
+        <p>邮政格式说明优先参考 USPS、Japan Post、Royal Mail、UPU 及各国邮政机构的公开资料。工具不会声称生成结果已被邮政机构验证；真实寄递应以收件人确认信息和当地邮政要求为准。</p>
+
+        <h2>编辑原则</h2>
+        <ul>
+          <li>明确区分格式正确、业务有效和真实可投递三个概念。</li>
+          <li>为 QA 团队提供字段对照、边界案例和可复现的测试建议。</li>
+          <li>发现格式变化或页面错误时更新对应生成器与指南，而不是批量复制相同说明。</li>
+        </ul>
+
+        <p>更多信息可查看 <a href="./guides">地址知识中心</a>、<a href="./en/faq" lang="en">英文常见问题</a> 和 <a href="./contact">联系页面</a>。</p>
 
         <h2>重要说明</h2>
         <p class="notice">

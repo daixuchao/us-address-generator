@@ -19,7 +19,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Japan Address Generator - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260713-seo">
+    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -217,6 +217,13 @@
           </p>
           <a class="text-link" href="./#countries">View all countries</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="jpFieldsTitle">
+        <h2 id="jpFieldsTitle">Japanese field order and QA checks</h2>
+        <div class="table-wrap"><table><thead><tr><th>Level</th><th>Example</th><th>What to test</th></tr></thead><tbody><tr><td>Postal code</td><td>100-0005</td><td>Preserve a leading zero; test with and without the hyphen</td></tr><tr><td>Prefecture</td><td>Tokyo-to</td><td>Keep the administrative level available as a field</td></tr><tr><td>Municipality</td><td>Chiyoda-ku</td><td>Support kanji, kana, and Unicode search</td></tr><tr><td>Town and block</td><td>Marunouchi 1-2-3</td><td>Store block identifiers as text</td></tr><tr><td>Building / room</td><td>Test Building 405</td><td>Allow blank values without corrupting the main line</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>Domestic layout</h3><address class="example-address">〒100-0005<br>東京都千代田区丸の内1丁目2-3<br>テストビル405号室<br>山田 花子 様</address></div><div><h3>International-form risks</h3><p>Romanized forms often reverse the domestic large-to-small order. Treat domestic display and international mailing as separate test cases rather than splitting a Japanese line on spaces.</p><ul><li>Test names without a Western-style space.</li><li>Preserve postal-code zeros and Japanese characters.</li><li>Keep building details separate from locality data.</li></ul></div></div>
+        <p class="source-list">Reference: <a href="https://www.post.japanpost.jp/int/use/writing/normal_en.html" rel="noopener noreferrer">Japan Post addressing guidance</a>.</p>
       </section>
     </main>
 

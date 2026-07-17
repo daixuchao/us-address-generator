@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Address Line 2 怎么填 - 美国地址生成器</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -90,6 +90,14 @@
         <p>
           有些系统把 Apt 或 Suite 放在街道地址同一行，例如 520 Pine St, Apt 14B；有些系统分成 Address Line 1 和 Address Line 2。两种展示都常见，关键是字段保存和导出要稳定。
         </p>
+
+        <h2>Address Line 1 与 Line 2 的字段对照</h2>
+        <div class="table-wrap"><table><thead><tr><th>内容</th><th>推荐字段</th><th>原因</th></tr></thead><tbody><tr><td>520 Pine St</td><td>Address Line 1</td><td>主要街道位置</td></tr><tr><td>Apt 14B</td><td>Address Line 2</td><td>同一建筑内的细分位置</td></tr><tr><td>Seattle</td><td>City</td><td>不应塞入自由地址行</td></tr><tr><td>WA 98101</td><td>State 与 ZIP Code</td><td>便于独立验证和搜索</td></tr></tbody></table></div>
+
+        <h2>存储与导出风险</h2>
+        <ul><li>不要删除 Line 2 的字母、连字符或井号，这些字符可能是单元编号的一部分。</li><li>合并成单行展示时要定义稳定分隔符，重新编辑时仍应恢复原字段。</li><li>CSV 导出需要正确引用包含逗号的完整地址，API 则应保留 line1 与 line2 两个键。</li><li>如果国家不使用 Address Line 2，应允许本地化标签，而不是把英文术语直接展示给所有用户。</li></ul>
+
+        <p>美国邮寄格式的缩写和单元标识可参考 <a href="https://pe.usps.com/text/pub28/" rel="noopener noreferrer">USPS Publication 28</a>。业务系统仍需根据自身配送与验证规则决定必填项。</p>
 
         <p><a href="./guides">返回地址知识中心</a></p>
       </article>

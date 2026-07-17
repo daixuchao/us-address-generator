@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>英国地址生成器 - Global Address Generator</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -214,6 +214,13 @@
           </p>
           <a class="text-link" href="./japan-address-generator">查看日本地址生成器</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="ukFieldsTitle">
+        <h2 id="ukFieldsTitle">英国地址字段与 Postcode 测试</h2>
+        <div class="table-wrap"><table><thead><tr><th>字段</th><th>常见写法</th><th>QA 检查</th></tr></thead><tbody><tr><td>Premise</td><td>门牌号、房屋名或 Flat</td><td>不能假设第一项一定是数字</td></tr><tr><td>Street / Locality</td><td>街道与可选地区</td><td>Locality 为空时不应破坏换行</td></tr><tr><td>Post Town</td><td>通常大写显示</td><td>不要把 county 当成必填替代项</td></tr><tr><td>Postcode</td><td>例如 SW1A 1AA</td><td>保留 inward code 前的单个空格</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>格式样例</h3><address class="example-address">Alex Morgan<br>Flat 4<br>18 King Street<br>LONDON<br>SW1A 1AA<br>UNITED KINGDOM</address></div><div><h3>边界案例</h3><ul><li>房屋名存在但没有门牌号。</li><li>Postcode 长度和字母数字组合不同。</li><li>用户输入小写 postcode 或多余空格。</li><li>可选 county 被误设为必填字段。</li></ul></div></div>
+        <p class="source-list">参考：<a href="https://www.royalmail.com/sending/uk/how-to-address-uk-mail" rel="noopener noreferrer">Royal Mail: How to address UK mail</a>。</p>
       </section>
     </main>
 
