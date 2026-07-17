@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>New York Address Generator - 美国地址生成器</title>
-    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
+    <link rel="stylesheet" href="./styles.css?v=20260717-trust">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -200,6 +200,14 @@
           </p>
           <a class="text-link" href="./guides">查看地址知识中心</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="nyTestTitle">
+        <h2 id="nyTestTitle">New York 地址测试矩阵</h2>
+        <p>New York 页面固定 NY 州缩写，用于测试城市名称、州选择和 ZIP Code 字符串处理。这里的 New York State 不等同于 New York City，表单不应因为州名和城市名相似而覆盖其中一个字段。</p>
+        <div class="table-wrap"><table><thead><tr><th>场景</th><th>样例字段</th><th>预期检查</th></tr></thead><tbody><tr><td>New York City</td><td>New York, NY 100xx</td><td>城市与州保持两个字段</td></tr><tr><td>Brooklyn</td><td>Brooklyn, NY 112xx</td><td>不要强制把 borough 改写成 New York</td></tr><tr><td>Buffalo</td><td>Buffalo, NY 142xx</td><td>同州不同城市仍使用独立邮编测试集</td></tr><tr><td>账单地址</td><td>姓名、街道、城市、NY、ZIP</td><td>只验证字段流程，不模拟支付机构风控结果</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>常见缺陷</h3><ul><li>City 和 State 同时显示为 New York 后被去重。</li><li>ZIP Code 被作为数字而不是字符串。</li><li>Brooklyn 等城市值被前端自动替换。</li></ul></div><div><h3>回归建议</h3><ul><li>分别保存、编辑和搜索 NYC 与州内其他城市。</li><li>测试 Apt、Suite、PO Box 和空 Line 2。</li><li>导出 CSV 后逐列比较原始值。</li></ul></div></div>
+        <p>字段标准可参考 <a href="https://pe.usps.com/text/pub28/" rel="noopener noreferrer">USPS Publication 28</a>。生成结果不是税务、金融或配送验证数据。</p>
       </section>
     </main>
 

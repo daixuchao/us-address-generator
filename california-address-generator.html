@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>California Address Generator - 美国地址生成器</title>
-    <link rel="stylesheet" href="./styles.css?v=20260717-quality">
+    <link rel="stylesheet" href="./styles.css?v=20260717-trust">
       <script type="application/ld+json" data-generated="seo">
 [
       {
@@ -200,6 +200,14 @@
           </p>
           <a class="text-link" href="./guides">查看地址知识中心</a>
         </div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="caTestTitle">
+        <h2 id="caTestTitle">California 地址测试矩阵</h2>
+        <p>California 页面不是独立的邮政格式，而是美国地址格式下的州级测试入口。它的价值是固定 CA 州缩写，并覆盖不同城市、区号和 ZIP Code 范围，方便测试州与城市联动。</p>
+        <div class="table-wrap"><table><thead><tr><th>场景</th><th>样例字段</th><th>预期检查</th></tr></thead><tbody><tr><td>Los Angeles</td><td>Los Angeles, CA 900xx</td><td>城市与 CA 正确保存，邮编按 5 位文本处理</td></tr><tr><td>San Francisco</td><td>San Francisco, CA 941xx</td><td>带空格城市名不被错误拆分</td></tr><tr><td>公寓</td><td>Apt 12B</td><td>第二地址行允许字母数字组合</td></tr><tr><td>CSV</td><td>姓名、电话、街道、城市、州、邮编</td><td>导出后 CA 与前导零字段不发生类型转换</td></tr></tbody></table></div>
+        <div class="reference-grid"><div><h3>适合验证</h3><ul><li>默认州、州下拉框和城市联动。</li><li>长城市名在移动端的换行。</li><li>Pacific Time 相关业务界面，但时区不能仅由地址推断。</li></ul></div><div><h3>不代表什么</h3><ul><li>结果没有经过 USPS 可投递性验证。</li><li>ZIP Code 不能证明税率或配送范围。</li><li>随机电话不得用于真实呼叫或短信。</li></ul></div></div>
+        <p>美国字段格式参考 <a href="https://pe.usps.com/text/pub28/" rel="noopener noreferrer">USPS Publication 28</a>。需要其他州时请使用<a href="./us-address-generator">全美国地址生成器</a>。</p>
       </section>
     </main>
 

@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/what-is-address-line-1">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-17">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>What Is Address Line 1? - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"What Is Address Line 1?","datePublished":"2026-07-09","dateModified":"2026-07-15","description":"Address Line 1 meaning and examples for forms and QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/what-is-address-line-1","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
+    <link rel="stylesheet" href="../styles.css?v=20260717-trust">
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"What Is Address Line 1?","datePublished":"2026-07-09","dateModified":"2026-07-17","description":"Address Line 1 meaning and examples for forms and QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/what-is-address-line-1","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -25,7 +25,7 @@
       <article class="content-card">
         <p class="eyebrow">Field guide</p>
         <h1>What Is Address Line 1?</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated July 17, 2026</p>
         <p>Address Line 1 is the main delivery address line. It normally contains the house number, building number, street name, and street type.</p>
         <h2>Examples</h2>
         <ul>
@@ -38,6 +38,11 @@
         <p>Apartment, suite, unit, room, floor, department, and building details often belong in Address Line 2 or a separate secondary-address field. Some countries combine these details into one line, so forms should stay flexible.</p>
         <h2>QA notes</h2>
         <p>Test long street names, short street names, numeric street names, non-English characters, and records where Address Line 2 is empty. Do not reject valid addresses only because Address Line 1 has a different order from U.S. examples.</p>
+        <h2>Country-aware examples</h2>
+        <div class="table-wrap"><table><thead><tr><th>Country</th><th>Address Line 1 example</th><th>Why a generic parser can fail</th></tr></thead><tbody><tr><td>United States</td><td>1250 Main St</td><td>House number usually appears first</td></tr><tr><td>Germany</td><td>Friedrichstrasse 82</td><td>House number commonly follows street</td></tr><tr><td>Japan</td><td>丸の内1丁目2-3</td><td>Block identifiers and local script do not use a Western street model</td></tr><tr><td>Singapore</td><td>10 Anson Road</td><td>Unit information may include a separate #12-05 value</td></tr></tbody></table></div>
+        <h2>Acceptance criteria for a form</h2>
+        <ul><li>Store the line as text without extracting or recalculating numbers.</li><li>Support Unicode, spaces, hyphens, apostrophes, and locally meaningful punctuation.</li><li>Document a maximum length and report overflow before submission.</li><li>Keep Address Line 2 optional unless a specific business process requires it.</li><li>Preserve the original value through edit, API, and export workflows.</li></ul>
+        <p>Address Line 1 is a product-interface label, not a universal postal standard. The selected country should determine labels, ordering, and validation.</p>
         <section class="related-guides" aria-labelledby="relatedGuides">
           <h2 id="relatedGuides">Related guides</h2>
           <ul>

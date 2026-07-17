@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/india-address-format-guide">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-17">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>India Address Format Guide - Global Address Generator</title>
-    <link rel="stylesheet" href="../styles.css?v=20260717-quality">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"India Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-15","description":"India address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/india-address-format-guide","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
+    <link rel="stylesheet" href="../styles.css?v=20260717-trust">
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"India Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-17","description":"India address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/india-address-format-guide","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -25,7 +25,7 @@
       <article class="content-card">
         <p class="eyebrow">Country format</p>
         <h1>India Address Format Guide</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated July 17, 2026</p>
         <p>Indian addresses can include building names, flat numbers, street names, locality, city, state, and a six-digit PIN code. Forms should allow more address lines than a simple street/city/postcode model.</p>
         <h2>Common layout</h2>
         <p class="notice">Aarav Sharma<br>Flat 402, Green Heights<br>MG Road, Indiranagar<br>Bengaluru, Karnataka 560038<br>India</p>
@@ -39,6 +39,11 @@
         </ul>
         <h2>QA notes</h2>
         <p>Test multiple address lines, long locality names, six-digit PIN codes, state dropdown behavior, and CSV exports that preserve line breaks and commas.</p>
+        <h2>Field mapping</h2>
+        <div class="table-wrap"><table><thead><tr><th>Content</th><th>Suggested field</th><th>QA risk</th></tr></thead><tbody><tr><td>Flat 402, Green Heights</td><td>Building / Line 1</td><td>Comma must be quoted in CSV</td></tr><tr><td>MG Road, Indiranagar</td><td>Street and locality</td><td>Do not discard locality as duplicate city data</td></tr><tr><td>Bengaluru</td><td>City</td><td>Allow current and legacy place-name variants</td></tr><tr><td>Karnataka</td><td>State</td><td>Country switch should load Indian states</td></tr><tr><td>560038</td><td>PIN code string</td><td>Require six characters without testing deliverability</td></tr></tbody></table></div>
+        <h2>Regression cases</h2>
+        <ul><li>Address lines containing commas survive CSV round trips.</li><li>Long building and locality values wrap without silent truncation.</li><li>PIN code remains a string in JSON, spreadsheet, and database layers.</li><li>State selection does not replace city or locality.</li></ul>
+        <p>India Post describes PIN codes and postal services on its <a href="https://www.indiapost.gov.in/" rel="noopener noreferrer">official website</a>. Generated examples are not India Post-validated addresses.</p>
         <section class="related-guides" aria-labelledby="relatedGuides">
           <h2 id="relatedGuides">Related guides</h2>
           <ul>

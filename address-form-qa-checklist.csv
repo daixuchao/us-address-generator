@@ -1,0 +1,19 @@
+id,category,country,input_or_action,expected_result,priority
+QA-001,Required fields,All,Submit an empty address form,Each required field receives a specific accessible error,High
+QA-002,Optional fields,All,Leave Address Line 2 empty,Form submits without an empty output line,High
+QA-003,Leading zero,United States,Enter ZIP Code 02108,Stored displayed and exported value remains 02108,High
+QA-004,Leading zero,South Korea,Enter postal code 04524,Stored displayed and exported value remains 04524,High
+QA-005,Unicode,Japan,Enter a complete kanji address,Create edit search and CSV preserve every character,High
+QA-006,Unicode,Thailand,Enter a Thai-script address,Create edit search and CSV preserve every character,High
+QA-007,Diacritics,Vietnam,Enter a Vietnamese address with tone marks,Search and export preserve diacritics,High
+QA-008,Country switch,All,Switch from United States to Japan,State rules are removed and prefecture fields appear,High
+QA-009,Postal validation,United Kingdom,Enter SW1A 1AA,Valid postcode is accepted and spacing is normalized,High
+QA-010,Postal validation,Netherlands,Enter 1012 AB,Alphanumeric postcode is not rejected by numeric rules,High
+QA-011,Unit identifier,Singapore,Enter unit #12-05,Hash and hyphen are preserved,Medium
+QA-012,Long content,All,Enter an address line at the documented maximum,UI wraps or reports the limit without silent truncation,High
+QA-013,CSV export,All,Export a record containing commas and Unicode,CSV quoting and UTF-8 encoding preserve every column,High
+QA-014,CSV import,All,Import the exported test file,Values return to their original fields unchanged,High
+QA-015,Mobile layout,All,Open form at 320 CSS pixels,Labels errors inputs and buttons do not overlap,Medium
+QA-016,Accessibility,All,Submit invalid values using keyboard and screen reader,Focus moves predictably and errors are announced,High
+QA-017,Phone safety,All,Generate a local-looking phone value,No real call or SMS is triggered,High
+QA-018,Data boundary,All,Use a generated record in a delivery workflow,System clearly treats it as non-deliverable test data,High
