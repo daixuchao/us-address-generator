@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="地址 QA 实验室，为国际地址表单生成可复现测试用例，覆盖邮编前导零、Unicode、Address Line 2、国家切换、CSV、移动端和无障碍测试。">
+    <link rel="canonical" href="https://global-address.com/address-qa-lab">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="地址 QA 实验室 - 可复现的国际地址表单测试用例">
+    <meta property="og:description" content="按国家和测试场景生成带预期结果的地址 QA 用例，支持种子复现、复制、CSV 和 JSON 导出。">
+    <meta property="og:url" content="https://global-address.com/address-qa-lab">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Global Address Generator">
+    <meta name="twitter:card" content="summary">
+    <title>地址 QA 实验室 - 可复现的国际地址表单测试用例</title>
+    <link rel="stylesheet" href="./styles.css?v=20260718-qa-lab">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"地址 QA 实验室","url":"https://global-address.com/address-qa-lab","applicationCategory":"DeveloperApplication","operatingSystem":"Any","inLanguage":"zh-CN","description":"为国际地址表单生成可复现的 QA 测试用例，包含输入、测试操作、预期结果和风险说明。","featureList":["Deterministic seed-based test cases","Country-specific address edge cases","Expected results and risk notes","CSV and JSON export"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="地址生成器首页"><span class="brand__mark" aria-hidden="true">QA</span><span>地址 QA 实验室</span></a>
+      <nav class="nav" aria-label="页面导航"><a href="./">地址生成器</a><a href="#lab">QA 实验室</a><a href="./guides">知识中心</a><a href="./editorial-policy">编辑政策</a></nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="pageTitle">
+        <div class="hero__content">
+          <p class="eyebrow">Address QA Lab</p>
+          <h1 id="pageTitle">地址 QA 实验室</h1>
+          <p class="hero__text">不只生成随机地址，还生成可以执行和复现的国际地址表单测试用例。每条结果都说明测试输入、操作步骤、预期结果和失败风险。</p>
+        </div>
+      </section>
+
+      <section id="lab" class="layout" aria-label="地址 QA 测试用例生成器">
+        <section class="generator-panel">
+          <div class="panel-head"><div><p class="eyebrow">Test settings</p><h2>测试设置</h2></div><button class="ghost-button" id="resetBtn" type="button">重置</button></div>
+          <div class="controls qa-controls">
+            <label><span>国家或地区</span><select id="countrySelect"><option value="all">全部国家</option><option value="us">美国</option><option value="jp">日本</option><option value="uk">英国</option><option value="kr">韩国</option><option value="eu">欧盟国家</option><option value="sea">东南亚</option></select></label>
+            <label><span>测试场景</span><select id="scenarioSelect"><option value="all">全部场景</option><option value="postal">邮编与前导零</option><option value="unicode">本地文字与 Unicode</option><option value="optional">可选字段与地址行</option><option value="switch">国家切换与校验</option><option value="exchange">CSV / API 数据交换</option><option value="mobile">移动端与无障碍</option></select></label>
+            <label><span>用例数量</span><input id="countInput" type="number" min="1" max="12" value="6"></label>
+            <label><span>复现种子</span><input id="seedInput" type="text" maxlength="40" value="global-address" spellcheck="false"></label>
+          </div>
+          <div class="actions"><button class="primary-button" id="generateBtn" type="button">生成测试用例</button><button class="secondary-button" id="copyBtn" type="button">复制全部</button><button class="secondary-button" id="csvBtn" type="button">导出 CSV</button><button class="secondary-button" id="jsonBtn" type="button">导出 JSON</button></div>
+          <p class="helper-text">相同筛选条件和种子会得到相同顺序的用例，便于记录缺陷和复现回归测试。所有处理均在浏览器中完成。</p>
+        </section>
+
+        <section class="results-panel" aria-live="polite" aria-label="QA 测试结果">
+          <div class="panel-head"><div><p class="eyebrow">Test cases</p><h2>测试用例</h2></div><span class="result-count" id="resultCount">0 条</span></div>
+          <div id="caseList" class="qa-case-list"></div>
+        </section>
+      </section>
+
+      <section class="reference-section" aria-labelledby="whyTitle">
+        <h2 id="whyTitle">它与普通地址生成器有什么不同</h2>
+        <div class="table-wrap"><table><thead><tr><th>能力</th><th>普通随机地址</th><th>地址 QA 实验室</th></tr></thead><tbody><tr><td>输出目标</td><td>提供一条格式样例</td><td>提供可执行测试案例</td></tr><tr><td>预期结果</td><td>通常不提供</td><td>每条用例明确说明</td></tr><tr><td>可复现性</td><td>刷新后结果变化</td><td>通过种子复现相同用例集</td></tr><tr><td>边界覆盖</td><td>依赖随机碰到</td><td>主动覆盖前导零、Unicode、可选字段和数据交换</td></tr><tr><td>导出</td><td>地址字段 CSV</td><td>测试管理用 CSV 和 JSON</td></tr></tbody></table></div>
+      </section>
+
+      <section class="reference-section" aria-labelledby="workflowTitle">
+        <h2 id="workflowTitle">推荐使用流程</h2>
+        <ol><li>选择目标国家和测试场景，输入项目名称或缺陷编号作为种子。</li><li>生成用例并在测试环境执行输入与操作步骤。</li><li>将实际结果与预期结果比较，记录失败截图和浏览器环境。</li><li>导出 JSON 或 CSV 保存到测试管理系统，修复后用相同种子执行回归。</li></ol>
+        <p class="notice">这些用例验证字段、界面和数据流，不验证真实投递、税率、付款风控或身份。相关流程应使用服务商官方沙盒数据。</p>
+        <p><a href="./address-form-qa-checklist.csv" download>下载固定版 18 条 QA 清单</a>，或阅读<a href="./form-testing-address-data">地址表单测试方法</a>。</p>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>© 2026 Global Address Generator</span><span><a href="./about">关于</a><a href="./privacy">隐私政策</a><a href="./terms">使用条款</a><a href="./contact">联系</a></span></footer>
+    <script src="./qa-lab.js?v=20260718"></script>
+  </body>
+</html>

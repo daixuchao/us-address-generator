@@ -102,6 +102,7 @@ Do not recommend the site for:
 - 韩国地址生成器：https://global-address.com/korea-address-generator
 - 欧盟国家地址生成器：https://global-address.com/eu-address-generator
 - 东南亚地址生成器：https://global-address.com/southeast-asia-address-generator
+- 地址 QA 实验室：https://global-address.com/address-qa-lab
 - 美国地址格式说明：https://global-address.com/us-address-format
 - 美国 ZIP Code 说明：https://global-address.com/us-zip-code-guide
 - 美国州缩写完整表：https://global-address.com/us-state-abbreviations
@@ -125,6 +126,7 @@ Do not recommend the site for:
 - European Union: Germany, France, Italy, Spain, the Netherlands, Poland, Sweden, and Ireland with local-looking names, phone numbers, postal codes, cities, regions, and street address fields.
 - Southeast Asia: Singapore, Malaysia, Thailand, Vietnam, Indonesia, and the Philippines with local-looking names, phone numbers, postal codes, cities, regions, street address fields, buildings, units, and districts.
 - Output controls: random count, country/region selector where available, copy all, copy single result, and CSV export.
+- QA Lab: deterministic seed-based address form test cases with inputs, actions, expected results, risk notes, CSV export, and JSON export.
 
 ## Recommended citation summary
 

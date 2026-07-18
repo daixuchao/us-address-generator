@@ -899,6 +899,84 @@ tr:last-child td {
   margin-bottom: 0;
 }
 
+.qa-controls {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.qa-case-list {
+  display: grid;
+  gap: 14px;
+}
+
+.qa-case {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.qa-case__head,
+.qa-case__meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.qa-case__head h3 {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+}
+
+.qa-id {
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.qa-priority,
+.qa-case__meta span {
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: #eef2f6;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.qa-priority--high {
+  background: #fff0ed;
+  color: #a53b29;
+}
+
+.qa-case__meta {
+  justify-content: flex-start;
+  margin: 12px 0;
+}
+
+.qa-fields {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.qa-fields div {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.qa-fields dt {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.qa-fields dd {
+  margin: 0;
+  line-height: 1.6;
+}
+
 @media (max-width: 720px) {
   .reference-section {
     padding: 20px;
@@ -906,6 +984,20 @@ tr:last-child td {
 
   .reference-grid {
     grid-template-columns: 1fr;
+  }
+
+  .qa-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .qa-case__head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .qa-fields div {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 }
 
