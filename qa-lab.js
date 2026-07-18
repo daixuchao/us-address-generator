@@ -26,28 +26,71 @@ const qaCases = [
 ];
 
 const elements = {
-  country: document.querySelector("#countrySelect"), scenario: document.querySelector("#scenarioSelect"), count: document.querySelector("#countInput"), seed: document.querySelector("#seedInput"), list: document.querySelector("#caseList"), resultCount: document.querySelector("#resultCount"), generate: document.querySelector("#generateBtn"), reset: document.querySelector("#resetBtn"), copy: document.querySelector("#copyBtn"), csv: document.querySelector("#csvBtn"), json: document.querySelector("#jsonBtn")
+  country: document.querySelector("#countrySelect"), scenario: document.querySelector("#scenarioSelect"), count: document.querySelector("#countInput"), seed: document.querySelector("#seedInput"), list: document.querySelector("#caseList"), resultCount: document.querySelector("#resultCount"), generate: document.querySelector("#generateBtn"), reset: document.querySelector("#resetBtn"), share: document.querySelector("#shareBtn"), copy: document.querySelector("#copyBtn"), csv: document.querySelector("#csvBtn"), json: document.querySelector("#jsonBtn"), progress: document.querySelector(".qa-progress"), progressBar: document.querySelector("#progressBar"), progressValue: document.querySelector("#progressValue"), passValue: document.querySelector("#passValue"), failValue: document.querySelector("#failValue"), blockedValue: document.querySelector("#blockedValue")
 };
 let currentCases = [];
+let results = {};
 
 function seedNumber(text) { let h = 2166136261; for (const char of text) { h ^= char.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
 function randomFromSeed(seed) { return function () { seed |= 0; seed = seed + 0x6d2b79f5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 function shuffled(items, seedText) { const result = [...items], random = randomFromSeed(seedNumber(seedText)); for (let i = result.length - 1; i > 0; i--) { const j = Math.floor(random() * (i + 1)); [result[i], result[j]] = [result[j], result[i]]; } return result; }
 function escapeHtml(value) { return value.replace(/[&<>"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[char]); }
 function matchingCases() { return qaCases.filter(item => (elements.country.value === "all" || item.country === elements.country.value || item.country === "all") && (elements.scenario.value === "all" || item.scenario === elements.scenario.value)); }
+function statusLabel(status) { return ({ passed: "通过", failed: "失败", blocked: "阻塞", pending: "未执行" })[status] || "未执行"; }
+function updateSummary() {
+  const values = currentCases.map(item => results[item.id]?.status || "pending");
+  const passed = values.filter(value => value === "passed").length;
+  const failed = values.filter(value => value === "failed").length;
+  const blocked = values.filter(value => value === "blocked").length;
+  const completed = passed + failed + blocked;
+  const progress = values.length ? Math.round(completed / values.length * 100) : 0;
+  elements.progressValue.textContent = `${progress}%`;
+  elements.passValue.textContent = passed;
+  elements.failValue.textContent = failed;
+  elements.blockedValue.textContent = blocked;
+  elements.progressBar.style.width = `${progress}%`;
+  elements.progress.setAttribute("aria-valuenow", progress);
+}
+function executionMarkup(item) {
+  const result = results[item.id] || { status: "pending", note: "" };
+  return `<div class="qa-execution"><label><span>执行状态</span><select data-status-for="${item.id}"><option value="pending"${result.status === "pending" ? " selected" : ""}>未执行</option><option value="passed"${result.status === "passed" ? " selected" : ""}>通过</option><option value="failed"${result.status === "failed" ? " selected" : ""}>失败</option><option value="blocked"${result.status === "blocked" ? " selected" : ""}>阻塞</option></select></label><label><span>实际结果或失败备注</span><input data-note-for="${item.id}" type="text" maxlength="240" value="${escapeHtml(result.note || "")}" placeholder="例如：Safari 18 中邮编前导零丢失"></label></div>`;
+}
 function render() {
   const count = Math.max(1, Math.min(12, Number(elements.count.value) || 6)); elements.count.value = count;
   const seed = elements.seed.value.trim() || "global-address"; elements.seed.value = seed;
   currentCases = shuffled(matchingCases(), `${seed}|${elements.country.value}|${elements.scenario.value}`).slice(0, count);
   elements.resultCount.textContent = `${currentCases.length} 条`;
-  if (!currentCases.length) { elements.list.innerHTML = '<p class="notice">当前筛选组合没有匹配用例，请选择“全部场景”。</p>'; return; }
-  elements.list.innerHTML = currentCases.map(item => `<article class="qa-case"><div class="qa-case__head"><div><span class="qa-id">${escapeHtml(item.id)}</span><h3>${escapeHtml(item.title)}</h3></div><span class="qa-priority qa-priority--${item.priority === "高" ? "high" : "medium"}">${escapeHtml(item.priority)}优先级</span></div><div class="qa-case__meta"><span>${escapeHtml(item.countryName)}</span><span>${escapeHtml(item.scenario)}</span></div><dl class="qa-fields"><div><dt>测试输入</dt><dd>${escapeHtml(item.input)}</dd></div><div><dt>操作步骤</dt><dd>${escapeHtml(item.action)}</dd></div><div><dt>预期结果</dt><dd>${escapeHtml(item.expected)}</dd></div><div><dt>失败风险</dt><dd>${escapeHtml(item.risk)}</dd></div></dl></article>`).join("");
+  if (!currentCases.length) { elements.list.innerHTML = '<p class="notice">当前筛选组合没有匹配用例，请选择“全部场景”。</p>'; updateSummary(); return; }
+  elements.list.innerHTML = currentCases.map(item => { const status = results[item.id]?.status || "pending"; return `<article class="qa-case qa-status--${status}" data-case-id="${item.id}"><div class="qa-case__head"><div><span class="qa-id">${escapeHtml(item.id)}</span><h3>${escapeHtml(item.title)}</h3></div><span class="qa-priority qa-priority--${item.priority === "高" ? "high" : "medium"}">${escapeHtml(item.priority)}优先级</span></div><div class="qa-case__meta"><span>${escapeHtml(item.countryName)}</span><span>${escapeHtml(item.scenario)}</span></div><dl class="qa-fields"><div><dt>测试输入</dt><dd>${escapeHtml(item.input)}</dd></div><div><dt>操作步骤</dt><dd>${escapeHtml(item.action)}</dd></div><div><dt>预期结果</dt><dd>${escapeHtml(item.expected)}</dd></div><div><dt>失败风险</dt><dd>${escapeHtml(item.risk)}</dd></div></dl>${executionMarkup(item)}</article>`; }).join("");
+  updateSummary();
 }
-function textOutput() { return currentCases.map(x => `${x.id} ${x.title}\n国家: ${x.countryName}\n输入: ${x.input}\n操作: ${x.action}\n预期: ${x.expected}\n风险: ${x.risk}`).join("\n\n"); }
+function textOutput() { return currentCases.map(x => { const result = results[x.id] || { status: "pending", note: "" }; return `${x.id} ${x.title}\n国家: ${x.countryName}\n输入: ${x.input}\n操作: ${x.action}\n预期: ${x.expected}\n风险: ${x.risk}\n状态: ${statusLabel(result.status)}\n备注: ${result.note || "无"}`; }).join("\n\n"); }
 function csvValue(value) { return `"${String(value).replaceAll('"', '""')}"`; }
 function download(name, type, content) { const url = URL.createObjectURL(new Blob([content], { type })), link = document.createElement("a"); link.href = url; link.download = name; link.click(); URL.revokeObjectURL(url); }
 async function copyAll() { if (!currentCases.length) return; await navigator.clipboard.writeText(textOutput()); const old = elements.copy.textContent; elements.copy.textContent = "已复制"; setTimeout(() => elements.copy.textContent = old, 1200); }
-function exportCsv() { const header = ["id", "country", "scenario", "priority", "title", "input", "action", "expected", "risk"], rows = currentCases.map(x => [x.id, x.countryName, x.scenario, x.priority, x.title, x.input, x.action, x.expected, x.risk].map(csvValue).join(",")); download("address-qa-cases.csv", "text/csv;charset=utf-8", `\uFEFF${header.join(",")}\n${rows.join("\n")}`); }
-function exportJson() { download("address-qa-cases.json", "application/json", JSON.stringify({ seed: elements.seed.value, country: elements.country.value, scenario: elements.scenario.value, cases: currentCases }, null, 2)); }
+function exportCsv() { const header = ["id", "country", "scenario", "priority", "title", "input", "action", "expected", "risk", "status", "actual_note"], rows = currentCases.map(x => { const result = results[x.id] || { status: "pending", note: "" }; return [x.id, x.countryName, x.scenario, x.priority, x.title, x.input, x.action, x.expected, x.risk, result.status, result.note].map(csvValue).join(","); }); download("address-qa-report.csv", "text/csv;charset=utf-8", `\uFEFF${header.join(",")}\n${rows.join("\n")}`); }
+function exportJson() { download("address-qa-report.json", "application/json", JSON.stringify({ generatedAt: new Date().toISOString(), seed: elements.seed.value, country: elements.country.value, scenario: elements.scenario.value, cases: currentCases.map(item => ({ ...item, result: results[item.id] || { status: "pending", note: "" } })) }, null, 2)); }
+function suiteUrl() { const url = new URL(location.href); url.search = new URLSearchParams({ country: elements.country.value, scenario: elements.scenario.value, count: elements.count.value, seed: elements.seed.value }).toString(); url.hash = "lab"; return url.toString(); }
+async function copyShareLink() { await navigator.clipboard.writeText(suiteUrl()); const old = elements.share.textContent; elements.share.textContent = "链接已复制"; setTimeout(() => elements.share.textContent = old, 1200); }
+function loadUrlSettings() {
+  const params = new URLSearchParams(location.search);
+  if ([...elements.country.options].some(option => option.value === params.get("country"))) elements.country.value = params.get("country");
+  if ([...elements.scenario.options].some(option => option.value === params.get("scenario"))) elements.scenario.value = params.get("scenario");
+  if (/^\d{1,2}$/.test(params.get("count") || "")) elements.count.value = Math.max(1, Math.min(12, Number(params.get("count"))));
+  if (params.get("seed")) elements.seed.value = params.get("seed").slice(0, 40);
+}
 
-elements.generate.addEventListener("click", render); elements.reset.addEventListener("click", () => { elements.country.value = "all"; elements.scenario.value = "all"; elements.count.value = 6; elements.seed.value = "global-address"; render(); }); elements.copy.addEventListener("click", copyAll); elements.csv.addEventListener("click", exportCsv); elements.json.addEventListener("click", exportJson); render();
+elements.list.addEventListener("change", event => {
+  const id = event.target.dataset.statusFor;
+  if (!id) return;
+  results[id] = { ...(results[id] || {}), status: event.target.value, note: results[id]?.note || "" };
+  const card = event.target.closest(".qa-case"); card.className = `qa-case qa-status--${event.target.value}`;
+  updateSummary();
+});
+elements.list.addEventListener("input", event => {
+  const id = event.target.dataset.noteFor;
+  if (!id) return;
+  results[id] = { ...(results[id] || {}), status: results[id]?.status || "pending", note: event.target.value };
+});
+
+elements.generate.addEventListener("click", () => { results = {}; render(); }); elements.reset.addEventListener("click", () => { elements.country.value = "all"; elements.scenario.value = "all"; elements.count.value = 6; elements.seed.value = "global-address"; results = {}; history.replaceState(null, "", location.pathname); render(); }); elements.share.addEventListener("click", copyShareLink); elements.copy.addEventListener("click", copyAll); elements.csv.addEventListener("click", exportCsv); elements.json.addEventListener("click", exportJson); loadUrlSettings(); render();
