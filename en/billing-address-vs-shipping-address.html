@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/billing-address-vs-shipping-address">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-08">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-18">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Billing Address vs Shipping Address - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Billing Address vs Shipping Address","datePublished":"2026-07-08","dateModified":"2026-07-15","description":"Learn how billing and shipping addresses differ in checkout and form testing.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/billing-address-vs-shipping-address","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Billing Address vs Shipping Address","datePublished":"2026-07-08","dateModified":"2026-07-18","description":"Learn how billing and shipping addresses differ in checkout and form testing.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/billing-address-vs-shipping-address","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381"
       crossorigin="anonymous"></script>
   </head>
@@ -29,7 +29,7 @@
       <article class="content-card">
         <p class="eyebrow">Checkout testing</p>
         <h1>Billing Address vs Shipping Address</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Global Address Generator editorial team · Updated July 18, 2026</p>
         <p>
           A billing address is usually associated with payment records, while a shipping address is where a package or physical item is intended to be delivered. They can be the same, but checkout systems should handle them as separate data fields.
         </p>
@@ -53,6 +53,17 @@
         <p>
           Random address data is useful for checkout QA and screenshots. It should not be used as verified cardholder information, real delivery information, or identity data.
         </p>
+        <h2>Checkout state transitions to test</h2>
+        <div class="table-wrap"><table><thead><tr><th>Action</th><th>Expected result</th><th>Common defect</th></tr></thead><tbody>
+          <tr><td>Select “same as shipping”</td><td>Billing fields inherit a clear snapshot or reference</td><td>Later shipping edits leave stale billing values</td></tr>
+          <tr><td>Clear “same as shipping”</td><td>Billing fields become independently editable</td><td>Fields remain disabled or are unexpectedly blank</td></tr>
+          <tr><td>Change shipping country</td><td>Only shipping labels and rules change</td><td>Billing state and postcode are overwritten</td></tr>
+          <tr><td>Return to checkout</td><td>Both addresses restore in the correct field order</td><td>Address Line 2 or region is lost</td></tr>
+        </tbody></table></div>
+        <h2>Do not simulate payment approval with an address</h2>
+        <p>Address data alone cannot reproduce card authorization, address-verification response codes, tax calculation, or fraud decisions. Use the payment provider's official sandbox cards and documented test responses. Use synthetic addresses only to test your own fields, display logic, storage, and handoff payload.</p>
+        <h2>Example assertion set</h2>
+        <p>After order creation, compare billing and shipping objects field by field. Confirm that country codes are explicit, postal codes remain strings, optional lines do not produce stray commas, and the customer-facing confirmation uses the correct address for each purpose. Mask or remove fixtures before analytics and fulfillment jobs run.</p>
         <section class="related-guides" aria-labelledby="relatedGuides">
           <h2 id="relatedGuides">Related guides</h2>
           <ul>

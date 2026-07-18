@@ -225,6 +225,17 @@
         <div class="reference-grid"><div><h3>Domestic layout</h3><address class="example-address">〒100-0005<br>東京都千代田区丸の内1丁目2-3<br>テストビル405号室<br>山田 花子 様</address></div><div><h3>International-form risks</h3><p>Romanized forms often reverse the domestic large-to-small order. Treat domestic display and international mailing as separate test cases rather than splitting a Japanese line on spaces.</p><ul><li>Test names without a Western-style space.</li><li>Preserve postal-code zeros and Japanese characters.</li><li>Keep building details separate from locality data.</li></ul></div></div>
         <p class="source-list">Reference: <a href="https://www.post.japanpost.jp/int/use/writing/normal_en.html" rel="noopener noreferrer">Japan Post addressing guidance</a>.</p>
       </section>
+      <section class="reference-section" aria-labelledby="jpTransformTitle">
+        <h2 id="jpTransformTitle">Domestic display and international mailing are two outputs</h2>
+        <p>A Japanese domestic address commonly moves from larger to smaller geographic units. An international Roman-alphabet label often presents recipient and building detail first, followed by locality, prefecture, postal code, and JAPAN. This is a formatting transformation, not a reason to overwrite the original Japanese fields.</p>
+        <div class="table-wrap"><table><thead><tr><th>Stored component</th><th>Domestic display</th><th>International display test</th></tr></thead><tbody>
+          <tr><td>Prefecture</td><td>東京都</td><td>Tokyo or Tokyo-to according to the product style guide</td></tr>
+          <tr><td>Ward and town</td><td>千代田区丸の内</td><td>Marunouchi, Chiyoda-ku without losing the source value</td></tr>
+          <tr><td>Block identifiers</td><td>1丁目2-3</td><td>1-2-3 remains a text sequence, not arithmetic</td></tr>
+          <tr><td>Building and room</td><td>テストビル405号室</td><td>Room 405, Test Building appears on its intended line</td></tr>
+        </tbody></table></div>
+        <p>Regression tests should compare both rendered outputs against the same structured record. Do not split Japanese source text on spaces, and do not assume that automated romanization is sufficient for real delivery.</p>
+      </section>
     </main>
 
     <footer class="site-footer">

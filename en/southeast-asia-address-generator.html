@@ -178,6 +178,17 @@
         <div class="reference-grid"><div><h3>Localization QA</h3><ul><li>Exercise Thai, Vietnamese diacritics, and long names.</li><li>Never message generated phone values.</li><li>Clear irrelevant fields when country changes.</li></ul></div><div><h3>Data exchange QA</h3><ul><li>Use UTF-8 CSV and preserve zeros.</li><li>Do not coerce unit or block to integers.</li><li>Allow locally appropriate line wrapping.</li></ul></div></div>
         <p>Consult the <a href="https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions" rel="noopener noreferrer">UPU country addressing resources</a> for mailing layouts.</p>
       </section>
+      <section class="reference-section" aria-labelledby="seaScriptTitle">
+        <h2 id="seaScriptTitle">Script, transliteration, and search are separate requirements</h2>
+        <p>Southeast Asian forms may receive Latin text, Thai script, Vietnamese diacritics, or a local value plus a romanized version. The safest model preserves what the user entered and stores transliteration, when required, in a separate field. Removing accents or replacing local script is not normalization because it changes the source value.</p>
+        <div class="table-wrap"><table><thead><tr><th>Fixture</th><th>Operation</th><th>Expected result</th></tr></thead><tbody>
+          <tr><td><code>กรุงเทพมหานคร</code></td><td>Save, edit, CSV export</td><td>Thai code points and visual line wrapping remain intact</td></tr>
+          <tr><td><code>Thành phố Hồ Chí Minh</code></td><td>Search with and without diacritics</td><td>Original display value is unchanged; search behavior follows documented rules</td></tr>
+          <tr><td><code>#12-05</code> Singapore unit</td><td>URL, CSV, and API round trip</td><td>The hash and hyphen are data, not a fragment or comment</td></tr>
+          <tr><td><code>079903</code></td><td>Spreadsheet import</td><td>Six characters remain; the leading zero is preserved</td></tr>
+        </tbody></table></div>
+        <p>Run these fixtures through the customer form, admin view, email template, search index, and export path. A successful submission alone does not prove that the product supports the script.</p>
+      </section>
     </main>
 
     <footer class="site-footer">

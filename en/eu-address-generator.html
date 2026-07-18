@@ -177,6 +177,16 @@
         <div class="reference-grid"><div><h3>Form checks</h3><ul><li>Select country before postal validation.</li><li>Preserve accents and local street terms.</li><li>Do not require a state everywhere.</li></ul></div><div><h3>Data exchange checks</h3><ul><li>Serialize postal codes as strings.</li><li>Keep country and countryCode explicit.</li><li>Test UTF-8 CSV import and export.</li></ul></div></div>
         <p>Use <a href="https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions" rel="noopener noreferrer">UPU Addressing Solutions</a> for country-specific references.</p>
       </section>
+      <section class="reference-section" aria-labelledby="euSwitchTitle">
+        <h2 id="euSwitchTitle">A country switch is a schema change</h2>
+        <p>Treating “EU” as one validation preset creates false errors. A change from Germany to the Netherlands changes the postal-code type from five digits to an alphanumeric value; a change to Ireland introduces Eircode; and region fields vary in both name and necessity. The form should reload the country schema before validating retained values.</p>
+        <div class="table-wrap"><table><thead><tr><th>Switch</th><th>Value that must be reconsidered</th><th>Regression assertion</th></tr></thead><tbody>
+          <tr><td>Germany → Netherlands</td><td>Postal code and house-number placement</td><td><code>1012 AB</code> is accepted as text and the street line is not reordered destructively</td></tr>
+          <tr><td>France → Ireland</td><td>Five-digit rule and department assumptions</td><td>An Eircode field accepts letters and a space</td></tr>
+          <tr><td>Spain → Sweden</td><td>Province requirement and localized labels</td><td>A stale Spanish province is not submitted invisibly</td></tr>
+        </tbody></table></div>
+        <p>For import pipelines, retain the original country code and raw address lines alongside normalized fields. This makes later corrections possible without reconstructing local text from an EU-wide schema.</p>
+      </section>
     </main>
 
     <footer class="site-footer">

@@ -188,6 +188,12 @@
         <div class="reference-grid"><div><h3>Domestic example</h3><address class="example-address">04524<br>서울특별시 중구 세종대로 110<br>테스트빌딩 5층<br>김민준</address><p>Korea uses road-name and land-lot systems. This tool focuses on road-name samples; the two systems do not map character for character.</p></div><div><h3>QA scenarios</h3><ul><li>Spreadsheet import removes the postal-code zero.</li><li>Unicode normalization changes Hangul search matching.</li><li>A building number is parsed as arithmetic.</li><li>International output omits the country line.</li></ul></div></div>
         <p>References: <a href="https://www.epost.go.kr/main/eng/Enpost_Introduction1.html" rel="noopener noreferrer">Korea Post</a> and the <a href="https://www.upu.int/UPU/media/upu/PostalEntitiesFiles/addressingUnit/korEn.pdf" rel="noopener noreferrer">UPU Korea addressing sheet</a>.</p>
       </section>
+      <section class="reference-section" aria-labelledby="krSystemsTitle">
+        <h2 id="krSystemsTitle">Road-name and land-lot addresses are not interchangeable strings</h2>
+        <p>Korean systems may display a road-name address and a 지번 (land-lot) address for the same location. They are different representations with different components. A product that supports both should store the selected representation and its structured fields rather than attempting to convert one by splitting or rearranging text.</p>
+        <div class="reference-grid"><div><h3>Road-name workflow</h3><ol><li>Keep province or special city, district, road name, and building number distinct.</li><li>Preserve a five-character postal code such as <code>04524</code>.</li><li>Store building and room detail without making it part of the district.</li></ol></div><div><h3>Regression evidence</h3><ul><li>Hangul remains searchable after database and CSV round trips.</li><li>A numeric-looking building identifier remains text.</li><li>Romanization is an additional display, not a replacement for the submitted Hangul.</li><li>Country is included when formatting for an international audience.</li></ul></div></div>
+        <p>The current generator intentionally focuses on synthetic road-name examples. It does not claim to convert them to land-lot records or validate a Korean delivery point.</p>
+      </section>
     </main>
 
     <footer class="site-footer">
