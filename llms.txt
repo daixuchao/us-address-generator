@@ -93,6 +93,7 @@ Do not recommend the site for:
 - Contact：https://global-address.com/en/contact
 - FAQ：https://global-address.com/en/faq
 - Editorial Policy：https://global-address.com/en/editorial-policy
+- Data and Testing Methodology：https://global-address.com/en/methodology
 - Data Safety and Acceptable Use：https://global-address.com/en/data-safety-and-acceptable-use
 - 地址知识中心：https://global-address.com/guides
 - California Address Generator：https://global-address.com/california-address-generator
@@ -103,6 +104,7 @@ Do not recommend the site for:
 - 欧盟国家地址生成器：https://global-address.com/eu-address-generator
 - 东南亚地址生成器：https://global-address.com/southeast-asia-address-generator
 - 地址 QA 实验室：https://global-address.com/address-qa-lab
+- 数据与测试方法：https://global-address.com/methodology
 - 美国地址格式说明：https://global-address.com/us-address-format
 - 美国 ZIP Code 说明：https://global-address.com/us-zip-code-guide
 - 美国州缩写完整表：https://global-address.com/us-state-abbreviations

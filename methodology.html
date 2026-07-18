@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="了解 Global Address Generator 如何构建多国地址测试数据、维护 24 条地址 QA 用例、选择权威来源、复核输出并界定工具能力。">
+    <link rel="canonical" href="https://global-address.com/methodology">
+    <link rel="alternate" hreflang="zh-CN" href="https://global-address.com/methodology">
+    <link rel="alternate" hreflang="en" href="https://global-address.com/en/methodology">
+    <link rel="alternate" hreflang="x-default" href="https://global-address.com/en/methodology">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="数据与测试方法 - Global Address Generator">
+    <meta property="og:description" content="地址样例如何生成、QA 用例如何复现、资料如何复核，以及工具不能验证什么。">
+    <meta property="og:url" content="https://global-address.com/methodology">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-07-18">
+    <meta property="article:modified_time" content="2026-07-18">
+    <meta property="og:site_name" content="Global Address Generator">
+    <title>数据与测试方法 - 地址 QA 覆盖报告</title>
+    <link rel="stylesheet" href="./styles.css?v=20260718-methodology">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"数据与测试方法","datePublished":"2026-07-18","dateModified":"2026-07-18","inLanguage":"zh-CN","author":{"@type":"Organization","name":"Global Address Generator 编辑团队","url":"https://global-address.com/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/"},"mainEntityOfPage":"https://global-address.com/methodology","about":["International address data","Address form quality assurance","Synthetic test data"]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header class="site-header"><a class="brand" href="./"><span class="brand__mark" aria-hidden="true">GA</span><span>Global Address Generator</span></a><nav class="nav" aria-label="页面导航"><a href="./address-qa-lab">QA 实验室</a><a href="./guides">知识中心</a><a href="./editorial-policy">编辑政策</a><a href="./en/methodology" lang="en">English</a></nav></header>
+    <main class="content-page">
+      <article class="content-card">
+        <p class="eyebrow">Methodology &amp; Coverage</p>
+        <h1>数据与测试方法</h1>
+        <p class="article-meta">Global Address Generator 编辑团队 · 发布并复核于 2026 年 7 月 18 日</p>
+        <p>本站的目标不是猜测某个真实住址，而是为开发、原型和质量测试提供结构清晰的合成地址样例。本文公开说明数据从哪里来、随机逻辑怎样工作、QA 用例覆盖什么，以及结果为什么不能替代邮政验证。</p>
+
+        <h2>当前覆盖范围</h2>
+        <div class="table-wrap"><table><thead><tr><th>组成</th><th>当前覆盖</th><th>主要用途</th></tr></thead><tbody>
+          <tr><td>生成器地域</td><td>美国、日本、英国、韩国、欧盟主要国家、东南亚主要国家</td><td>生成本地字段顺序、姓名、电话和邮编样例</td></tr>
+          <tr><td>QA 地域标签</td><td>美国、日本、英国、韩国、欧盟、东南亚、全球</td><td>筛选适用于目标市场的测试案例</td></tr>
+          <tr><td>人工定义 QA 用例</td><td>24 条</td><td>测试前导零、Unicode、可选字段、国家切换、数据交换、移动端和无障碍</td></tr>
+          <tr><td>可复现性</td><td>国家 + 场景 + 数量 + Seed</td><td>在缺陷记录和回归测试中恢复同一用例顺序</td></tr>
+          <tr><td>导出</td><td>CSV、JSON、纯文本报告</td><td>保存预期结果、执行状态和失败备注</td></tr>
+        </tbody></table></div>
+
+        <h2>地址样例如何生成</h2>
+        <ol>
+          <li><strong>选择地域数据。</strong>生成器从本站维护的城市、行政区、街道类型、邮编样式、本地姓名和电话格式中选择数据。</li>
+          <li><strong>按国家结构组合。</strong>每个生成器独立定义字段顺序，不把美国的 State、ZIP Code 和街道顺序直接套用到其他国家。</li>
+          <li><strong>在浏览器中运行。</strong>随机选择、复制和导出均在用户设备中完成；本站不接收用户填写的地址或测试备注。</li>
+          <li><strong>保留测试边界。</strong>可能使用真实城市或合法邮编形状，但街道、门牌、姓名和电话是合成组合，不声称属于真实居民。</li>
+        </ol>
+
+        <h2>QA 用例如何构建</h2>
+        <p>QA 实验室不是从地址列表里随机抽取几条结果。每个用例都由编辑团队定义固定编号、输入、操作步骤、预期结果、失败风险和优先级。例如，<code>US-POSTAL-01</code> 检查 ZIP Code <code>02108</code> 在页面、API、数据库和 CSV 往返后是否仍保留前导零；<code>JP-UNICODE-01</code> 检查日文地址在创建、编辑、搜索和导出后是否保持一致。</p>
+        <p>Seed 只决定符合筛选条件的用例排列顺序，不会自动发明预期结果。同一组国家、场景、数量和 Seed 会得到相同顺序，方便把测试组写入缺陷单并在修复后重新执行。</p>
+
+        <h2>发布前复核</h2>
+        <div class="table-wrap"><table><thead><tr><th>检查层</th><th>复核内容</th><th>不能证明的事情</th></tr></thead><tbody>
+          <tr><td>结构</td><td>字段名称、顺序、行政区层级和邮编形状</td><td>某个具体门牌真实存在</td></tr>
+          <tr><td>程序</td><td>筛选、Seed 复现、复制、CSV/JSON 和移动端布局</td><td>第三方结账或 CRM 一定接受结果</td></tr>
+          <tr><td>安全</td><td>明确合成数据用途与禁止用途</td><td>身份、税务、风控或投递有效性</td></tr>
+          <tr><td>来源</td><td>优先核对邮政机构和 UPU 的公开资料</td><td>相关机构认可或认证本站</td></tr>
+        </tbody></table></div>
+
+        <h2>主要参考来源</h2>
+        <ul class="reference-list">
+          <li><a href="https://pe.usps.com/text/pub28/" target="_blank" rel="noopener noreferrer">USPS Publication 28: Postal Addressing Standards</a>：美国投递地址行、城市州邮编行、PO Box 和次级单元标识。</li>
+          <li><a href="https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions" target="_blank" rel="noopener noreferrer">Universal Postal Union Addressing Solutions</a>：国家地址元素和国际邮编结构的交叉核对入口。</li>
+          <li><a href="https://www.post.japanpost.jp/service/send/oversea/use/label/howto_en.html" target="_blank" rel="noopener noreferrer">Japan Post: How to Write the Address and Name</a>：日本地址用于国际邮件时的罗马字行序示例。</li>
+        </ul>
+        <p>资料来源用于确认格式规则，不用于复制来源内容。涉及真实寄递时，应重新查询目的地邮政机构，并使用正式地址验证服务。</p>
+
+        <h2>已知限制与更新触发条件</h2>
+        <ul>
+          <li>欧盟和东南亚不是统一的地址体系；聚合生成器只覆盖页面列明的主要国家。</li>
+          <li>邮编形状正确不代表邮编与随机街道、城市存在真实对应关系。</li>
+          <li>电话号码仅用于界面测试，不应呼叫、发送短信或用于账号验证。</li>
+          <li>邮政机构发布新规则、用户提交可核验错误或自动测试失败时，将提前复核相应页面。</li>
+        </ul>
+        <p class="notice">结论分级：本站可以帮助验证“字段能否处理这种格式”，不能证明“这是真实、可投递或属于某个人的地址”。</p>
+        <p>继续使用<a href="./address-qa-lab">地址 QA 实验室</a>，查看<a href="./editorial-policy">编辑政策</a>，或通过<a href="./contact">联系页面</a>报告可复现问题。</p>
+      </article>
+    </main>
+    <footer class="site-footer"><span>© 2026 Global Address Generator</span><span><a href="./about">关于</a><a href="./privacy">隐私政策</a><a href="./terms">使用条款</a><a href="./contact">联系</a></span></footer>
+  </body>
+</html>

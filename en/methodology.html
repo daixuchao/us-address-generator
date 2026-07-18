@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How Global Address Generator builds synthetic address samples, maintains 24 reproducible QA cases, reviews sources, tests exports, and defines tool limitations.">
+    <link rel="canonical" href="https://global-address.com/en/methodology">
+    <link rel="alternate" hreflang="zh-CN" href="https://global-address.com/methodology">
+    <link rel="alternate" hreflang="en" href="https://global-address.com/en/methodology">
+    <link rel="alternate" hreflang="x-default" href="https://global-address.com/en/methodology">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="Data and Testing Methodology - Global Address Generator">
+    <meta property="og:description" content="A transparent account of sample generation, QA coverage, source review, reproducibility, and known limitations.">
+    <meta property="og:url" content="https://global-address.com/en/methodology">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-07-18">
+    <meta property="article:modified_time" content="2026-07-18">
+    <meta property="og:site_name" content="Global Address Generator">
+    <title>Data and Testing Methodology - Address QA Coverage</title>
+    <link rel="stylesheet" href="../styles.css?v=20260718-methodology">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Data and Testing Methodology","datePublished":"2026-07-18","dateModified":"2026-07-18","inLanguage":"en","author":{"@type":"Organization","name":"Global Address Generator editorial team","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/"},"mainEntityOfPage":"https://global-address.com/en/methodology","about":["International address data","Address form quality assurance","Synthetic test data"]}</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header class="site-header"><a class="brand" href="./"><span class="brand__mark" aria-hidden="true">GA</span><span>Global Address Generator</span></a><nav class="nav" aria-label="Site navigation"><a href="./guides">Guides</a><a href="./editorial-policy">Editorial policy</a><a href="./about">About</a><a href="../methodology" lang="zh-CN">中文</a></nav></header>
+    <main class="content-page">
+      <article class="content-card">
+        <p class="eyebrow">Methodology &amp; Coverage</p>
+        <h1>Data and Testing Methodology</h1>
+        <p class="article-meta">Global Address Generator editorial team · Published and reviewed July 18, 2026</p>
+        <p>Global Address Generator is designed to provide structured synthetic examples for development, prototyping, and quality assurance. It does not attempt to identify a real residence. This report explains where format rules come from, how samples and test cases are assembled, what is checked before release, and why generated output cannot replace postal validation.</p>
+
+        <h2>Current coverage</h2>
+        <div class="table-wrap"><table><thead><tr><th>Component</th><th>Current coverage</th><th>Purpose</th></tr></thead><tbody>
+          <tr><td>Generator regions</td><td>United States, Japan, United Kingdom, Korea, selected EU countries, selected Southeast Asian countries</td><td>Produce localized field order, name, phone, and postal-code examples</td></tr>
+          <tr><td>QA region labels</td><td>US, Japan, UK, Korea, EU, Southeast Asia, global</td><td>Filter cases relevant to a target market</td></tr>
+          <tr><td>Editorial QA cases</td><td>24 cases</td><td>Cover leading zeros, Unicode, optional fields, country switching, data exchange, mobile layout, and accessibility</td></tr>
+          <tr><td>Reproducibility</td><td>Country + scenario + count + seed</td><td>Restore the same ordered suite in a bug report or regression run</td></tr>
+          <tr><td>Report formats</td><td>CSV, JSON, plain text</td><td>Preserve expected results, execution status, and failure notes</td></tr>
+        </tbody></table></div>
+
+        <h2>How a sample address is generated</h2>
+        <ol>
+          <li><strong>Select regional data.</strong> Each tool draws from maintained city, administrative-area, street-type, postal-pattern, local-name, and phone-format data.</li>
+          <li><strong>Apply a country-specific structure.</strong> The tools define field order separately instead of applying the US city-state-ZIP model to every country.</li>
+          <li><strong>Process locally.</strong> Random selection, copying, and report export run in the browser. The site does not receive addresses or failure notes entered by a visitor.</li>
+          <li><strong>Preserve the synthetic boundary.</strong> A sample can use a real city or a valid postal-code shape, but the combined street, number, name, and phone are not claimed to belong to a resident.</li>
+        </ol>
+
+        <h2>How QA cases differ from random samples</h2>
+        <p>The QA Lab does not merely draw several entries from an address list. Every case has an editorially assigned ID, input, action, expected result, failure risk, and priority. For example, <code>US-POSTAL-01</code> checks whether ZIP Code <code>02108</code> retains its leading zero after page, API, database, and CSV round trips. <code>JP-UNICODE-01</code> checks whether Japanese text survives create, edit, search, and export operations unchanged.</p>
+        <p>A seed determines only the order of matching cases. It does not invent an expected result. Reusing the same country, scenario, count, and seed produces the same ordered suite, so a team can reference it in a defect and run it again after a fix.</p>
+
+        <h2>Pre-publication review</h2>
+        <div class="table-wrap"><table><thead><tr><th>Review layer</th><th>What is checked</th><th>What it cannot establish</th></tr></thead><tbody>
+          <tr><td>Structure</td><td>Field names, order, administrative levels, postal-code shape</td><td>That a specific premise exists</td></tr>
+          <tr><td>Software</td><td>Filters, seeded order, copy, CSV/JSON output, mobile layout</td><td>Acceptance by every checkout or CRM</td></tr>
+          <tr><td>Safety</td><td>Synthetic-data purpose and prohibited-use boundaries</td><td>Identity, tax, fraud, or delivery validity</td></tr>
+          <tr><td>Sources</td><td>Primary postal authorities and UPU material where available</td><td>Endorsement or certification by those organizations</td></tr>
+        </tbody></table></div>
+
+        <h2>Primary references</h2>
+        <ul class="reference-list">
+          <li><a href="https://pe.usps.com/text/pub28/" target="_blank" rel="noopener noreferrer">USPS Publication 28: Postal Addressing Standards</a>, used for US delivery lines, last lines, PO Boxes, and secondary-unit conventions.</li>
+          <li><a href="https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions" target="_blank" rel="noopener noreferrer">Universal Postal Union Addressing Solutions</a>, used as a cross-country entry point for address elements and postcode structures.</li>
+          <li><a href="https://www.post.japanpost.jp/service/send/oversea/use/label/howto_en.html" target="_blank" rel="noopener noreferrer">Japan Post: How to Write the Address and Name</a>, used for international Roman-alphabet line-order examples.</li>
+        </ul>
+        <p>Sources are used to verify rules, not copied as site content. For a real shipment, users should recheck the destination postal operator and use an authorized address-validation service.</p>
+
+        <h2>Known limitations and update triggers</h2>
+        <ul>
+          <li>The EU and Southeast Asia do not have single address formats; aggregate tools cover only the countries listed on their pages.</li>
+          <li>A correctly shaped postcode does not prove that it matches the generated street and city.</li>
+          <li>Phone numbers are UI samples and must not be called, messaged, or used for account verification.</li>
+          <li>A new postal rule, a reproducible user report, or a failed tool test triggers an earlier review of the affected page.</li>
+        </ul>
+        <p class="notice">Evidence level: this site can help answer “can the software handle this address shape?” It cannot answer “is this a real, deliverable address belonging to a person?”</p>
+        <p>Read the <a href="./editorial-policy">editorial policy</a>, browse the <a href="./guides">guide library</a>, or use the <a href="../address-qa-lab">Address QA Lab</a>.</p>
+      </article>
+    </main>
+    <footer class="site-footer"><span>© 2026 Global Address Generator</span><span><a href="./about">About</a><a href="./privacy">Privacy</a><a href="./terms">Terms</a><a href="./contact">Contact</a></span></footer>
+  </body>
+</html>
