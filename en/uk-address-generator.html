@@ -223,6 +223,14 @@
         <h2 id="ukFieldsTitle">UK fields and postcode QA</h2>
         <div class="table-wrap"><table><thead><tr><th>Field</th><th>Typical value</th><th>What to test</th></tr></thead><tbody><tr><td>Premise</td><td>Number, building name, or flat</td><td>Do not assume the first value is numeric</td></tr><tr><td>Street / locality</td><td>Street plus optional locality</td><td>A blank locality must not damage line order</td></tr><tr><td>Post town</td><td>Often displayed in capitals</td><td>Do not require county as a substitute</td></tr><tr><td>Postcode</td><td>For example, SW1A 1AA</td><td>Normalize case and preserve one central space</td></tr></tbody></table></div>
         <div class="reference-grid"><div><h3>Example layout</h3><address class="example-address">Alex Morgan<br>Flat 4<br>18 King Street<br>LONDON<br>SW1A 1AA<br>UNITED KINGDOM</address></div><div><h3>Boundary cases</h3><ul><li>A named building has no street number.</li><li>Postcodes use different valid lengths.</li><li>Input arrives in lowercase with extra spaces.</li><li>An optional county is incorrectly required.</li></ul></div></div>
+        <h3>Postcode normalization test</h3>
+        <div class="table-wrap"><table><thead><tr><th>Submitted value</th><th>Expected presentation</th><th>Failure signal</th></tr></thead><tbody>
+          <tr><td>sw1a1aa</td><td>SW1A 1AA</td><td>The value is rejected only because case or spacing differs.</td></tr>
+          <tr><td>M1 1AE</td><td>M1 1AE</td><td>A fixed eight-character rule rejects a shorter valid shape.</td></tr>
+          <tr><td>Flat 4, 18 King Street</td><td>Flat and street remain distinct lines.</td><td>The flat disappears when a label is rendered.</td></tr>
+          <tr><td>Rose Cottage</td><td>Named premise remains valid without a street number.</td><td>A digits-only premise rule blocks submission.</td></tr>
+        </tbody></table></div>
+        <p>Test input, save, address-book editing, checkout display, and CSV export. Normalization should be visible and reversible; it cannot establish that a postcode is active or belongs to the generated premise. County should remain optional when the post town and postcode provide the required routing context.</p>
         <p class="source-list">Reference: <a href="https://www.royalmail.com/sending/uk/how-to-address-uk-mail" rel="noopener noreferrer">Royal Mail addressing guidance</a>.</p>
       </section>
     </main>

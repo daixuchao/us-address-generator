@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/zip-code-vs-zip-plus-4">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-08">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-19">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>ZIP Code vs ZIP+4 - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"ZIP Code vs ZIP+4","datePublished":"2026-07-08","dateModified":"2026-07-15","description":"Understand how five-digit ZIP Codes and ZIP+4 values differ in U.S. address testing.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/zip-code-vs-zip-plus-4","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"ZIP Code vs ZIP+4","datePublished":"2026-07-08","dateModified":"2026-07-19","description":"Understand how five-digit ZIP Codes and ZIP+4 values differ in U.S. address testing.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/zip-code-vs-zip-plus-4","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381"
       crossorigin="anonymous"></script>
   </head>
@@ -38,7 +38,7 @@
       <article class="content-card">
         <p class="eyebrow">ZIP Code</p>
         <h1>ZIP Code vs ZIP+4</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated July 19, 2026</p>
         <p>
           A ZIP Code is the postal code field used in U.S. addresses. Most forms accept a five-digit ZIP Code, while some billing, shipping, tax, and enterprise systems also accept ZIP+4.
         </p>
@@ -76,6 +76,14 @@
           <li>Include ZIP+4 values in CSV import tests to confirm the hyphen is preserved.</li>
         </ul>
 
+        <h2>Normalization and storage test</h2>
+        <div class="table-wrap"><table><thead><tr><th>Submitted value</th><th>Accept?</th><th>Expected stored result</th></tr></thead><tbody>
+          <tr><td>02108</td><td>Yes</td><td>02108</td></tr>
+          <tr><td>02108-1234</td><td>Yes when ZIP+4 is supported</td><td>02108-1234</td></tr>
+          <tr><td>021081234</td><td>Product decision</td><td>Either reject clearly or normalize visibly; never change silently.</td></tr>
+          <tr><td>2108</td><td>No</td><td>Show a field-specific error without clearing other address fields.</td></tr>
+        </tbody></table></div>
+        <p>Use exact string comparisons after save, API retrieval, CSV export, and spreadsheet import. Numeric database columns and spreadsheet inference are common causes of lost leading zeroes. ZIP+4 should remain optional unless a documented business workflow requires it; a valid-looking value still does not confirm a deliverable address.</p>
         <h2>References</h2>
         <ul class="reference-list">
           <li><a href="https://faq.usps.com/articles/Knowledge/ZIP-Code-The-Basics" target="_blank" rel="noopener noreferrer">USPS: ZIP Code - The Basics</a></li>

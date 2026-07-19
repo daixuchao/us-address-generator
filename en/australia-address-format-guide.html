@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/australia-address-format-guide">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-19">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Australia Address Format Guide - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Australia Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-15","description":"Australia address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/australia-address-format-guide"}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Australia Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-19","description":"Australia address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/australia-address-format-guide"}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -25,7 +25,7 @@
       <article class="content-card">
         <p class="eyebrow">Country format</p>
         <h1>Australia Address Format Guide</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated July 19, 2026</p>
         <p>Australian postal addresses normally place the recipient first, the street or delivery service on the next line, and the suburb, state or territory abbreviation, and four-digit postcode together on the final domestic line. International forms should add AUSTRALIA as a separate final line.</p>
         <h2>Standard Australian address layout</h2>
         <p class="notice">Sophie Wilson<br>Unit 8 45 Collins Street<br>MELBOURNE VIC 3000<br>AUSTRALIA</p>
@@ -49,6 +49,14 @@
           <li>Allow long suburb and Traditional Place names without truncation.</li>
           <li>Keep locality, state, and postcode together in labels, receipts, and exports.</li>
         </ul>
+        <h2>Reproducible postcode and locality test</h2>
+        <div class="table-wrap"><table><thead><tr><th>Input</th><th>Expected storage</th><th>Failure signal</th></tr></thead><tbody>
+          <tr><td>0800</td><td>Four-character postcode string</td><td>The database stores 800.</td></tr>
+          <tr><td>DARWIN NT 0800</td><td>Locality, territory, and postcode remain distinct.</td><td>The territory is mistaken for part of the town name.</td></tr>
+          <tr><td>Unit 8 45 Collins Street</td><td>Unit and street survive label and CSV output.</td><td>The unit is discarded because Address Line 2 is empty.</td></tr>
+          <tr><td>Locked Bag 10</td><td>Alternative delivery service is accepted.</td><td>Street-number validation blocks submission.</td></tr>
+        </tbody></table></div>
+        <p>Run the postcode case through entry, JSON serialization, database persistence, CSV export, and import. The exact value must remain <code>0800</code>. A four-digit shape check does not establish that a postcode matches a locality or that an address is deliverable.</p>
         <h2>Official reference</h2>
         <ul class="reference-list"><li><a href="https://auspost.com.au/personal/sending/sending-guidelines/addressing-guidelines" rel="noopener noreferrer">Australia Post: Addressing guidelines</a></li></ul>
         <section class="related-guides" aria-labelledby="relatedGuides">

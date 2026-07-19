@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/canada-address-format-guide">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-19">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Canada Address Format Guide - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Canada Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-15","description":"Canada address format guide for form testing and address-field QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/canada-address-format-guide"}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Canada Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-19","description":"Canada address format guide for form testing and address-field QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/canada-address-format-guide"}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -25,7 +25,7 @@
       <article class="content-card">
         <p class="eyebrow">Country format</p>
         <h1>Canada Address Format Guide</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated July 19, 2026</p>
         <p>Canadian addresses resemble U.S. addresses at a glance, but they use province or territory abbreviations and an alphanumeric postal code. Forms should preserve the space in the postal code and should not apply five-digit U.S. ZIP Code validation.</p>
         <h2>Standard Canadian address layout</h2>
         <p class="notice">Alex Martin<br>1204-240 Queen St W<br>TORONTO ON&nbsp;&nbsp;M5V 1Z7<br>CANADA</p>
@@ -49,6 +49,14 @@
           <li>Keep validation country-aware when users switch between Canada and the United States.</li>
           <li>Verify uppercase display, CSV export, mobile wrapping, and copy behavior.</li>
         </ul>
+        <h2>Reproducible bilingual and postal-code test</h2>
+        <div class="table-wrap"><table><thead><tr><th>Boundary</th><th>Test value</th><th>Pass condition</th></tr></thead><tbody>
+          <tr><td>Postal code entry</td><td>h2b 1x9</td><td>Normalize presentation to H2B 1X9 without losing the central space.</td></tr>
+          <tr><td>Province</td><td>QC</td><td>Store the official abbreviation separately from the municipality.</td></tr>
+          <tr><td>French street name</td><td>1250 boulevard René-Lévesque Ouest</td><td>Preserve accents and the full directional text.</td></tr>
+          <tr><td>Unit placement</td><td>12-345 Rue Example</td><td>Keep the unit and civic number mapping reversible.</td></tr>
+        </tbody></table></div>
+        <p>Test the same record with English and French interface labels. Changing the interface language must not translate, strip, or reorder the stored address. Postal-code normalization can improve display consistency, but a pattern match alone cannot verify a premise or delivery route.</p>
         <h2>Official reference</h2>
         <ul class="reference-list"><li><a href="https://www.canadapost-postescanada.ca/cpc/en/support/articles/abcs-of-mailing/addressing.page" rel="noopener noreferrer">Canada Post: Addressing mail correctly</a></li></ul>
         <section class="related-guides" aria-labelledby="relatedGuides">

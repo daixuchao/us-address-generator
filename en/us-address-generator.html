@@ -216,6 +216,15 @@
         <h2 id="usFieldsTitle">U.S. field map and QA checks</h2>
         <div class="table-wrap"><table><thead><tr><th>Field</th><th>Typical value</th><th>What to test</th></tr></thead><tbody><tr><td>Address Line 1</td><td>House number, street name, suffix</td><td>Store as text; numbers can contain hyphens</td></tr><tr><td>Address Line 2</td><td>Apt, Suite, or Unit</td><td>Allow blank values and alphanumeric unit identifiers</td></tr><tr><td>City / State</td><td>City plus two-letter abbreviation</td><td>Do not infer state solely from free text</td></tr><tr><td>ZIP Code</td><td>Five digits; some flows accept ZIP+4</td><td>Preserve leading zeros and the ZIP+4 hyphen</td></tr></tbody></table></div>
         <div class="reference-grid"><div><h3>Example layout</h3><address class="example-address">Jordan Lee<br>455 Market Street, Apt 8B<br>Philadelphia, PA 19106<br>United States</address><p>Name and phone are separate test fields and do not prove that an address is deliverable.</p></div><div><h3>Useful negative cases</h3><ul><li>A CSV import removes the leading zero from 02108.</li><li>The validator requires ZIP+4 and rejects five digits.</li><li>An empty second line leaves an extra comma.</li><li>A city containing spaces is split into multiple fields.</li></ul></div></div>
+        <h3>Format-variant regression set</h3>
+        <div class="table-wrap"><table><thead><tr><th>Variant</th><th>Example</th><th>Pass condition</th></tr></thead><tbody>
+          <tr><td>Street with unit</td><td>455 Market Street, Apt 8B</td><td>The unit remains optional and is not merged into the city.</td></tr>
+          <tr><td>PO Box</td><td>PO Box 248</td><td>The workflow accepts a non-street delivery line when permitted.</td></tr>
+          <tr><td>Rural route</td><td>RR 2 Box 115</td><td>Letters and multiple number groups survive validation.</td></tr>
+          <tr><td>ZIP with leading zero</td><td>Boston, MA 02108</td><td>The postal value remains a five-character string.</td></tr>
+          <tr><td>ZIP+4</td><td>10001-1234</td><td>The hyphen and four-digit extension survive export.</td></tr>
+        </tbody></table></div>
+        <p>Keep stable examples for regression testing instead of relying only on newly randomized output. Compare the exact submitted, stored, displayed, and exported strings. Plausible formatting does not confirm a USPS delivery point or a relationship between the generated person, phone number, and address.</p>
         <p class="source-list">Reference: <a href="https://pe.usps.com/text/pub28/" rel="noopener noreferrer">USPS Publication 28</a>. This generator does not perform USPS address validation.</p>
       </section>
     </main>
