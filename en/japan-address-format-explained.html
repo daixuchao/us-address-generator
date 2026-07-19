@@ -14,12 +14,12 @@
     <meta property="og:url" content="https://global-address.com/en/japan-address-format-explained">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-08">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-19">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Japan Address Format Explained - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Japan Address Format Explained","datePublished":"2026-07-08","dateModified":"2026-07-15","description":"A practical explanation of Japanese address fields for form and localization testing.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/japan-address-format-explained","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Japan Address Format Explained","datePublished":"2026-07-08","dateModified":"2026-07-19","description":"A practical explanation of Japanese address fields for form and localization testing.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/japan-address-format-explained","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381"
       crossorigin="anonymous"></script>
   </head>
@@ -42,7 +42,7 @@
       <article class="content-card">
         <p class="eyebrow">Japan</p>
         <h1>Japan Address Format Explained</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated July 19, 2026</p>
         <p>
           Japanese addresses often move from broader administrative areas to more specific blocks and buildings. A typical address can include a postal code, prefecture, city or ward, town, chome, banchi, go, building name, and room number.
         </p>
@@ -70,6 +70,24 @@
         <p>
           Japanese addresses are useful for testing Unicode handling, postal-code formatting, long field values, room-number fields, and layouts that must handle both Latin and Japanese characters. They also reveal whether a form assumes all addresses use a Western street-first format.
         </p>
+
+        <h2>Reproducible parsing test</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Input fragment</th><th>Expected field</th><th>Failure to watch for</th></tr></thead>
+            <tbody>
+              <tr><td>160-0023</td><td>postal_code</td><td>The value is rejected because a form expects five digits.</td></tr>
+              <tr><td>東京都</td><td>administrative_area</td><td>The suffix is removed or the value is forced into a U.S. state list.</td></tr>
+              <tr><td>新宿区西新宿</td><td>locality plus dependent locality</td><td>Ward and town are flattened into an undersized city field.</td></tr>
+              <tr><td>2丁目8番1号</td><td>address line</td><td>Japanese numerals and separators are reordered as a Western street number.</td></tr>
+              <tr><td>サクラハイツ 502号室</td><td>building and room</td><td>The optional line is discarded during checkout or CSV export.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Run the same record through entry, validation, saved-address display, label rendering, and export. The test passes only when the text survives each step without character loss or an unintended change in address order.</p>
+
+        <h2>Romanized output is a separate presentation</h2>
+        <p>A Japanese domestic address and its Latin-script presentation should not be treated as interchangeable source records. If a product offers romanization, preserve the original Japanese fields, store the transformed version separately, and make the output order explicit. Transliteration does not verify deliverability and may require human correction for building and place names.</p>
 
         <h2>Generate Japanese examples</h2>
         <p>

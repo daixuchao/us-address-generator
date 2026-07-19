@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/germany-address-format-guide">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-19">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Germany Address Format Guide - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Germany Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-15","description":"Germany address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/germany-address-format-guide"}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Germany Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-19","description":"Germany address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/germany-address-format-guide"}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -25,7 +25,7 @@
       <article class="content-card">
         <p class="eyebrow">Country format</p>
         <h1>Germany Address Format Guide</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated July 19, 2026</p>
         <p>German addresses place the street name before the house number, followed by a five-digit postal code and locality. A state field is not normally part of the domestic postal block, so forms should not require one for Germany.</p>
         <h2>Standard German address layout</h2>
         <p class="notice">Lena Schmidt<br>Friedrichstraße 82<br>10117 BERLIN<br>GERMANY</p>
@@ -49,6 +49,14 @@
           <li>Do not require a state or province for a German domestic address.</li>
           <li>Test street-address, PO Box, and company-recipient variations separately.</li>
         </ul>
+        <h2>Round-trip test: house-number suffix and leading zero</h2>
+        <div class="table-wrap"><table><thead><tr><th>Step</th><th>Input or action</th><th>Pass condition</th></tr></thead><tbody>
+          <tr><td>Enter</td><td>Waldstraße 7a, 01067 Dresden</td><td>The street, ß, suffix, and five-digit code are accepted.</td></tr>
+          <tr><td>Save</td><td>Reload the stored address</td><td><code>7a</code> remains alphanumeric and <code>01067</code> keeps its zero.</td></tr>
+          <tr><td>Export</td><td>Download and reopen CSV</td><td>The postal code remains text rather than 1067.</td></tr>
+          <tr><td>Render</td><td>Create a domestic label</td><td>No state line or <code>DE-</code> prefix is inserted.</td></tr>
+        </tbody></table></div>
+        <p>This test isolates two frequent implementation bugs: numeric typing for postal codes and a house-number field that accepts digits only. It also checks that normalization does not replace German characters merely to satisfy an ASCII-only downstream system. If transliteration is required, retain the original value separately.</p>
         <h2>Official reference</h2>
         <ul class="reference-list"><li><a href="https://www.deutschepost.de/de/b/brief_postkarte/haeufige-fragen.html" rel="noopener noreferrer">Deutsche Post: How to address a letter correctly</a></li></ul>
         <section class="related-guides" aria-labelledby="relatedGuides">

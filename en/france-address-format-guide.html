@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/france-address-format-guide">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-19">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>France Address Format Guide - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"France Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-15","description":"France address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/france-address-format-guide"}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"France Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-19","description":"France address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/france-address-format-guide"}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -25,7 +25,7 @@
       <article class="content-card">
         <p class="eyebrow">Country format</p>
         <h1>France Address Format Guide</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated July 19, 2026</p>
         <p>French postal addresses normally progress from recipient information to delivery details, street, and then a five-digit postal code followed by the locality. Building, residence, entrance, floor, apartment, or care-of details can occupy optional lines before the street.</p>
         <h2>Standard French address layout</h2>
         <p class="notice">Camille Martin<br>12 RUE DE RIVOLI<br>75001 PARIS<br>FRANCE</p>
@@ -49,6 +49,14 @@
           <li>Do not require a state field for standard French domestic addresses.</li>
           <li>Test CEDEX and long secondary-line examples without truncation.</li>
         </ul>
+        <h2>Reproducible CEDEX and secondary-line test</h2>
+        <div class="table-wrap"><table><thead><tr><th>Input</th><th>Expected output</th><th>Common failure</th></tr></thead><tbody>
+          <tr><td>BÂTIMENT C APPARTEMENT 18</td><td>Optional delivery-detail line</td><td>The entire line is truncated or forced into the street field.</td></tr>
+          <tr><td>06004 NICE CEDEX 1</td><td>Postal code and complete locality qualifier</td><td><code>CEDEX 1</code> is removed as an invalid city suffix.</td></tr>
+          <tr><td>7 AVENUE JEAN JAURÈS</td><td>Street line with accents preserved</td><td>Normalization causes irreversible character loss.</td></tr>
+          <tr><td>FRANCE</td><td>Final international line only</td><td>Country is duplicated inside the locality field.</td></tr>
+        </tbody></table></div>
+        <p>Run the record through checkout, address-book editing, label rendering, and CSV export. The result may be uppercased for a label, but the stored source should remain available for user-facing display. Validation should accept a standard five-digit postal code while avoiding claims that the code proves the address is deliverable.</p>
         <h2>Official reference</h2>
         <ul class="reference-list"><li><a href="https://www.laposte.fr/conseils-pratiques/bien-rediger-l-adresse-d-une-lettre-ou-d-un-colis" rel="noopener noreferrer">La Poste: Writing a postal address correctly</a></li></ul>
         <section class="related-guides" aria-labelledby="relatedGuides">

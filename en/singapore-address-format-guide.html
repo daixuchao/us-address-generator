@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/singapore-address-format-guide">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-17">
+    <meta property="article:modified_time" content="2026-07-19">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Singapore Address Format Guide - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Singapore Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-17","description":"Singapore address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/singapore-address-format-guide","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Singapore Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-19","description":"Singapore address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/singapore-address-format-guide","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -25,7 +25,7 @@
       <article class="content-card">
         <p class="eyebrow">Country format</p>
         <h1>Singapore Address Format Guide</h1>
-        <p class="article-meta">Updated July 17, 2026</p>
+        <p class="article-meta">Updated July 19, 2026</p>
         <p>Singapore addresses often include a block or street address, an optional unit number, and a six-digit postal code. Unit numbers such as #12-05 are common in residential and office addresses.</p>
         <h2>Common layout</h2>
         <p class="notice">Tan Wei Jie<br>10 Anson Road #12-05<br>Singapore 079903<br>Singapore</p>
@@ -44,6 +44,15 @@
         <h2>Regression cases</h2>
         <ol><li>Create a record with a leading-zero postal code, edit it, and compare the stored value.</li><li>Export a unit containing <code>#</code> and a hyphen, then import the CSV again.</li><li>Leave state blank and confirm that country-aware validation allows submission.</li><li>Test a long condominium or commercial building name at mobile width.</li></ol>
         <p>A six-digit value only matches the shape of a Singapore postal code; it does not prove deliverability. For mailing requirements, consult <a href="https://www.singpost.com/send-receive/sending-within-singapore" rel="noopener noreferrer">Singapore Post</a>.</p>
+        <h2>Reproducible unit-number test</h2>
+        <p>Submit <code>#08-12</code> as the unit value, save the address, reopen it, export it to CSV, and import it again. The pass condition is exact preservation of the hash, both hyphen-separated components, and the leading zero. Common failures include stripping the hash during sanitization, converting the value into a spreadsheet date, or splitting it across floor and apartment fields without a reversible mapping.</p>
+        <div class="table-wrap"><table><thead><tr><th>Boundary</th><th>Test value</th><th>Expected behavior</th></tr></thead><tbody>
+          <tr><td>Postal code</td><td>018956</td><td>Keep six characters and the leading zero.</td></tr>
+          <tr><td>Unit</td><td>#08-12</td><td>Preserve punctuation through save and export.</td></tr>
+          <tr><td>Address line</td><td>10 Bayfront Avenue</td><td>Do not require a separate state or province.</td></tr>
+          <tr><td>Country output</td><td>SINGAPORE</td><td>Place on the final line for international presentation.</td></tr>
+        </tbody></table></div>
+        <p>Format checks can confirm a plausible six-digit postal code, but they cannot confirm that a premise exists or receives mail. Deliverability requires an authoritative lookup or a confirmed recipient address.</p>
         <section class="related-guides" aria-labelledby="relatedGuides">
           <h2 id="relatedGuides">Related guides</h2>
           <ul>

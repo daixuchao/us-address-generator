@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/india-address-format-guide">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-17">
+    <meta property="article:modified_time" content="2026-07-19">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>India Address Format Guide - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"India Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-17","description":"India address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/india-address-format-guide","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"India Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-19","description":"India address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/india-address-format-guide","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -25,7 +25,7 @@
       <article class="content-card">
         <p class="eyebrow">Country format</p>
         <h1>India Address Format Guide</h1>
-        <p class="article-meta">Updated July 17, 2026</p>
+        <p class="article-meta">Updated July 19, 2026</p>
         <p>Indian addresses can include building names, flat numbers, street names, locality, city, state, and a six-digit PIN code. Forms should allow more address lines than a simple street/city/postcode model.</p>
         <h2>Common layout</h2>
         <p class="notice">Aarav Sharma<br>Flat 402, Green Heights<br>MG Road, Indiranagar<br>Bengaluru, Karnataka 560038<br>India</p>
@@ -44,6 +44,15 @@
         <h2>Regression cases</h2>
         <ul><li>Address lines containing commas survive CSV round trips.</li><li>Long building and locality values wrap without silent truncation.</li><li>PIN code remains a string in JSON, spreadsheet, and database layers.</li><li>State selection does not replace city or locality.</li></ul>
         <p>India Post describes PIN codes and postal services on its <a href="https://www.indiapost.gov.in/" rel="noopener noreferrer">official website</a>. Generated examples are not India Post-validated addresses.</p>
+        <h2>Locality hierarchy test</h2>
+        <p>Indian addresses may use a building or house, street, neighborhood, landmark, locality, district, city, state, and PIN code, but not every record needs every layer. Test the hierarchy without collapsing all place information into a single city value.</p>
+        <div class="table-wrap"><table><thead><tr><th>Input</th><th>Store as</th><th>Failure signal</th></tr></thead><tbody>
+          <tr><td>Indiranagar</td><td>Neighborhood or dependent locality</td><td>It overwrites Bengaluru.</td></tr>
+          <tr><td>Bengaluru</td><td>City / locality</td><td>It is replaced by the district or state.</td></tr>
+          <tr><td>Karnataka</td><td>Administrative area</td><td>A U.S.-only state abbreviation is required.</td></tr>
+          <tr><td>560038</td><td>PIN code string</td><td>The value is parsed as a number or reformatted.</td></tr>
+        </tbody></table></div>
+        <p>For a reproducible regression, submit the record with Address Line 2 empty, then repeat with a landmark in that field. Both versions should save successfully, and the landmark should remain optional rather than becoming part of postal-code validation. A six-digit shape check is useful for input feedback but does not prove delivery coverage.</p>
         <section class="related-guides" aria-labelledby="relatedGuides">
           <h2 id="relatedGuides">Related guides</h2>
           <ul>

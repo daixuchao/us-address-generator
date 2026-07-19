@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/test-address-data-for-qa-teams">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-08">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-07-19">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Test Address Data for QA Teams - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260717-trust">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Test Address Data for QA Teams","datePublished":"2026-07-08","dateModified":"2026-07-15","description":"How QA teams can use random address data safely and effectively.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/test-address-data-for-qa-teams","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Test Address Data for QA Teams","datePublished":"2026-07-08","dateModified":"2026-07-19","description":"How QA teams can use random address data safely and effectively.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/test-address-data-for-qa-teams","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381"
       crossorigin="anonymous"></script>
   </head>
@@ -39,7 +39,7 @@
       <article class="content-card">
         <p class="eyebrow">QA workflow</p>
         <h1>Test Address Data for QA Teams</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated July 19, 2026</p>
         <p>
           Address fields are easy to underestimate. A form may work with one simple U.S. address and still fail when it receives a Japanese building name, a UK postcode, a long locality, a PO Box, or a ZIP+4 value. QA teams should test multiple address shapes before release.
         </p>
@@ -63,6 +63,24 @@
         <p>
           Random address data is useful for QA and demos, but it should not be used for fraud checks, tax decisions, real deliveries, identity verification, or account creation that requires real user information. Keep production test flows separate from real customer data.
         </p>
+
+        <h2>A small, maintainable regression pack</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Record</th><th>Purpose</th><th>Assertion</th></tr></thead>
+            <tbody>
+              <tr><td>US-LEADING-ZERO</td><td>ZIP begins with 0</td><td>Database and CSV preserve all five characters.</td></tr>
+              <tr><td>JP-UNICODE-BUILDING</td><td>Japanese script and room number</td><td>UI, API, and export return the same Unicode string.</td></tr>
+              <tr><td>UK-POSTCODE-SPACE</td><td>Alphanumeric postcode</td><td>Canonical internal space is accepted and retained.</td></tr>
+              <tr><td>DE-NO-REGION</td><td>Country without a required state</td><td>Submission succeeds with region omitted.</td></tr>
+              <tr><td>LONG-LINE-MOBILE</td><td>Layout boundary</td><td>No overlap, clipping, or hidden copy action at 320 px.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Version these fixtures with the application. When a field rule changes, update the expected result and record why. Avoid regenerating every fixture on each run: stable examples make regressions comparable, while a smaller random batch can explore additional combinations.</p>
+
+        <h2>Failure report example</h2>
+        <p><strong>Observed:</strong> ZIP <code>02108</code> becomes <code>2108</code> after spreadsheet export. <strong>Expected:</strong> the five-character string remains unchanged. <strong>Likely boundary:</strong> the export layer inferred a numeric type. <strong>Retest:</strong> save the postal code as text, export, re-import, and compare the exact string. This level of detail turns sample data into actionable QA evidence.</p>
 
         <h2>Generate country-specific test data</h2>
         <p>
