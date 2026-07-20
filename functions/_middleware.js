@@ -6,8 +6,15 @@ export async function onRequest(context) {
     return Response.redirect(url.toString(), 301);
   }
 
+  if (url.pathname === "/index" || url.pathname.endsWith("/index")) {
+    url.pathname = url.pathname.slice(0, -"index".length);
+    return Response.redirect(url.toString(), 301);
+  }
+
   if (url.pathname.endsWith(".html") && url.pathname !== "/baidu_verify_codeva-DlQjPzG0IB.html") {
-    url.pathname = url.pathname.slice(0, -5);
+    url.pathname = url.pathname.endsWith("/index.html")
+      ? url.pathname.slice(0, -"index.html".length)
+      : url.pathname.slice(0, -5);
     return Response.redirect(url.toString(), 301);
   }
 
