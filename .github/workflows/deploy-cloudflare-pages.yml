@@ -27,6 +27,10 @@ jobs:
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
         uses: actions/checkout@v4
 
+      - name: Run SEO regression checks
+        if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
+        run: node scripts/seo-regression.mjs
+
       - name: Deploy production site
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
         uses: cloudflare/wrangler-action@v3
