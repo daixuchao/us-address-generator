@@ -197,31 +197,9 @@
           </p>
           <div class="hero-actions" aria-label="常用国家地址生成器">
             <a class="primary-link" href="./us-address-generator">打开美国地址生成器</a>
-            <a class="secondary-link" href="./address-qa-lab">生成 QA 测试用例</a>
-            <a class="text-link" href="#countries">查看全部国家</a>
+            <a class="secondary-link" href="#countries">查看全部国家</a>
           </div>
         </div>
-      </section>
-
-      <section class="reference-section qa-promo" aria-labelledby="qaPromoTitle">
-        <div class="reference-grid">
-          <div>
-            <p class="eyebrow">Unique QA workflow</p>
-            <h2 id="qaPromoTitle">从随机地址升级为可复现测试用例</h2>
-            <p>地址 QA 实验室为每条案例提供测试输入、操作步骤、预期结果和失败风险。通过种子可以复现同一组用例，适合缺陷记录和回归测试。</p>
-            <a class="primary-link" href="./address-qa-lab">打开地址 QA 实验室</a>
-          </div>
-          <div>
-            <h3>覆盖的边界场景</h3>
-            <ul><li>邮编前导零、空格、连字符和字母数字组合</li><li>日文、韩文、泰文和变音字符</li><li>Address Line 2、Unit 和可选行政区</li><li>国家切换、CSV/API 往返、移动端和无障碍</li></ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="reference-section" aria-labelledby="formatCompareTitle">
-        <h2 id="formatCompareTitle">不同国家的随机地址包含什么</h2>
-        <p>地址生成器会根据国家切换字段，而不是把同一套美国格式复制到所有结果。下面列出常用生成器的主要差异。</p>
-        <div class="table-wrap"><table><thead><tr><th>生成器</th><th>主要地址字段</th><th>常见测试重点</th></tr></thead><tbody><tr><td><a href="./us-address-generator">美国地址生成器</a></td><td>街道、城市、州缩写、ZIP Code</td><td>州筛选、前导零、Apt / Suite</td></tr><tr><td><a href="./japan-address-generator">日本地址生成器</a></td><td>都道府县、市区町村、丁目番地、建物</td><td>日文字符、邮编、国内地址顺序</td></tr><tr><td><a href="./uk-address-generator">英国地址生成器</a></td><td>Premise、街道、Post Town、Postcode</td><td>字母数字邮编、可选 County</td></tr><tr><td><a href="./korea-address-generator">韩国地址生成器</a></td><td>市/道、市区郡、道路名、建筑号</td><td>韩文、5 位邮编、道路名地址</td></tr><tr><td><a href="./eu-address-generator">欧盟地址生成器</a></td><td>按成员国切换街道顺序与邮编</td><td>变音符号、数字与字母邮编</td></tr><tr><td><a href="./southeast-asia-address-generator">东南亚地址生成器</a></td><td>按国家切换行政区、邮编和本地文字</td><td>Unicode、前导零、多层级地区</td></tr></tbody></table></div>
       </section>
 
       <section id="countries" class="country-section" aria-labelledby="countryTitle">
@@ -275,6 +253,12 @@
         </div>
       </section>
 
+      <section class="reference-section" aria-labelledby="formatCompareTitle">
+        <h2 id="formatCompareTitle">不同国家的随机地址包含什么</h2>
+        <p>地址生成器会根据国家切换字段，而不是把同一套美国格式复制到所有结果。下面列出常用生成器的主要差异。</p>
+        <div class="table-wrap"><table><thead><tr><th>生成器</th><th>主要地址字段</th><th>常见测试重点</th></tr></thead><tbody><tr><td><a href="./us-address-generator">美国地址生成器</a></td><td>街道、城市、州缩写、ZIP Code</td><td>州筛选、前导零、Apt / Suite</td></tr><tr><td><a href="./japan-address-generator">日本地址生成器</a></td><td>都道府县、市区町村、丁目番地、建物</td><td>日文字符、邮编、国内地址顺序</td></tr><tr><td><a href="./uk-address-generator">英国地址生成器</a></td><td>Premise、街道、Post Town、Postcode</td><td>字母数字邮编、可选 County</td></tr><tr><td><a href="./korea-address-generator">韩国地址生成器</a></td><td>市/道、市区郡、道路名、建筑号</td><td>韩文、5 位邮编、道路名地址</td></tr><tr><td><a href="./eu-address-generator">欧盟地址生成器</a></td><td>按成员国切换街道顺序与邮编</td><td>变音符号、数字与字母邮编</td></tr><tr><td><a href="./southeast-asia-address-generator">东南亚地址生成器</a></td><td>按国家切换行政区、邮编和本地文字</td><td>Unicode、前导零、多层级地区</td></tr></tbody></table></div>
+      </section>
+
       <section class="info-section">
         <div>
           <h2>适合什么场景</h2>
@@ -295,6 +279,21 @@
           </p>
           <a class="text-link" href="./japan-address-format">日本地址格式怎么写</a>
           <a class="text-link" href="./guides">查看全部指南</a>
+        </div>
+      </section>
+
+      <section class="reference-section qa-promo" aria-labelledby="qaPromoTitle">
+        <div class="reference-grid">
+          <div>
+            <p class="eyebrow">Unique QA workflow</p>
+            <h2 id="qaPromoTitle">从随机地址升级为可复现测试用例</h2>
+            <p>地址 QA 实验室为每条案例提供测试输入、操作步骤、预期结果和失败风险。通过种子可以复现同一组用例，适合缺陷记录和回归测试。</p>
+            <a class="primary-link" href="./address-qa-lab">打开地址 QA 实验室</a>
+          </div>
+          <div>
+            <h3>覆盖的边界场景</h3>
+            <ul><li>邮编前导零、空格、连字符和字母数字组合</li><li>日文、韩文、泰文和变音字符</li><li>Address Line 2、Unit 和可选行政区</li><li>国家切换、CSV/API 往返、移动端和无障碍</li></ul>
+          </div>
         </div>
       </section>
 
