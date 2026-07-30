@@ -26,10 +26,16 @@ jobs:
       - name: Check out repository
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Run SEO regression checks
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
         run: node scripts/seo-regression.mjs
+
+      - name: Enforce safe release size and sitemap dates
+        if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
+        run: node scripts/release-safety.mjs
 
       - name: Deploy production site
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
