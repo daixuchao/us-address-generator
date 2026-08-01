@@ -7,9 +7,9 @@ const origin = "https://global-address.com";
 const excludedHtml = new Set(["404.html", "baidu_verify_codeva-DlQjPzG0IB.html"]);
 const criticalPages = {
   "index.html": {
-    title: "地址生成器 - 免费生成多国随机地址、姓名和电话",
+    title: "多国地址生成器 - 地址随机生成工具 | Global Address Generator",
     canonical: `${origin}/`,
-    h1: "地址生成器",
+    h1: "多国地址生成器",
   },
   "us-address-generator.html": {
     title: "美国地址生成器 - 随机美国地址 | Global Address Generator",
@@ -166,7 +166,7 @@ for (const [file, expected] of Object.entries(criticalPages)) {
   assert.equal(matchText(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i, `${file} h1`), expected.h1);
 }
 
-const homeH1Position = home.indexOf('<h1 id="pageTitle">地址生成器</h1>');
+const homeH1Position = home.indexOf('<h1 id="pageTitle">多国地址生成器</h1>');
 const countrySectionPosition = home.indexOf('<section id="countries"');
 const qaLabPosition = home.indexOf('<section class="reference-section qa-promo"');
 assert.ok(homeH1Position >= 0, "homepage must keep the address generator H1");
