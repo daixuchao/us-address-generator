@@ -3,6 +3,16 @@ import { execFileSync } from "node:child_process";
 
 const maxHtmlFilesPerCommit = 12;
 const [baseRef = "HEAD^", headRef = "HEAD"] = process.argv.slice(2);
+const approvedLastmodBackfills = new Map([
+  [
+    "https://global-address.com/",
+    {
+      lastmod: "2026-08-01",
+      contentRef: "59d1817bf0022636e5ea49a6faa3447ef3d2bc31",
+      reason: "Plan B homepage content was deployed before its sitemap date was corrected.",
+    },
+  ],
+]);
 const criticalFiles = new Set([
   "index.html",
   "us-address-generator.html",
@@ -49,6 +59,21 @@ function fileForLocation(location) {
   return `${path.slice(1)}.html`;
 }
 
+function isApprovedLastmodBackfill(location, lastmod) {
+  const approval = approvedLastmodBackfills.get(location);
+  if (!approval || approval.lastmod !== lastmod) return false;
+
+  const pageFile = fileForLocation(location);
+  try {
+    return (
+      git(["show", `${approval.contentRef}:${pageFile}`]) ===
+      git(["show", `${headRef}:${pageFile}`])
+    );
+  } catch {
+    return false;
+  }
+}
+
 if (!hasParentCommit()) {
   console.log("Release safety checks skipped because no parent commit is available.");
   process.exit(0);
@@ -79,14 +104,24 @@ if (changedFiles.includes("sitemap.xml")) {
     if (previousSitemap.get(location) !== lastmod) changedLastmodLocations.push(location);
   }
 
+  const approvedBackfills = changedLastmodLocations.filter((location) =>
+    isApprovedLastmodBackfill(location, currentSitemap.get(location)),
+  );
   const unrelatedLastmod = changedLastmodLocations.filter(
-    (location) => !changedHtml.includes(fileForLocation(location)),
+    (location) =>
+      !changedHtml.includes(fileForLocation(location)) &&
+      !approvedBackfills.includes(location),
   );
   assert.deepEqual(
     unrelatedLastmod,
     [],
     `Sitemap lastmod changed without matching page content changes: ${unrelatedLastmod.join(", ")}`,
   );
+
+  for (const location of approvedBackfills) {
+    const approval = approvedLastmodBackfills.get(location);
+    console.log(`Approved sitemap lastmod backfill: ${location} (${approval.reason})`);
+  }
 }
 
 console.log(
