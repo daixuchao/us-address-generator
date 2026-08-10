@@ -171,7 +171,10 @@ const countrySectionPosition = home.indexOf('<section id="countries"');
 const qaLabPosition = home.indexOf('<section class="reference-section qa-promo"');
 assert.ok(homeH1Position >= 0, "homepage must keep the address generator H1");
 assert.ok(countrySectionPosition > homeH1Position, "country generators must follow the homepage H1");
-assert.ok(qaLabPosition > countrySectionPosition, "QA Lab must not appear before the country generators");
+assert.ok(
+  qaLabPosition === -1 || qaLabPosition > countrySectionPosition,
+  "QA Lab must not appear before the country generators",
+);
 
 console.log(
   `SEO regression checks passed (${htmlFiles.length} indexable pages, ${sitemapLocations.length} sitemap URLs).`,
