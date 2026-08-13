@@ -27,7 +27,7 @@ jobs:
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Run SEO regression checks
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}

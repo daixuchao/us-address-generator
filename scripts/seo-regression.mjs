@@ -5,6 +5,12 @@ import { onRequest } from "../functions/_middleware.js";
 
 const origin = "https://global-address.com";
 const excludedHtml = new Set(["404.html", "baidu_verify_codeva-DlQjPzG0IB.html"]);
+const isolatedNoindexHtml = new Set([
+  "address-qa-lab.html",
+  "editorial-policy.html",
+  "methodology.html",
+  "en/methodology.html",
+]);
 const criticalPages = {
   "index.html": {
     title: "多国地址生成器 - 地址随机生成工具 | Global Address Generator",
@@ -53,7 +59,7 @@ function trackedHtmlFiles() {
     .trim()
     .split("\n")
     .filter(Boolean)
-    .filter((file) => !excludedHtml.has(file));
+    .filter((file) => !excludedHtml.has(file) && !isolatedNoindexHtml.has(file));
 }
 
 function canonicalPathForFile(file) {
@@ -107,6 +113,8 @@ assert.match(
   /<link rel="canonical" href="https:\/\/global-address\.com\/">/,
   "homepage canonical must remain the apex URL",
 );
+assert.doesNotMatch(home, /"@type"\s*:\s*"FAQPage"/, "homepage must not publish FAQ schema without visible FAQ content");
+assert.doesNotMatch(home, /address-qa-lab|methodology/, "homepage must not promote isolated QA content");
 
 const sitemap = await readFile(new URL("../sitemap.xml", import.meta.url), "utf8");
 assert.match(
@@ -156,6 +164,28 @@ for (const file of htmlFiles) {
   }
 }
 
+for (const file of isolatedNoindexHtml) {
+  const html = await readFile(new URL(`../${file}`, import.meta.url), "utf8");
+  assert.match(
+    html,
+    /<meta\s+name="robots"\s+content="noindex,follow">/i,
+    `${file} must remain isolated with noindex,follow`,
+  );
+  assert.ok(
+    !sitemapLocations.includes(`${origin}${canonicalPathForFile(file)}`),
+    `${file} must not appear in the sitemap while isolated`,
+  );
+}
+
+const notFound = await readFile(new URL("../404.html", import.meta.url), "utf8");
+for (const file of isolatedNoindexHtml) {
+  assert.doesNotMatch(
+    notFound,
+    new RegExp(canonicalPathForFile(file).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    `404 page must not link to isolated content: ${file}`,
+  );
+}
+
 for (const [file, expected] of Object.entries(criticalPages)) {
   const html = await readFile(new URL(`../${file}`, import.meta.url), "utf8");
   assert.equal(matchText(html, /<title>([^<]+)<\/title>/i, `${file} title`), expected.title);
@@ -177,5 +207,5 @@ assert.ok(
 );
 
 console.log(
-  `SEO regression checks passed (${htmlFiles.length} indexable pages, ${sitemapLocations.length} sitemap URLs).`,
+  `SEO regression checks passed (${htmlFiles.length} indexable pages, ${isolatedNoindexHtml.size} isolated pages, ${sitemapLocations.length} sitemap URLs).`,
 );

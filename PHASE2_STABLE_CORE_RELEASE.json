@@ -1,0 +1,17 @@
+{
+  "release": "phase2-stable-core",
+  "releaseDate": "2026-08-13",
+  "expectedBase": "7510e9934610d3e8fd44adcce6235e23c6fc167b",
+  "stableContentRef": "30ea99af3a437fce702f98d6da3c3bb910201cfe",
+  "rollbackTag": "pre-phase2-20260813",
+  "technicalHtmlExceptions": [
+    "404.html",
+    "index.html"
+  ],
+  "isolatedNoindexPages": [
+    "address-qa-lab.html",
+    "editorial-policy.html",
+    "methodology.html",
+    "en/methodology.html"
+  ]
+}
