@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 
 const maxHtmlFilesPerCommit = 12;
 const [baseRef = "HEAD^", headRef = "HEAD"] = process.argv.slice(2);
+const phase2ManifestPath = "PHASE2_STABLE_CORE_RELEASE.json";
 const approvedLastmodBackfills = new Map([
   [
     "https://global-address.com/",
@@ -74,6 +76,69 @@ function isApprovedLastmodBackfill(location, lastmod) {
   }
 }
 
+function gitObjectExists(ref, file) {
+  try {
+    git(["cat-file", "-e", `${ref}:${file}`]);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function validatePhase2Release(changedHtml) {
+  if (!gitObjectExists(headRef, phase2ManifestPath)) return false;
+
+  const manifest = JSON.parse(readFileSync(phase2ManifestPath, "utf8"));
+  assert.equal(
+    git(["rev-parse", baseRef]),
+    manifest.expectedBase,
+    "Phase 2 release must start from the audited production baseline.",
+  );
+  assert.equal(
+    git(["rev-parse", manifest.stableContentRef]),
+    manifest.stableContentRef,
+    "Phase 2 stable content reference must resolve exactly.",
+  );
+
+  const isolated = new Set(manifest.isolatedNoindexPages);
+  const technicalExceptions = new Set(manifest.technicalHtmlExceptions);
+  for (const file of changedHtml) {
+    if (isolated.has(file)) {
+      assert.match(
+        git(["show", `${headRef}:${file}`]),
+        /<meta\s+name="robots"\s+content="noindex,follow">/i,
+        `${file} must be noindex,follow in the Phase 2 release.`,
+      );
+      continue;
+    }
+
+    if (technicalExceptions.has(file)) continue;
+
+    assert.ok(
+      gitObjectExists(manifest.stableContentRef, file),
+      `${file} is neither a stable page nor an approved isolated page.`,
+    );
+    if (file !== "index.html") {
+      assert.equal(
+        git(["show", `${headRef}:${file}`]),
+        git(["show", `${manifest.stableContentRef}:${file}`]),
+        `${file} must exactly match the audited stable content.`,
+      );
+    }
+  }
+
+  const homepage = git(["show", `${headRef}:index.html`]);
+  assert.match(homepage, /<title>多国地址生成器 - 地址随机生成工具 \| Global Address Generator<\/title>/);
+  assert.match(homepage, /<h1 id="pageTitle">多国地址生成器<\/h1>/);
+  assert.doesNotMatch(homepage, /"@type"\s*:\s*"FAQPage"/);
+
+  const notFound = git(["show", `${headRef}:404.html`]);
+  assert.match(notFound, /<meta name="robots" content="noindex,follow">/);
+  assert.doesNotMatch(notFound, /address-qa-lab|methodology/);
+
+  return true;
+}
+
 if (!hasParentCommit()) {
   console.log("Release safety checks skipped because no parent commit is available.");
   process.exit(0);
@@ -83,15 +148,16 @@ const changedFiles = git(["diff", "--name-only", baseRef, headRef])
   .split("\n")
   .filter(Boolean);
 const changedHtml = changedFiles.filter((file) => file.endsWith(".html"));
+const approvedPhase2Release = validatePhase2Release(changedHtml);
 
 assert.ok(
-  changedHtml.length <= maxHtmlFilesPerCommit,
+  approvedPhase2Release || changedHtml.length <= maxHtmlFilesPerCommit,
   `Release changes ${changedHtml.length} HTML pages. Split the update into batches of ${maxHtmlFilesPerCommit} or fewer so search impact can be measured and rolled back safely.`,
 );
 
 const changedCritical = changedHtml.filter((file) => criticalFiles.has(file));
 assert.ok(
-  !(changedCritical.length > 0 && changedHtml.length > 3),
+  approvedPhase2Release || !(changedCritical.length > 0 && changedHtml.length > 3),
   `Critical search pages (${changedCritical.join(", ")}) cannot ship in the same commit as a broad ${changedHtml.length}-page update.`,
 );
 
@@ -125,5 +191,7 @@ if (changedFiles.includes("sitemap.xml")) {
 }
 
 console.log(
-  `Release safety checks passed (${changedHtml.length} HTML files changed; limit ${maxHtmlFilesPerCommit}).`,
+  approvedPhase2Release
+    ? `Release safety checks passed (${changedHtml.length} HTML files validated against the Phase 2 stable-core manifest).`
+    : `Release safety checks passed (${changedHtml.length} HTML files changed; limit ${maxHtmlFilesPerCommit}).`,
 );
