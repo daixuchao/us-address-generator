@@ -11,12 +11,12 @@
     <meta property="og:url" content="https://global-address.com/en/singapore-address-format-guide">
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-07-09">
-    <meta property="article:modified_time" content="2026-07-15">
+    <meta property="article:modified_time" content="2026-09-05">
     <meta property="og:site_name" content="Global Address Generator">
     <meta name="twitter:card" content="summary">
     <title>Singapore Address Format Guide - Global Address Generator</title>
     <link rel="stylesheet" href="../styles.css?v=20260715-guides">
-    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Singapore Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-07-15","description":"Singapore address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/singapore-address-format-guide","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
+    <script type="application/ld+json" data-generated="seo">{"@context":"https://schema.org","@type":"Article","headline":"Singapore Address Format Guide","datePublished":"2026-07-09","dateModified":"2026-09-05","description":"Singapore address format guide for form testing and localization QA.","inLanguage":"English","author":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"},"mainEntityOfPage":"https://global-address.com/en/singapore-address-format-guide","publisher":{"@type":"Organization","name":"Global Address Generator","url":"https://global-address.com/en/about"}}</script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492600177003381" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -25,20 +25,32 @@
       <article class="content-card">
         <p class="eyebrow">Country format</p>
         <h1>Singapore Address Format Guide</h1>
-        <p class="article-meta">Updated July 15, 2026</p>
+        <p class="article-meta">Updated September 5, 2026</p>
         <p>Singapore addresses often include a block or street address, an optional unit number, and a six-digit postal code. Unit numbers such as #12-05 are common in residential and office addresses.</p>
         <h2>Common layout</h2>
-        <p class="notice">Tan Wei Jie<br>10 Anson Road #12-05<br>Singapore 079903<br>Singapore</p>
-        <h2>Fields to support</h2>
+        <p class="notice">Tan Wei Jie<br>10 Anson Road<br>#12-05 International Plaza<br>Singapore 079903</p>
+        <p>Singapore government address guidance uses a house number and street name, an optional unit number, Singapore, and the postal code. Domestic forms generally do not need a state or province field.</p>
+        <h2>Field mapping</h2>
+        <div class="table-wrap"><table><thead><tr><th>Form field</th><th>Singapore value</th><th>QA consideration</th></tr></thead><tbody>
+          <tr><td>Address Line 1</td><td>10 Anson Road</td><td>Allow block or building number followed by road or street.</td></tr>
+          <tr><td>Address Line 2</td><td>#12-05 International Plaza</td><td>Preserve the hash, floor-unit separator, and building name.</td></tr>
+          <tr><td>City</td><td>Singapore</td><td>Do not force a separate municipality hierarchy.</td></tr>
+          <tr><td>State / province</td><td>Not required</td><td>Make this field optional or hide it for Singapore.</td></tr>
+          <tr><td>Postal code</td><td>079903</td><td>Accept six digits and preserve a leading zero.</td></tr>
+        </tbody></table></div>
+        <h2>Additional Singapore examples</h2>
+        <p class="notice">Nur Aisyah<br>Blk 145 Tampines Street 12<br>#08-231<br>Singapore 520145</p>
+        <p class="notice">Lim &amp; Partners Pte Ltd<br>1 Raffles Place<br>#20-01 One Raffles Place<br>Singapore 048616</p>
+        <h2>Form testing checklist</h2>
         <ul>
-          <li><strong>Name:</strong> recipient or company name.</li>
-          <li><strong>Street or block:</strong> building number, block, road, avenue, or street.</li>
-          <li><strong>Unit number:</strong> often written with a hash, floor, and unit number.</li>
-          <li><strong>Postal code:</strong> six digits.</li>
-          <li><strong>Country:</strong> Singapore.</li>
+          <li>Accept unit numbers such as #08-231 without stripping the hash or hyphen.</li>
+          <li>Preserve leading zeroes in six-digit postal codes by storing them as text.</li>
+          <li>Support both block-based residential and building-based commercial addresses.</li>
+          <li>Do not require a state, province, or region for a domestic Singapore address.</li>
+          <li>Test building names, mobile wrapping, printed labels, and CSV exports.</li>
         </ul>
-        <h2>QA notes</h2>
-        <p>Test hash-style units, six-digit postal codes, long building names, and address forms that do not need a state or province field.</p>
+        <h2>Official reference</h2>
+        <ul class="reference-list"><li><a href="https://www.iras.gov.sg/taxes/property-tax/property-professionals/architect/apply-for-house-and-unit-numbers/" rel="noopener noreferrer">IRAS: House and unit number guidelines</a></li></ul>
         <section class="related-guides" aria-labelledby="relatedGuides">
           <h2 id="relatedGuides">Related guides</h2>
           <ul>
@@ -46,6 +58,7 @@
             <li><a href="./state-vs-province-vs-region">State vs Province vs Region</a></li>
             <li><a href="./international-address-form-design">International Address Form Design</a></li>
             <li><a href="./address-form-testing-checklist">Address Form Testing Checklist</a></li>
+            <li><a href="./southeast-asia-address-generator">Southeast Asia Address Generator</a></li>
           </ul>
         </section>
       </article>
